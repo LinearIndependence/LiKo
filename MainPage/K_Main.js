@@ -12,7 +12,3 @@ function K_Line(cont, prev) {
         return prev;
     }
 }
-
-//line example::    나는 인간->[ID] 컴퓨터->[ID] 상호작용을 듣는 카이스트의 학생이다.
-//'->[]' is parsed, output is automatically converted into linked word.
-//
