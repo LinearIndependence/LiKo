@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+
+	<title>Liko</title>
+
+	<link rel="stylesheet" type="text/css" href="vocablist.css">
+	<script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	  	apiKey: "AIzaSyCzCLfk8yqwdxamEEFx3PRrRyhOcTL1IUk",
+	  	authDomain: "liko-665bd.firebaseapp.com",
+	  	databaseURL: "https://liko-665bd.firebaseio.com",
+	  	projectId: "liko-665bd",
+	  	storageBucket: "liko-665bd.appspot.com",
+	  	messagingSenderId: "133340779007"
+	  };
+	  firebase.initializeApp(config);
+	</script>
+	<script type="text/javascript" src="../js/lib/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="vocablist.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+</head>
+<body>
+	<div id="big">
+		<div id="context_container_box" class="box">
+			<div id="vocab_box" class="inline box">
+				<div class="inline">사랑하다</div>
+				<img src="speaker_icon.png" id="vocab_sound_icon" class="inline rightelement">
+				<div>
+					Love
+				</div>		
+			</div>
+			<button id="return" class="rightelement" onclick="window.location.href='../index.html'">Back</button>
+			
+
+			<div id="relevant_contexts_sign" class="box">
+				Relevant Contexts
+			</div>
+			<div id="context_box" class="box" >
+				<div class="inline">Context 1 - First meeting</div><button class="inline rightelement">Jump to Context</button>
+				<br>
+				<br>
+				<div>예문: 어머니께서는 저를 사랑하십니다.</div>
+			</div>
+		</div>
+
+	</div>
+</body>
+
+</html>

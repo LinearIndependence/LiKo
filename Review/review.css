@@ -6,6 +6,9 @@ Brighter 2: #e5cd80;
 Brighter 3: #eedeaa;
 Brighter 4: #f6eed5;
 */
+body {
+	font-family: 'Nanum Gothic', sans-serif;
+}
 
 
 #big {
@@ -50,13 +53,18 @@ Brighter 4: #f6eed5;
 }
 */
 #vocab_box {	
-	background-color: #dcbd56;
-	width: 120px;
+	background-color: #eedeaa;
+	/*width: 120px;*/
 	height: 60px;
-	margin-bottom: 12px;
+	margin-top: 12px;
+	margin-left: 12px;
+	margin-bottom: 20px;
+	font-weight: bold;
+	line-height: 200%;
 }
 
 #context_container_box {
+	overflow-y: auto;
 	background-color: #dcbd56;
 	margin-bottom: 12px;
 }
