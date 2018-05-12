@@ -17,19 +17,21 @@ $(document).ready(function () {
 			var label = document.createElement("div");
 			context_box.appendChild(label);
 			label.className = "inline largefont bold ";
-			label.innerHTML = "Context " + context.chapter + " - " + "";
+			label.innerHTML = "Context " + context.chapter + " - " + context.name;
 			var test_button = document.createElement("button");
 			context_box.appendChild(test_button);
 			test_button.className = "inline rightelement ";
 			test_button.innerHTML = "테스트용 버튼 - 현재 맥락에 단어 추가";
 			test_button.onclick = () => {alert('미구현')};
 			context_box.innerHTML += "<br>";
-
-			var vocab_box = document.createElement("a");
-			context_box.appendChild(vocab_box);
-			vocab_box.className = "inline box vocab_box bold ";
-			vocab_box.innerHTML = "YEE";
-			vocab_box.href = "inspect_word.html?word=yee";
+			for (var vocab in context.vocabs) {
+				var vocab_box = document.createElement("a");
+				context_box.appendChild(vocab_box);
+				vocab_box.className = "inline box vocab_box bold ";
+				vocab_box.innerHTML = context.vocabs[vocab];
+				oooo = vocab;
+				vocab_box.href = "inspect_word.html?word=" + context.vocabs[vocab];
+			}
 		});
 	}
 
