@@ -7,7 +7,7 @@
 
 	<title>Liko</title>
 
-	<link rel="stylesheet" type="text/css" href="vocablist.css">
+	<link rel="stylesheet" type="text/css" href="inspect_word.css">
 	<script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
 	<script>
 	  // Initialize Firebase
@@ -22,22 +22,33 @@
 	  firebase.initializeApp(config);
 	</script>
 	<script type="text/javascript" src="../js/lib/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="vocablist.js"></script>
+	<script type="text/javascript" src="inspect_word.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
 </head>
 <body>
 	<div id="big">
 		<div id="context_container_box" class="box">
-			<div id="context_box" class="box" >
-				<div class="inline largefont bold">Context 1 - First meeting</font></div><button class="inline rightelement">테스트용 버튼 - 현재 맥락에 단어 추가</button>
+			<div id="vocab_box" class="inline box bold xxlfont">
+				<div class="inline">사랑하다</div>
+				<img src="Speaker_Icon.png" id="vocab_sound_icon" class="inline rightelement">
+				<div>
+					Love
+				</div>		
+			</div>
+			<button id="return" class="rightelement" onclick="window.location.href='../index.html'">Back</button>
+
+
+			<div id="relevant_contexts_sign" class="box bold largefont">
+				Relevant Contexts
+			</div>
+			<div id="context_box" class="box">
+				<div class="inline largefont bold">Context 1 - First meeting</div><button class="inline rightelement">Jump to Context</button>
 				<br>
-				<div class="inline box vocab_box bold">
-					사랑하다
-				</div>
+				<br>
+				<div>어머니께서는 저를 사랑하십니다.</div>
 			</div>
 		</div>
 	</div>
-
 </body>
 
 </html>
