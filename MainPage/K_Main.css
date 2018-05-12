@@ -1,3 +1,49 @@
 .test{
     color: red;
 }
+.K_Whole{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1080px;
+    height: 810px;
+    margin: -405px 0px 0px -540px;
+}
+.K_ProfileHolder{
+    background-color : #333D51;
+    width: 270px;
+    height: 810px;
+    float: left;
+}
+.K_Main{
+    background-color: #CBD0D8;
+    width: 810px;
+    height: 810px;
+    float: left;
+}
+.K_clear::after{
+    clear:both;
+    content:'';
+}
+
+.K_Profile{
+    width: 100%;
+    height: 80px;
+    margin-bottom: 16px;
+    background-color: #2b3445;
+}
+.K_Pcolor{
+    width: 2%;
+    height: 100%;
+    background-color: #d3ac2b;
+    transition: width 0.2s ease-in-out;
+}
+.K_Pcolor.K_Pselected{
+    width: 100%;
+}
+.K_Pcolor.K_Pselected.K_Phovering {
+    background-color: #a98a23
+}
+.K_Pcolor.K_Phovering:not(.K_Pselected){
+    width: 20%;
+}

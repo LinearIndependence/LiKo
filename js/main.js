@@ -1,5 +1,3 @@
-$(function () {
-    $('#liko-test').click(function () {
-        alert('화이팅!');
-    })
+$('#liko-test').click(function () {
+    alert('화이팅!');
 });
