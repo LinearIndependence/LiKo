@@ -80,7 +80,7 @@ body {
 	overflow-y: auto;
 }
 
-#context_box {
+.context_box {
 	background-color: #e5cd80;
 	width: 980px;
 	padding-bottom: 12px;
