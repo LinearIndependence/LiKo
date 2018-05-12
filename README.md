@@ -20,3 +20,27 @@
 - `git commit -m [message]`
 - `git push (-u origin)`
 - `git pull`
+
+## Firebase
+
+### Firebase Javascript
+
+- 파이어베이스 DB를 원정호가 만들었고, 다른 세 분께 공유 권한을 드렸습니다. 
+- 링크: https://console.firebase.google.com/project/liko-665bd/overview
+- JS로 쓰려면 아래를 붙여넣으세요.
+`
+<script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCzCLfk8yqwdxamEEFx3PRrRyhOcTL1IUk",
+    authDomain: "liko-665bd.firebaseapp.com",
+    databaseURL: "https://liko-665bd.firebaseio.com",
+    projectId: "liko-665bd",
+    storageBucket: "liko-665bd.appspot.com",
+    messagingSenderId: "133340779007"
+  };
+  firebase.initializeApp(config);
+</script>
+`
+
