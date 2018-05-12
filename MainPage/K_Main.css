@@ -1,7 +1,14 @@
-.test{
+.test {
     color: red;
 }
-.K_Whole{
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+.K_Whole {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -9,41 +16,147 @@
     height: 810px;
     margin: -405px 0px 0px -540px;
 }
-.K_ProfileHolder{
-    background-color : #333D51;
+
+.K_ProfileHolder {
+    background-color: #333D51;
     width: 270px;
     height: 810px;
     float: left;
 }
-.K_Main{
+
+.K_Main {
     background-color: #CBD0D8;
     width: 810px;
     height: 810px;
+    padding: 15px;
     float: left;
 }
-.K_clear::after{
-    clear:both;
-    content:'';
+
+.K_clear::after {
+    clear: both;
+    content: '';
 }
 
-.K_Profile{
+.K_Profile {
+    position: relative;
     width: 100%;
     height: 80px;
     margin-bottom: 16px;
     background-color: #2b3445;
+    color: #CBD0D8;
+    cursor: pointer;
 }
-.K_Pcolor{
+
+.K_Pcolor {
     width: 2%;
     height: 100%;
     background-color: #d3ac2b;
     transition: width 0.2s ease-in-out;
+    text-align: left;
 }
-.K_Pcolor.K_Pselected{
-    width: 100%;
+
+    .K_Pcolor.K_selected {
+        color: #2b3445;
+        width: 100%;
+    }
+
+        .K_Pcolor.K_selected.K_hovering {
+            background-color: #a98a23;
+        }
+
+    .K_Pcolor.K_hovering:not(.K_selected) {
+        width: 20%;
+    }
+
+.K_Pname {
+    margin: 0 0 0 0;
+    position: absolute;
+    right: -35%;
+    width: 70%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+    font-size: 20px;
 }
-.K_Pcolor.K_Pselected.K_Phovering {
-    background-color: #a98a23
+
+.K_MainLog {
+    padding: 15px;
+    height: 600px;
+    background-color: #b1b8c4
 }
-.K_Pcolor.K_Phovering:not(.K_Pselected){
-    width: 20%;
+
+.K_interacts {
+    margin: 15px 0 15px 0;
+    height: 165px;
+    padding: 15px;
+    background-color: #b1b8c4;
+}
+
+.K_candidates {
+    background-color: #333D51;
+    height: 60%;
+}
+
+.K_cand {
+    display: inline-block;
+    position: relative;
+    background-color: #CBD0D8;
+    padding: 15px;
+    border: 2px solid #333D51;
+    margin: 0 10px 0 0;
+    width: 200px;
+    height: 100%;
+    float: left;
+    transition: background-color 0.2s ease-in-out;
+}
+
+    .K_cand.K_hovering:not(.K_selected) {
+        background-color: #d3ac2b;
+    }
+    .K_cand.K_selected {
+        background-color: #d3ac2b;
+        top: 2px;
+    }
+
+.K_inputField {
+    position: relative;
+    background-color: #CBD0D8;
+    margin: 10px 0 0 0;
+    border: 2px solid #333D51;
+    width: 670px;
+    height: 44px;
+    padding: 10px;
+    float: left;
+}
+
+.K_commitButton {
+    background-color: #d3ac2b;
+    position: relative;
+    margin: 10px 0 0 10px;
+    width: 70px;
+    height: 44px;
+    border: 2px solid #333D51;
+    float: left;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+    .K_commitButton.K_hovering:not(.K_selected) {
+        background-color: #a98a23;
+    }
+
+    .K_commitButton.K_selected {
+        background-color: #a98a23;
+        top: 5px;
+    }
+
+.K_inputValue {
+    margin: 0 0 0 0;
+    font-weight: normal;
+    font-size: 20px;
+    position: absolute;
+    right: 5%;
+    width: 92%;
+    top: 50%;
+    transform: translate(0%, -50%);
 }
