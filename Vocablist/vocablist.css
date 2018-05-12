@@ -10,6 +10,11 @@ body {
 	font-family: 'Nanum Gothic', sans-serif;
 }
 
+a:link {
+	color:inherit;
+	text-decoration: none;
+}
+
 #big {
     position: absolute;
     top: 50%;
@@ -72,6 +77,10 @@ body {
 	vertical-align: middle;
 	cursor: pointer;
 	border-style: outset;
+}
+
+.vocab_box:hover {
+	background-color: #d3ac2b;
 }
 
 #context_container_box {
