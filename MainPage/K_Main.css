@@ -82,7 +82,45 @@
 .K_MainLog {
     padding: 15px;
     height: 600px;
-    background-color: #b1b8c4
+    background-color: #b1b8c4;
+    overflow-y: scroll;
+}
+.K_Log {
+    position: relative;
+    width: 300px;
+    min-height: 50px;
+    margin-top: 20px;
+    padding: 7px;
+    box-shadow: 3px 3px 20px grey;
+}
+.K_Log.K_logSeq{
+    margin-top: 10px;
+}
+    .K_Log::after {
+        content: '';
+        position: absolute;
+        top: 0px;
+        left: -24px;
+        width: 0px;
+        height: 0px;
+        border-width: 12px;
+        border-style: solid;
+        border-color: transparent #F2F2E8 transparent transparent;
+    }
+    .K_Log.K_logSeq::after{
+        border-width: 0px;
+    }
+.K_ME {
+    background-color: #d3ac2b;
+    left: calc(100% - 309px);
+}
+    .K_ME::after {
+        left: 100%;
+        border-color: transparent transparent transparent #d3ac2b;
+    }
+.K_VF {
+    background-color: #F2F2E8;
+    left: 70px;
 }
 
 .K_interacts {
@@ -101,19 +139,24 @@
     display: inline-block;
     position: relative;
     background-color: #CBD0D8;
-    padding: 15px;
+    padding: 6px;
     border: 2px solid #333D51;
     margin: 0 10px 0 0;
     width: 200px;
     height: 100%;
     float: left;
     transition: background-color 0.2s ease-in-out;
+    overflow: hidden;
+    cursor: pointer;
 }
-
-    .K_cand.K_hovering:not(.K_selected) {
+    .K_cand:not(.K_available) {
+        background-color: #333D51;
+        cursor: default;
+    }
+    .K_cand.K_available.K_hovering:not(.K_selected) {
         background-color: #d3ac2b;
     }
-    .K_cand.K_selected {
+    .K_cand.K_available.K_selected {
         background-color: #d3ac2b;
         top: 2px;
     }
@@ -127,6 +170,22 @@
     height: 44px;
     padding: 10px;
     float: left;
+    transition: background-color ease-in-out 0.2s;
+}
+
+    .K_inputField.K_alert {
+        background-color: #d3ac2b;
+    }
+
+.K_inputValue {
+    margin: 0 0 0 0;
+    font-weight: normal;
+    font-size: 20px;
+    position: absolute;
+    right: 5%;
+    width: 92%;
+    top: 50%;
+    transform: translate(0%, -50%);
 }
 
 .K_commitButton {
@@ -140,23 +199,24 @@
     transition: background-color 0.2s ease-in-out;
     cursor: pointer;
 }
+    .K_commitButton:not(.K_active) {
+        background-color: #CBD0D8;
+        cursor: default;
+    }
 
-    .K_commitButton.K_hovering:not(.K_selected) {
+    .K_commitButton.K_hovering.K_active:not(.K_selected) {
         background-color: #a98a23;
     }
 
-    .K_commitButton.K_selected {
+    .K_commitButton.K_selected.K_active {
         background-color: #a98a23;
         top: 5px;
     }
 
-.K_inputValue {
-    margin: 0 0 0 0;
-    font-weight: normal;
-    font-size: 20px;
-    position: absolute;
-    right: 5%;
-    width: 92%;
-    top: 50%;
-    transform: translate(0%, -50%);
+.K_wordInfo{
+    font-weight: bold;
+    cursor: pointer;
+}
+.K_wordInfo:hover{
+
 }
