@@ -1,0 +1,163 @@
+.H_Test {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    margin: 0;
+    padding: 0;
+
+    font-size: 14px;
+
+    background-color: #cbd0d8;
+}
+
+.H_Test_Popup {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1em;
+    border-radius: 5px;
+
+    font-size: 1.5em;
+
+    color: #ffffff;
+    background-color: #84878a;
+}
+
+.H_Test_Status {
+    flex-shrink: 0;
+
+    padding: 0.5em;
+}
+
+.H_Test_Status .H_Test_Life,
+.H_Test_Status .H_Test_Key {
+    float: left;
+    margin-right: 0.3em;
+}
+
+.H_Test_Status .H_Test_Life > span,
+.H_Test_Status .H_Test_Key > span {
+    margin-right: 0.4em;
+}
+
+.H_Test_Status .H_Test_Life {
+    color: #ff0000;
+}
+
+.H_Test_Status .H_Test_Key {
+    color: #d3ac2b;
+}
+
+.H_Test_Status .H_Test_Time {
+    float: right;
+
+    font-weight: bold;
+}
+
+.H_Test_Chat {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    list-style-type: none;
+    overflow-y: auto;
+    box-sizing: border-box;
+
+    width: 100%;
+    margin: 0;
+    padding: 0 10px 0 10px;
+}
+
+.H_Test_Chat > li {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.H_Test_Chat .H_Test_Profile {
+    display: inline-block;
+    vertical-align: middle;
+
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    border: 2px solid #d3ac2b;
+}
+
+.H_Test_Chat .H_Test_Profile-other {
+    margin-right: 0.5em;
+}
+
+.H_Test_Chat .H_Test_Sentence {
+    display: inline-block;
+    vertical-align: middle;
+
+    width: 70%;
+    max-width: 350px;
+    padding: 10px 5px 10px 5px;
+    border-radius: 5px;
+    line-height: 1.5em;
+}
+
+.H_Test_Chat .H_Test_Sentence-me {
+    float: right;
+
+    color: #f2f2d8;
+    background-color: #d3ac2b;
+}
+
+.H_Test_Chat .H_Test_Sentence-other {
+    color: #000000;
+    background-color: #f2f2d8;
+}
+
+.H_Test_Input .H_Test_HintView {
+    display: inline-block;
+
+    margin-bottom: 0.3em;
+    padding: 0.2em 0 0.2em 0.2em;
+}
+
+.H_Test_Input .H_Test_HintButton {
+    cursor: pointer;
+
+    margin-bottom: 0.3em;
+    padding: 0.2em 0.4em 0.2em 0.4em;
+    border-radius: 5px;
+    border-color: #d3ac2b;
+
+    font-weight: bold;
+
+    color: #f2f2d8;
+    background-color: #d3ac2b;
+}
+
+.H_Test_Input {
+    margin: 0;
+    padding: 0.5em 1em 0.2em 1em;
+    border-radius: 5px;
+}
+
+.H_Test_Input .H_Test_Answer {
+    cursor: pointer;
+    text-align: left;
+
+    width: 100%;
+    margin-bottom: 0.3em;
+    padding: 0.5em;
+    border-radius: 5px;
+
+    background-color: #ffffff;
+}
+
+.H_Test_Input .H_Test_Answer-right {
+    color: #ffffff;
+    background-color: #6078ff;
+}
+
+.H_Test_Input .H_Test_Answer-wrong {
+    color: #ffffff;
+    background-color: #ff7a6c;
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+
+    <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="H_Test.css">
+
+    <script type="text/javascript" src="../js/lib/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="H_TestData.js"></script>
+    <script type="text/javascript" src="H_TestModel.js"></script>
+    <script type="text/javascript" src="H_TestView.js"></script>
+
+    <style type="text/css">
+        body {
+            background-color: #444444;
+        }
+
+        h3 {
+            color: #ffffff;
+        }
+
+        .H_Test {
+            width: 1050px;
+            height: 780px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(function () {
+            'use strict';
+
+            var problems = H.TestData[0];
+
+            var testModel = new H.TestModel({
+                problems: problems,
+                lifeCount: 3,
+                keyCount: 3
+            });
+
+            var testView = new H.TestView({
+                testModel: testModel
+            });
+
+            testModel.startTest();
+        });
+    </script>
+</head>
+
+<body>
+
+<h3>현재는 테스트용이라 배경이 이럽니다. 취합할 때 되면 메인 UI 옆에 붙여넣을 겁니다.</h3>
+
+<div class="H_Test">
+    <div class="H_Test_Popup">
+        <!--V Correct! or X Wrong!-->
+    </div>
+
+    <div class="H_Test_Status">
+        <div class="H_Test_Life">
+            <!--Heart Heart Heart-->
+        </div>
+
+        <div class="H_Test_Key">
+            <!--Key Key Key-->
+        </div>
+        <span class="H_Test_Time">0m 0s</span>
+    </div>
+    <ul class="H_Test_Chat">
+    </ul>
+    <div class="H_Test_Input">
+        <button class="H_Test_HintButton">Hint</button>
+        <div class="H_Test_HintView"></div>
+        <!--
+        <button class="H_Test_Answer">Blahblah...</button>
+        <button class="H_Test_Answer">Blahblah...</button>
+        <button class="H_Test_Answer">Blahblah...</button>
+        -->
+    </div>
+
+</div>
+</body>
+</html>

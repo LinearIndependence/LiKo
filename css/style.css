@@ -1,4 +1,7 @@
-#liko-test{
-    font-style: italic;
-    font-weight: bold;
+/* 메인 스타일. */
+
+html,
+body {
+    margin: 0;
+    padding: 0;
 }
