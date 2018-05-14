@@ -71,14 +71,14 @@ H.TestModel = (function () {
         this.keyCount = args.keyCount || 3;
 
         this.events = {
-            startTest: new Event(),
-            endTest: new Event(),
-            updateTime: new Event(),
-            updateProblem: new Event(),
-            markAnswer: new Event(),
-            showHint: new Event(),
-            useLife: new Event(),
-            useKey: new Event()
+            startTest: new Event(),     // 테스트 시작 이벤트
+            endTest: new Event(),       // 테스트 종료 이벤트
+            updateTime: new Event(),    // 타이머 1초 지나는 이벤트
+            updateProblem: new Event(), // 새 질문 이벤트
+            markAnswer: new Event(),    // 정답 채점 이벤트
+            showHint: new Event(),      // 힌트 보여주기 이벤트
+            useLife: new Event(),       // 라이프 1개 깎는 이벤트
+            useKey: new Event()         // 열쇠 1개 깎는 이벤트
         };
     }
 
@@ -103,12 +103,14 @@ H.TestModel = (function () {
         });
 
         if (!isRight) {
+            // 틀렸으면... 라이프 1개 깎음.
             this.lifeCount--;
 
             this.events.useLife.fire({
                 lifeCount: this.lifeCount
             });
 
+            // 라이프가 안 남으면, 게임 오버.
             if (this.lifeCount === 0) {
                 setTimeout(function () {
                     this.events.endTest.fire({
@@ -123,11 +125,13 @@ H.TestModel = (function () {
 
         setTimeout(function () {
             if (this.problemIndex >= this.problemCount - 1) {
+                // 대화가 끝났으면... 게임 오버.
                 this.events.endTest.fire({
                     isSucceed: true,
                     elapsedTime: this.elapsedTime
                 });
             } else {
+                // 아직 안 끝났으면... 다음 질문.
                 this.updateProblem();
             }
         }.bind(this), this.delayAfterMark);
@@ -136,8 +140,14 @@ H.TestModel = (function () {
     TestModel.prototype.requestHint = function () {
         var problem = this.problems[this.problemIndex];
 
+        // 일단 열쇠 1개 깎음.
         this.keyCount--;
 
+        this.events.useKey.fire({
+            keyCount: this.keyCount
+        });
+
+        // View에게 힌트 정보 보내기.
         this.events.showHint.fire({
             hint: problem.hint
                 .map(function (id) {
@@ -145,19 +155,22 @@ H.TestModel = (function () {
                 })
                 .join(', ')
         });
-
-        this.events.useKey.fire({
-            keyCount: this.keyCount
-        });
     };
 
     TestModel.prototype.updateProblem = function () {
         this.problemIndex++;
 
         var problem = this.problems[this.problemIndex];
-        var answers = range(problem.wrongAnswers.length + 1);
-        var answerIndexes = shuffleArray(range(problem.wrongAnswers.length + 1));
+        var problemCount = problem.wrongAnswers.length + 1;
+        var answers = new Array(problemCount);
         var i;
+
+        /*
+         * [0, ..., n - 1](n = (답의 개수) = 1 + (오답의 개수))을 섞습니다.
+         * 섞은 걸 [a(0), ..., a(n - 1)]이라고 하면, 정답은 a(0)번째 버튼에,
+         * 오답들은 a(1), ..., a(n - 1)번째 버튼들에 배치합니다.
+         */
+        var answerIndexes = shuffleArray(range(problemCount));
 
         this.rightAnswerIndex = answerIndexes[0];
         answers[answerIndexes[0]] = problem.rightAnswer;
@@ -174,7 +187,9 @@ H.TestModel = (function () {
     };
 
     TestModel.prototype.updateTime = function () {
-        this.events.updateTime.fire({time: this.elapsedTime});
+        this.events.updateTime.fire({
+            time: this.elapsedTime
+        });
 
         this.elapsedTime++;
 

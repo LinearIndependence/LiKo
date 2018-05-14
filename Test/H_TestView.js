@@ -68,7 +68,7 @@ H.TestView = (function () {
             this.disableHint();
 
             // 정답을 대화창에 추가합니다.
-            this.drawChat(args.answer, true);
+            this.drawChat([args.answer], true);
 
             // Correct 또는 Wrong이라고 팝업을 띄웁니다.
             this.drawPopup(args.isRight);
@@ -137,24 +137,23 @@ H.TestView = (function () {
     };
 
     TestView.prototype.drawChat = function (sentences, isMe) {
-        if (!Array.isArray(sentences)) {
-            sentences = [sentences];
-        }
-
         var chat = $('.H_Test_Chat');
 
         sentences.forEach(function (sentence, index) {
             var newRow = $('<li>');
 
             if (!isMe) {
+                // 프로필 사진은 상대방만 그립니다.
                 newRow.append(
                     $('<img>')
                         .addClass('H_Test_Profile H_Test_Profile-other')
                         .attr('src', 'H_Test_Profile.jpg')
+                        // 두 번째 문장부터는 프로필을 그리지 않고 공간만 비웁니다.
                         .css('opacity', (index === 0) ? 1 : 0)
                 )
             }
 
+            // 문장을 그립니다.
             newRow.append(
                 $('<div>')
                     .addClass('H_Test_Sentence')
@@ -165,6 +164,7 @@ H.TestView = (function () {
             chat.append(newRow);
         });
 
+        // 스크롤을 강제로 아래로 내립니다.
         chat.scrollTop(chat.height());
     };
 
@@ -194,6 +194,7 @@ H.TestView = (function () {
                     .data('answer', answer)
                     .text(answer)
                     .click(function () {
+                        // 버튼 자기 자신.
                         var thisButton = $(event.currentTarget);
 
                         this.removeHint();
