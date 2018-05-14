@@ -136,25 +136,36 @@ H.TestView = (function () {
             .fadeIn(500).delay(1000).fadeOut(500);
     };
 
-    TestView.prototype.drawChat = function (sentence, isMe) {
-        $('.H_Test_Chat')
-            .append(
-                $('<li>')
-                    .append(
-                        isMe
-                            ? null
-                            : $('<img>')
-                                .addClass('H_Test_Profile H_Test_Profile-other')
-                                .attr('src', 'H_Test_Profile.jpg')
-                    )
-                    .append(
-                        $('<div>')
-                            .addClass('H_Test_Sentence')
-                            .addClass(isMe ? 'H_Test_Sentence-me' : 'H_Test_Sentence-other')
-                            .text(sentence)
-                    )
-            )
-            .scrollTop($('.H_Test_Chat').height());
+    TestView.prototype.drawChat = function (sentences, isMe) {
+        if (!Array.isArray(sentences)) {
+            sentences = [sentences];
+        }
+
+        var chat = $('.H_Test_Chat');
+
+        sentences.forEach(function (sentence, index) {
+            var newRow = $('<li>');
+
+            if (!isMe) {
+                newRow.append(
+                    $('<img>')
+                        .addClass('H_Test_Profile H_Test_Profile-other')
+                        .attr('src', 'H_Test_Profile.jpg')
+                        .css('opacity', (index === 0) ? 1 : 0)
+                )
+            }
+
+            newRow.append(
+                $('<div>')
+                    .addClass('H_Test_Sentence')
+                    .addClass(isMe ? 'H_Test_Sentence-me' : 'H_Test_Sentence-other')
+                    .text(sentence)
+            );
+
+            chat.append(newRow);
+        });
+
+        chat.scrollTop(chat.height());
     };
 
     TestView.prototype.drawHint = function (hint) {
