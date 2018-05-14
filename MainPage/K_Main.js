@@ -239,7 +239,7 @@ function K_makeWordPopup(wordID) {
 }
 function K_getWordInfo(wordID) {
     var ret = $(document.createElement('span'));
-    ret.text(wordID + ' 에 대한 설명이 나옴 + 단어장 추가 기능');
+    ret.text(wordID);
     return ret;
 }
 
