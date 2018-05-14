@@ -64,12 +64,27 @@ function getAllUrlParams(url) {
 
 
 $(document).ready(function () {
-	var vocab_sound_icon = document.getElementById('vocab_sound_icon');
-	
-	vocab_sound_icon.onclick = function () {
-		alert("This is not implemented in this prototype!");
-	};
-	
-	//getAllUrlParams().word
+	var vocabsRef = firebase.database().ref('vocabs');
+	var id = getAllUrlParams().word;
 
+	vocabsRef.once('value').then(function (snapshot) {
+			snapshot.forEach(function(context_snap) {
+				var vocab = context_snap.val();
+				if (vocab.id == id)
+				{
+					$('#vocab_box')[0].innerHTML =
+					'<div class="inline">' + vocab.korean + 
+					'</div><img src="Speaker_Icon.png" id="vocab_sound_icon" class="inline rightelement"><div>' +
+					vocab.meaning + '</div>';
+					return;
+				}
+			});
+			//$('#vocab_box')inline largefont bold
+		}).then(function (snapshot) {
+			var vocab_sound_icon = document.getElementById('vocab_sound_icon');
+
+			vocab_sound_icon.onclick = function () {
+				alert("This is not implemented in this prototype!");
+			};
+		});
 });
