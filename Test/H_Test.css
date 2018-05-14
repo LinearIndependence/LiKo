@@ -1,6 +1,7 @@
 .H_Test {
     position: relative;
     display: flex;
+    box-sizing: border-box;
     flex-direction: column;
     flex-wrap: nowrap;
 
@@ -97,6 +98,7 @@
     height: 100%;
     margin: 0;
     padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 .H_Test_Chat > li {

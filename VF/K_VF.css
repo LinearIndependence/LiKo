@@ -1,0 +1,76 @@
+.K_Whole {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1080px;
+    height: 810px;
+    margin: -405px 0px 0px -540px;
+}
+
+.K_Main {
+    box-sizing: border-box;
+    float: left;
+
+    width: 810px;
+    height: 810px;
+
+    background-color: #CBD0D8;
+}
+
+.K_ProfileHolder {
+    float: left;
+
+    width: 270px;
+    height: 810px;
+
+    background-color: #333D51;
+}
+
+.K_Profile {
+    position: relative;
+    cursor: pointer;
+
+    width: 100%;
+    height: 80px;
+    margin-bottom: 16px;
+
+    background-color: #2b3445;
+    color: #CBD0D8;
+}
+
+.K_Pcolor {
+    width: 2%;
+    height: 100%;
+    transition: width 0.2s ease-in-out;
+
+    text-align: left;
+
+    background-color: #d3ac2b;
+}
+
+.K_Pcolor.K_selected {
+    width: 100%;
+
+    color: #2b3445;
+}
+
+.K_Pcolor.K_selected.K_hovering {
+    background-color: #a98a23;
+}
+
+.K_Pcolor.K_hovering:not(.K_selected) {
+    width: 20%;
+}
+
+.K_Pname {
+    position: absolute;
+
+    top: 50%;
+    right: -35%;
+    width: 70%;
+    margin: 0 0 0 0;
+    transform: translate(-50%, -50%);
+
+    font-weight: bold;
+    font-size: 20px;
+}
