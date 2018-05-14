@@ -2,16 +2,36 @@ $(document).ready(function () {
 	var contextsRef = firebase.database().ref('contexts');
 	var vocabsRef = firebase.database().ref('vocabs');
 
+	/*
 	function getContextFromVocab(vocab_id) {
 		var ret = [];
 		contextsRef.once('value').then(function (snapshot) {
 			snapshot.forEach(function(context_snap) {
 				var context = context_snap.val();
-				if (Object.values(context.vocabs).includes(vocab_id));
+				if (Object.values(context.vocabs).includes(vocab_id))
 					ret.push(context);
 			});
 		});
+		return ret;
 	}
 
-	amon = getContextFromVocab(31);
+	function getVocabFromID(vocab_id) {
+		var ret = null;
+		vocabsRef.once('value').then(function (snapshot) {
+			snapshot.forEach(function(context_snap) {
+				var vocab = context_snap.val();
+				console.log(vocab);
+				if (vocab.id == vocab_id)
+				{
+					ret = vocab_id;
+					return;
+				}
+			});
+		});
+		
+		return ret;
+	}
+	*/
+	//console.log(getContextFromVocab(31));
+	//console.log(getVocabFromID(31));
 });

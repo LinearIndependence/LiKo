@@ -1,4 +1,4 @@
-﻿//Parse this data.
+//Parse this data.
 
 // '?' => now candidates will start to appear.
 // '?[label]' => a candidate. if selected, goto label.
@@ -10,28 +10,35 @@
 //Parsing is always UP-to-DOWN. Sequence never flows after new label.(i.e. if parser incounter new [label], it's malformed data.)
 //Cannot goto past label. ==> these features can help finding context.
 var testConv = [
-    "- 첫 번째 대사.",
-    "- 선택 없이 이어지는 두 번째 대사.>>daeSa",
+    "- First line of context.",
+    "- Second line, in sequence.>>Sequence!!",
     "?",
-    "?[ONE] 첫 번째 선택이 시작되었고, 첫 번째 후보입니다.",
-    "?[TWO] 첫 번째 선택의 두 번째 후보입니다.",
-    "?[THE] 첫 번재 선택의 3번째 후보입니다.",
+    "?[ONE] First candidate of first choose.",
+    "?[TWO] Second candidate,",
+    "?[THE] This is third candidate.",
     "[ONE]",
-    "- 첫 번째 선택에서 첫 번째 후보를 선택하셨습니다.",
+    "- You choosed the First>>ID_of_word candidate!!",
+	"- Context will end now.",
     "__FIN__",
     "[TWO]",
-    "- 첫 번째 선택에서 두 번째 후보를 선택하셨네요.",
-    "- 근데 또 선택을>>sunTack 해야 할 것 같아요.",
+    "- You choosed the SECOND>>second candidate!!!",
+	"- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Du",
+    "- Now it's time to choose another.",
     "?",
-    "?[THE] 방금 세 번째를 선택했다면?",
-    "?[TWO] 이번에도 두>>doo 번째.",
+    "?[GGG] Now, there are two candidates.",
+    "?[AAA] I'm planning to color candidates by different hue.",
     "[THE]",
-    "- 첫 번째 선택에서 세 번째 후보를>>hooBo 선택해 버리기!",
-    "- 두 번째를 선택하고 첫 번째를 선택해도 여기 오긴 해요.",
+    "- You choosed the THIRD candidate!!",
+    "- I can do this as long as I want.",
+	"- But it's time to end>>CUSTOM_ID_END the context.",
     "__FIN__",
-    "[TWO]",
-    "- 이게 재미있지는 않죠.",
+    "[GGG]",
+    "- YOU CHOOSED the FIRST one.",
     "->[FINAL]",
     "- 이 대사는 안 나올 거예요.",
     "[FINAL]",
-    "- 다음에는>>daum 두 번째가 아닌 걸로 선택도 해 봐요."];
+    "- BYE!! context is over.",
+	"__FIN__",
+	"[AAA]",
+	"- This is the longest context branch.",
+	"- Time to say goodbye."];

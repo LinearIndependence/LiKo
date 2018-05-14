@@ -64,12 +64,31 @@ function getAllUrlParams(url) {
 
 
 $(document).ready(function () {
-	var vocab_sound_icon = document.getElementById('vocab_sound_icon');
-	
-	vocab_sound_icon.onclick = function () {
-		alert("This is not implemented in this prototype!");
-	};
-	
-	//getAllUrlParams().word
+	var vocabsRef = firebase.database().ref('vocabs');
+	var id = getAllUrlParams().word;
 
+	vocabsRef.once('value').then(function (snapshot) {
+			snapshot.forEach(function(context_snap) {
+				var vocab = context_snap.val();
+				if (vocab.id == id)
+				{
+					$('#vocab_box')[0].innerHTML =
+					'<div class="inline">' + vocab.korean + 
+					'</div><img src="Speaker_Icon.png" id="vocab_sound_icon" class="inline rightelement"><div>' +
+					vocab.meaning + '</div>';
+					return;
+				}
+			});
+			//console.log($('#context_box')[0]);
+			$('#context_box')[0].innerHTML = `<div class="inline largefont bold">Context 1 - First meeting</div><button class="inline rightelement">Jump to Context</button>
+				<br>
+				<br>
+				<div>어머니께서는 저를 사랑하십니다.</div>`;
+		}).then(function (snapshot) {
+			var vocab_sound_icon = document.getElementById('vocab_sound_icon');
+
+			vocab_sound_icon.onclick = function () {
+				alert("This is not implemented in this prototype!");
+			};
+		});
 });
