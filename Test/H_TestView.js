@@ -41,15 +41,18 @@ H.TestView = (function () {
         }, this);
 
         this.testModel.events.updateTime.on(function (args) {
-            this.drawTime(args.time);
+            this.updateTime(args.time);
         }, this);
 
         this.testModel.events.updateProblem.on(function (args) {
             // 질문을 대화창에 추가합니다.
-            this.drawChat(args.question, false);
+            this.updateChat(args.question, false);
 
             // 답 버튼들을 새로 만듭니다.
-            this.drawAnswers(args.answers, args.rightAnswerIndex);
+            this.updateAnswers(args.answers, args.rightAnswerIndex);
+
+            // 진행 바를 업데이트합니다.
+            this.updateProgress(Math.floor(args.progress * 100));
 
             // 입력이 비활성화된 경우 활성화해줍니다.
             this.enableAnswers();
@@ -70,10 +73,10 @@ H.TestView = (function () {
                 .addClass('H_Test_Answer-right');
 
             // 정답을 대화창에 추가합니다.
-            this.drawChat([args.answer], true);
+            this.updateChat([args.answer], true);
 
             // Correct 또는 Wrong이라고 팝업을 띄웁니다.
-            this.drawPopup(args.isRight);
+            this.showPopup(args.isRight);
         }, this);
 
         this.testModel.events.showHint.on(function (args) {
@@ -89,6 +92,10 @@ H.TestView = (function () {
             this.removeKey(args.keyCount);
         }, this);
     }
+
+    TestView.prototype.updateProgress = function (percentage) {
+        $('.H_Test_ProgressValue').animate({width: '' + percentage + '%'});
+    };
 
     TestView.prototype.drawLifes = function (lifeCount) {
         var i;
@@ -122,7 +129,7 @@ H.TestView = (function () {
         }
     };
 
-    TestView.prototype.drawTime = function (time) {
+    TestView.prototype.updateTime = function (time) {
         $('.H_Test_Time').text(
             'Elapsed: '
             + fixNumberLength(Math.floor(time / 60), 2) + 'm '
@@ -130,7 +137,7 @@ H.TestView = (function () {
         );
     };
 
-    TestView.prototype.drawPopup = function (isRight) {
+    TestView.prototype.showPopup = function (isRight) {
         $('.H_Test_Popup')
             .empty()
             .append($('<span>').addClass(isRight ? 'fa fa-check' : 'fa fa-times'))
@@ -142,7 +149,7 @@ H.TestView = (function () {
         $('.H_Test_Popup').hide();
     };
 
-    TestView.prototype.drawChat = function (sentences, isMe) {
+    TestView.prototype.updateChat = function (sentences, isMe) {
         var chat = $('.H_Test_Chat');
 
         sentences.forEach(function (sentence, index) {
@@ -193,7 +200,7 @@ H.TestView = (function () {
         $('.H_Test_HintButton').prop('disabled', true).fadeTo('fast', 0.2);
     };
 
-    TestView.prototype.drawAnswers = function (answers) {
+    TestView.prototype.updateAnswers = function (answers) {
         $('.H_Test_HintView').nextAll().remove();
 
         answers.forEach(function (answer) {

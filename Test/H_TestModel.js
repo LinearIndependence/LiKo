@@ -161,8 +161,8 @@ H.TestModel = (function () {
         this.problemIndex++;
 
         var problem = this.problems[this.problemIndex];
-        var problemCount = problem.wrongAnswers.length + 1;
-        var answers = new Array(problemCount);
+        var answerCount = problem.wrongAnswers.length + 1;
+        var answers = new Array(answerCount);
         var i;
 
         /*
@@ -170,7 +170,7 @@ H.TestModel = (function () {
          * 섞은 걸 [a(0), ..., a(n - 1)]이라고 하면, 정답은 a(0)번째 버튼에,
          * 오답들은 a(1), ..., a(n - 1)번째 버튼들에 배치합니다.
          */
-        var answerIndexes = shuffleArray(range(problemCount));
+        var answerIndexes = shuffleArray(range(answerCount));
 
         this.rightAnswerIndex = answerIndexes[0];
         answers[answerIndexes[0]] = problem.rightAnswer;
@@ -180,6 +180,7 @@ H.TestModel = (function () {
         }
 
         this.events.updateProblem.fire({
+            progress: (this.problemIndex + 1) * 1.0 / this.problemCount,
             question: problem.question,
             answers: answers,
             hint: problem.hint,

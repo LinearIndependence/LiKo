@@ -18,6 +18,22 @@
     background-color: #b1b8c4;
 }
 
+.H_Test_Progress {
+    width: 100%;
+    height: 0.5em;
+    border-radius: 5px;
+    margin-bottom: 0.5em;
+
+    background: #f2f2d8;
+}
+
+.H_Test_ProgressValue {
+    width: 50%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: #d3ac2b;
+}
+
 .H_Test_Lifes,
 .H_Test_Keys {
     float: left;
@@ -35,7 +51,7 @@
 }
 
 .H_Test_Keys {
-    color: #d3ac2b;
+    color: #f2ed00;
 }
 
 .H_Test_Time {
@@ -127,7 +143,7 @@
 .H_Test_Sentence-me::after {
     position: absolute;
 
-    content: '';
+    content: "";
 
     top: 0;
     right: calc(55px - 24px);
@@ -181,7 +197,6 @@
 .H_Test_Footer {
     margin: 15px 0 0 0;
     padding: 0.5em 1em 0.2em 1em;
-    border-radius: 5px;
 
     background-color: #b1b8c4;
 }
