@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-	var contextsRef = firebase.database().ref('contexts');
+	var contextsRef = firebase.database().ref('contexts').orderByChild('chapter');
 	var context_container_box = document.getElementById('context_container_box');
 
 	function renderContainerContents(snapshot) {
@@ -21,7 +21,7 @@ $(document).ready(function () {
 			var test_button = document.createElement("button");
 			context_box.appendChild(test_button);
 			test_button.className = "inline rightelement ";
-			test_button.setAttribute('onclick', "firebase.database().ref('contexts/" + context_snap.key + "/vocabs/').push(prompt('단어 내놔'));");
+			test_button.setAttribute('onclick', "firebase.database().ref('contexts/" + context_snap.key + "/vocabs/').push(prompt('단어 id 내놔'));");
 			test_button.innerHTML = "테스트용 버튼 - 현재 맥락에 단어 추가";
 			context_box.innerHTML += "<br>";
 			for (var vocab in context.vocabs) {
