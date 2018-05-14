@@ -213,10 +213,45 @@
         top: 5px;
     }
 
-.K_wordInfo{
+.K_word{
+    position: relative;
     font-weight: bold;
     cursor: pointer;
 }
-.K_wordInfo:hover{
+.K_word:hover{
+    text-decoration: dashed underline;
+}
 
+.K_wordPopup {
+    pointer-events: none;
+    position: absolute;
+    background-color: #d3ac2b;
+    min-height: 50px;
+    width: 200px;
+    bottom: 35px;
+    right: 50%;
+    transform: translate(50%, 0%);
+    padding: 5px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity linear 0.3s;
+    box-shadow: 3px 3px 20px grey;
+}
+    .K_wordPopup::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: calc(50% - 12px);
+        width: 0px;
+        height: 0px;
+        border-width: 12px;
+        border-style: solid;
+        border-color: #d3ac2b transparent transparent transparent;
+    }
+
+.K_wordPopup.K_active{
+    opacity: 0.5;
+}
+.K_wordPopup.K_selected{
+    opacity: 1;
 }

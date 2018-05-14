@@ -1,4 +1,4 @@
-
+﻿
 var K_selectedProfileColor = null;
 var K_selectedCand = null;
 var K_selectCallback = null;
@@ -75,6 +75,14 @@ $(document).ready(function () {
             K_clearCand();
         }
     })
+    $('.K_word').mouseenter(function () {
+        console.log(this);
+        $(this).addClass('K_active');
+    })
+    $('.K_word').mouseleave(function () {
+        $(this).removeClass('K_active');
+    })
+
     K_GoConv(testConv);
 })
 
@@ -145,17 +153,17 @@ function K_GoConv(rawLines) {
                 K_wrapUpConv();
                 return;
             }
-            else if (K_isTag(curLine)) {
+            if (K_isTag(curLine)) {
                 alert('wrong' + curLine);
                 K_wrapUpConv();
                 return;
             }
-            else if (K_isGoto(curLine)) {
+            if (K_isGoto(curLine)) {
                 curMode = findTag;
                 curTag = curLine.substring(3, curLine.length - 1);
                 continue;
             }
-            else if (curLine == '?') {
+            if (curLine == '?') {
                 curMode = makeCand;
                 continue;
             }
@@ -203,12 +211,38 @@ function K_parseWord(word) {
     }
     else {
         var ret = document.createElement('span');
-        ret.classList.add('K_wordInfo');
+        ret.classList.add('K_word');
         ret.setAttribute('ID', result[1]);
         ret.innerHTML = result[0] + ' ';
+        $(ret).append(K_makeWordPopup(result[1]));
+        $(ret).mouseenter(function () {
+            $(this).find('.K_wordPopup').addClass('K_active');
+        })
+        $(ret).mouseleave(function () {
+            $(this).find('.K_wordPopup').removeClass('K_active');
+        })
+        $(ret).click(function () {
+            setTimeout(function () { $(ret).find('.K_wordPopup').addClass('K_selected') }, 1);
+        })
+        $('html').click(function () {
+            $('.K_wordPopup.K_selected').removeClass('K_selected');
+        })
         return ret;
     }
 }
+
+function K_makeWordPopup(wordID) {
+    var whole = $(document.createElement('div'));
+    whole.addClass('K_wordPopup');
+    whole.append(K_getWordInfo(wordID));
+    return whole;
+}
+function K_getWordInfo(wordID) {
+    var ret = $(document.createElement('span'));
+    ret.text(wordID + ' 에 대한 설명이 나옴 + 단어장 추가 기능');
+    return ret;
+}
+
 function K_isFin(str) {
     if (str == '__FIN__') {
         return true;
