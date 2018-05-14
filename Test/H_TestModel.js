@@ -182,7 +182,8 @@ H.TestModel = (function () {
         this.events.updateProblem.fire({
             question: problem.question,
             answers: answers,
-            hint: problem.hint
+            hint: problem.hint,
+            keyCount: this.keyCount
         });
     };
 

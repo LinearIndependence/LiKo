@@ -54,18 +54,21 @@ H.TestView = (function () {
 
             // 입력이 비활성화된 경우 활성화해줍니다.
             this.enableAnswers();
-            this.enableHint();
+
+            if (args.keyCount > 0) {
+                this.enableHint();
+            }
         }, this);
 
         this.testModel.events.markAnswer.on(function (args) {
+            // 일단 입력을 막습니다.
+            this.disableAnswers();
+            this.disableHint();
+
             // 정답을 파란색으로 칠합니다.
             $('.H_Test_Answer').eq(args.rightAnswerIndex)
                 .removeClass('H_Test_Answer-select')
                 .addClass('H_Test_Answer-right');
-
-            // 문제가 업데이트 되기 전까지 입력을 막습니다.
-            this.disableAnswers();
-            this.disableHint();
 
             // 정답을 대화창에 추가합니다.
             this.drawChat([args.answer], true);
@@ -115,7 +118,7 @@ H.TestView = (function () {
     TestView.prototype.removeKey = function (keyCount) {
         $('.H_Test_Key').children().eq(keyCount).fadeTo('slow', 0.2);
 
-        if (keyCount === 0) {
+        if (keyCount === 1) {
             this.disableHint();
         }
     };
