@@ -79,7 +79,11 @@ $(document).ready(function () {
 					return;
 				}
 			});
-			//$('#vocab_box')inline largefont bold
+			//console.log($('#context_box')[0]);
+			$('#context_box')[0].innerHTML = `<div class="inline largefont bold">Context 1 - First meeting</div><button class="inline rightelement">Jump to Context</button>
+				<br>
+				<br>
+				<div>어머니께서는 저를 사랑하십니다.</div>`;
 		}).then(function (snapshot) {
 			var vocab_sound_icon = document.getElementById('vocab_sound_icon');
 
