@@ -125,9 +125,9 @@ H.TestView = (function () {
 
     TestView.prototype.drawTime = function (time) {
         $('.H_Test_Time').text(
-            fixNumberLength(Math.floor(time / 60), 2)
-            + ' : '
-            + fixNumberLength(time % 60, 2)
+            'Elapsed: '
+            + fixNumberLength(Math.floor(time / 60), 2) + 'm '
+            + fixNumberLength(time % 60, 2) + 's'
         );
     };
 
@@ -145,6 +145,8 @@ H.TestView = (function () {
         sentences.forEach(function (sentence, index) {
             var newRow = $('<li>');
 
+            /*
+            (프로필 사진 그리는 부분: 혹시 몰라서 안 지웁니다.)
             if (!isMe) {
                 // 프로필 사진은 상대방만 그립니다.
                 newRow.append(
@@ -155,6 +157,7 @@ H.TestView = (function () {
                         .css('opacity', (index === 0) ? 1 : 0)
                 )
             }
+            */
 
             // 문장을 그립니다.
             newRow.append(
@@ -203,6 +206,16 @@ H.TestView = (function () {
                         this.removeHint();
                         thisButton.addClass('H_Test_Answer-select');
                         this.testModel.markAnswer(thisButton.data('answer'));
+                    }.bind(this))
+                    .mouseenter(function () {
+                        var thisButton = $(event.currentTarget);
+
+                        thisButton.addClass('H_Test_Answer-hover');
+                    }.bind(this))
+                    .mouseleave(function () {
+                        var thisButton = $(event.currentTarget);
+
+                        thisButton.removeClass('H_Test_Answer-hover');
                     }.bind(this))
             );
         }.bind(this));

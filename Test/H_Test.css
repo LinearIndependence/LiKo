@@ -5,9 +5,7 @@
     flex-wrap: nowrap;
 
     margin: 0;
-    padding: 0;
-
-    font-size: 14px;
+    padding: 15px;
 
     background-color: #cbd0d8;
 }
@@ -31,28 +29,30 @@
     flex-shrink: 0;
 
     padding: 0.5em;
+
+    background-color: #b1b8c4;
 }
 
-.H_Test_Status .H_Test_Life,
-.H_Test_Status .H_Test_Key {
+.H_Test_Life,
+.H_Test_Key {
     float: left;
     margin-right: 0.3em;
 }
 
-.H_Test_Status .H_Test_Life > span,
-.H_Test_Status .H_Test_Key > span {
+.H_Test_Life > span,
+.H_Test_Key > span {
     margin-right: 0.4em;
 }
 
-.H_Test_Status .H_Test_Life {
+.H_Test_Life {
     color: #ff0000;
 }
 
-.H_Test_Status .H_Test_Key {
+.H_Test_Key {
     color: #d3ac2b;
 }
 
-.H_Test_Status .H_Test_Time {
+.H_Test_Time {
     float: right;
 
     font-weight: bold;
@@ -68,18 +68,21 @@
 
     width: 100%;
     margin: 0;
-    padding: 0 10px 0 10px;
+    padding-top: 1em;
+
+    background-color: #b1b8c4;
 }
 
 .H_Test_Chat > li {
+    position: relative;
+    box-sizing: border-box;
+
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    padding: 0 55px 0 55px;
 }
 
-/* ========== 강성웅씨 여기부터 보세요. ========== */
-
-/* 프로필 사진 (공통). */
-.H_Test_Chat .H_Test_Profile {
+.H_Test_Profile {
     display: inline-block;
     vertical-align: middle;
 
@@ -89,50 +92,72 @@
     border: 2px solid #d3ac2b;
 }
 
-/* 프로필 사진 (상대). */
-.H_Test_Chat .H_Test_Profile-other {
+.H_Test_Profile-other {
     margin-right: 0.5em;
 }
 
-/* 문장 (공통). */
-.H_Test_Chat .H_Test_Sentence {
+.H_Test_Sentence {
     display: inline-block;
     vertical-align: middle;
 
     width: 70%;
     max-width: 350px;
     padding: 10px 5px 10px 5px;
-    border-radius: 5px;
     line-height: 1.5em;
+    box-shadow: 3px 3px 20px grey;
 }
 
-/* 문장 (나). */
-.H_Test_Chat .H_Test_Sentence-me {
+.H_Test_Sentence-me {
     float: right;
 
     color: #f2f2d8;
     background-color: #d3ac2b;
 }
 
-/* 문장 (상대). */
-.H_Test_Chat .H_Test_Sentence-other {
+.H_Test_Sentence-me::after {
+    position: absolute;
+
+    content: '';
+
+    top: 0;
+    right: calc(55px - 24px);
+    width: 0;
+    height: 0;
+    border: 12px solid transparent;
+
+    border-left-color: #d3ac2b;
+}
+
+.H_Test_Sentence-other {
     color: #000000;
     background-color: #f2f2d8;
 }
 
-/* ========== 강성웅씨 여기까지 보세요. ========== */
+.H_Test_Sentence-other::after {
+    position: absolute;
 
-.H_Test_Input .H_Test_HintView {
+    content: '';
+
+    top: 0;
+    left: calc(55px - 24px);
+    width: 0;
+    height: 0;
+    border: 12px solid transparent;
+
+    border-right-color: #f2f2d8;
+}
+
+.H_Test_HintView {
     display: inline-block;
 
     margin-bottom: 0.3em;
     padding: 0.2em 0 0.2em 0.2em;
 }
 
-.H_Test_Input .H_Test_HintButton {
+.H_Test_HintButton {
     cursor: pointer;
 
-    margin-bottom: 0.3em;
+    margin-bottom: 0.5em;
     padding: 0.2em 0.4em 0.2em 0.4em;
     border-radius: 5px;
     border-color: #d3ac2b;
@@ -144,29 +169,39 @@
 }
 
 .H_Test_Input {
-    margin: 0;
+    margin: 15px 0 0 0;
     padding: 0.5em 1em 0.2em 1em;
     border-radius: 5px;
+
+    background-color: #b1b8c4;
 }
 
-.H_Test_Input .H_Test_Answer {
+.H_Test_Answer {
     cursor: pointer;
     text-align: left;
 
     width: 100%;
-    margin-bottom: 0.3em;
+    margin-bottom: 0.5em;
     padding: 0.5em;
-    border-radius: 5px;
+    border: none;
 
     background-color: #ffffff;
 }
 
-.H_Test_Input .H_Test_Answer-right {
+.H_Test_Answer-hover {
     color: #ffffff;
+    border-color: #d3ac2b;
+    background-color: #d3ac2b;
+}
+
+.H_Test_Answer-right {
+    color: #ffffff;
+    border-color: #6078ff;
     background-color: #6078ff;
 }
 
-.H_Test_Input .H_Test_Answer-select {
+.H_Test_Answer-select {
     color: #ffffff;
+    border-color: #ff6259;
     background-color: #ff6259;
 }
