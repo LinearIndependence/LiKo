@@ -20,7 +20,7 @@ var H = H || {};
 H.TestData = [
     [
         {
-            question: '안녕하세요! 전 주호킴 교수입니다.',
+            question: '안녕하세요! 전 Einstein 교수입니다.',
             rightAnswer: '안녕하세요, 교수님!',
             wrongAnswers: [
                 '안녕히 가세요, 교수님!',

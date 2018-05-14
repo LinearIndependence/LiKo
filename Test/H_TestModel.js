@@ -34,6 +34,18 @@ H.TestModel = (function () {
         return newArray;
     }
 
+    /* 이건 힌트 테스트용 함수고, 단어 DB랑 연결하게 되면 지울 겁니다. */
+    function getHint(id) {
+        return {
+            professor: '교수',
+            weather: '날씨',
+            name: '이름',
+            class: '수업',
+            homework: '숙제',
+            textbook: '교과서'
+        }[id];
+    }
+
     function Event() {
         this.listeners = [];
     }
@@ -52,9 +64,11 @@ H.TestModel = (function () {
         this.problems = args.problems;
         this.problemCount = this.problems.length;
         this.problemIndex = -1;
+        this.rightAnswerIndex = -1;
+        this.delayAfterMark = args.delayAfterMark || 1500;
         this.elapsedTime = 0;
-        this.lifeCount = args.lifeCount;
-        this.keyCount = args.keyCount;
+        this.lifeCount = args.lifeCount || 3;
+        this.keyCount = args.keyCount || 3;
 
         this.events = {
             startTest: new Event(),
@@ -80,41 +94,43 @@ H.TestModel = (function () {
 
     TestModel.prototype.markAnswer = function (answer) {
         var problem = this.problems[this.problemIndex];
+        var isRight = answer === problem.rightAnswer;
 
-        if (answer === problem.rightAnswer) {
-            this.events.markAnswer.fire({
-                answer: problem.rightAnswer,
-                isRight: true
-            });
-        } else {
+        this.events.markAnswer.fire({
+            answer: problem.rightAnswer,
+            isRight: isRight,
+            rightAnswerIndex: this.rightAnswerIndex
+        });
+
+        if (!isRight) {
             this.lifeCount--;
-
-            this.events.markAnswer.fire({
-                answer: problem.rightAnswer,
-                isRight: false
-            });
 
             this.events.useLife.fire({
                 lifeCount: this.lifeCount
             });
 
             if (this.lifeCount === 0) {
-                this.events.endTest.fire({
-                    isSucceed: false,
-                    elapsedTime: this.elapsedTime
-                });
+                setTimeout(function () {
+                    this.events.endTest.fire({
+                        isSucceed: false,
+                        elapsedTime: this.elapsedTime
+                    })
+                }.bind(this), this.delayAfterMark);
+
                 return;
             }
         }
 
-        if (this.problemIndex >= this.problemCount - 1) {
-            this.events.endTest.fire({
-                isSucceed: true,
-                elapsedTime: this.elapsedTime
-            });
-        } else {
-            this.updateProblem();
-        }
+        setTimeout(function () {
+            if (this.problemIndex >= this.problemCount - 1) {
+                this.events.endTest.fire({
+                    isSucceed: true,
+                    elapsedTime: this.elapsedTime
+                });
+            } else {
+                this.updateProblem();
+            }
+        }.bind(this), this.delayAfterMark);
     };
 
     TestModel.prototype.requestHint = function () {
@@ -125,7 +141,7 @@ H.TestModel = (function () {
         this.events.showHint.fire({
             hint: problem.hint
                 .map(function (id) {
-                    return '가나다: ' + id
+                    return getHint(id) + ': ' + id
                 })
                 .join(', ')
         });
@@ -139,10 +155,11 @@ H.TestModel = (function () {
         this.problemIndex++;
 
         var problem = this.problems[this.problemIndex];
-        var answers = [];
+        var answers = range(problem.wrongAnswers.length + 1);
         var answerIndexes = shuffleArray(range(problem.wrongAnswers.length + 1));
         var i;
 
+        this.rightAnswerIndex = answerIndexes[0];
         answers[answerIndexes[0]] = problem.rightAnswer;
 
         for (i = 0; i < problem.wrongAnswers.length; i++) {

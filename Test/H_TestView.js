@@ -46,13 +46,31 @@ H.TestView = (function () {
         }, this);
 
         this.testModel.events.updateProblem.on(function (args) {
+            // 질문을 대화창에 추가합니다.
             this.drawChat(args.question, false);
-            this.drawAnswers(args.answers);
+
+            // 답 버튼들을 새로 만듭니다.
+            this.drawAnswers(args.answers, args.rightAnswerIndex);
+
+            // 입력이 비활성화된 경우 활성화해줍니다.
+            this.enableAnswers();
             this.enableHint();
         }, this);
 
         this.testModel.events.markAnswer.on(function (args) {
+            // 정답을 파란색으로 칠합니다.
+            $('.H_Test_Answer').eq(args.rightAnswerIndex)
+                .removeClass('H_Test_Answer-select')
+                .addClass('H_Test_Answer-right');
+
+            // 문제가 업데이트 되기 전까지 입력을 막습니다.
+            this.disableAnswers();
+            this.disableHint();
+
+            // 정답을 대화창에 추가합니다.
             this.drawChat(args.answer, true);
+
+            // Correct 또는 Wrong이라고 팝업을 띄웁니다.
             this.drawPopup(args.isRight);
         }, this);
 
@@ -115,7 +133,7 @@ H.TestView = (function () {
             .empty()
             .append($('<span>').addClass(isRight ? 'fa fa-check' : 'fa fa-times'))
             .append($('<span>').text(isRight ? ' Correct' : ' Wrong'))
-            .fadeIn('fast').delay(500).fadeOut('fast');
+            .fadeIn(500).delay(1000).fadeOut(500);
     };
 
     TestView.prototype.drawChat = function (sentence, isMe) {
@@ -152,7 +170,7 @@ H.TestView = (function () {
     };
 
     TestView.prototype.disableHint = function () {
-        $('.H_Test_HintButton').prop('disabled', true).fadeTo('slow', 0.2);
+        $('.H_Test_HintButton').prop('disabled', true).fadeTo('fast', 0.2);
     };
 
     TestView.prototype.drawAnswers = function (answers) {
@@ -165,11 +183,22 @@ H.TestView = (function () {
                     .data('answer', answer)
                     .text(answer)
                     .click(function () {
+                        var thisButton = $(event.currentTarget);
+
                         this.removeHint();
-                        this.testModel.markAnswer($(event.currentTarget).data('answer'));
+                        thisButton.addClass('H_Test_Answer-select');
+                        this.testModel.markAnswer(thisButton.data('answer'));
                     }.bind(this))
             );
         }.bind(this));
+    };
+
+    TestView.prototype.enableAnswers = function () {
+        $('.H_Test_Answer').prop('disabled', false);
+    };
+
+    TestView.prototype.disableAnswers = function () {
+        $('.H_Test_Answer').prop('disabled', true);
     };
 
     return TestView;
