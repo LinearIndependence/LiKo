@@ -10,8 +10,51 @@
     background-color: #cbd0d8;
 }
 
+.H_Test_Header {
+    flex-shrink: 0;
+
+    padding: 0.5em;
+
+    background-color: #b1b8c4;
+}
+
+.H_Test_Lifes,
+.H_Test_Keys {
+    float: left;
+
+    margin-right: 0.3em;
+}
+
+.H_Test_Lifes > span,
+.H_Test_Keys > span {
+    margin-right: 0.4em;
+}
+
+.H_Test_Lifes {
+    color: #ff0000;
+}
+
+.H_Test_Keys {
+    color: #d3ac2b;
+}
+
+.H_Test_Time {
+    float: right;
+
+    font-weight: bold;
+}
+
+.H_Test_Body {
+    display: flex;
+    position: relative;
+    flex-grow: 1;
+
+    background-color: #b1b8c4;
+}
+
 .H_Test_Popup {
     position: absolute;
+    z-index: 2;
 
     top: 50%;
     left: 50%;
@@ -22,55 +65,22 @@
     font-size: 1.5em;
 
     color: #ffffff;
-    background-color: #84878a;
-}
-
-.H_Test_Status {
-    flex-shrink: 0;
-
-    padding: 0.5em;
-
-    background-color: #b1b8c4;
-}
-
-.H_Test_Life,
-.H_Test_Key {
-    float: left;
-    margin-right: 0.3em;
-}
-
-.H_Test_Life > span,
-.H_Test_Key > span {
-    margin-right: 0.4em;
-}
-
-.H_Test_Life {
-    color: #ff0000;
-}
-
-.H_Test_Key {
-    color: #d3ac2b;
-}
-
-.H_Test_Time {
-    float: right;
-
-    font-weight: bold;
+    background-color: #84878acc;
 }
 
 .H_Test_Chat {
     display: flex;
-    flex-grow: 1;
+    position: absolute;
+    z-index: 1;
     flex-direction: column;
     list-style-type: none;
     overflow-y: auto;
     box-sizing: border-box;
 
     width: 100%;
+    height: 100%;
     margin: 0;
     padding-top: 1em;
-
-    background-color: #b1b8c4;
 }
 
 .H_Test_Chat > li {
@@ -168,7 +178,7 @@
     background-color: #d3ac2b;
 }
 
-.H_Test_Input {
+.H_Test_Footer {
     margin: 15px 0 0 0;
     padding: 0.5em 1em 0.2em 1em;
     border-radius: 5px;
@@ -202,7 +212,7 @@
     background-color: #6078ff;
 }
 
-.H_Test_Answer-select {
+.H_Test_AnswerButton-select {
     color: #ffffff;
     border-color: #ff6259;
     background-color: #ff6259;

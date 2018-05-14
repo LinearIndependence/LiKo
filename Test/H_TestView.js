@@ -21,8 +21,7 @@ H.TestView = (function () {
         this.testModel.events.startTest.on(function (args) {
             this.drawLifes(args.lifeCount);
             this.drawKeys(args.keyCount);
-
-            $('.H_Test_Popup').hide();
+            this.hidePopup();
 
             $('.H_Test_HintButton').click(function () {
                 this.testModel.requestHint();
@@ -94,29 +93,29 @@ H.TestView = (function () {
     TestView.prototype.drawLifes = function (lifeCount) {
         var i;
 
-        $('.H_Test_Life').empty();
+        $('.H_Test_Lifes').empty();
 
         for (i = 0; i < lifeCount; i++) {
-            $('.H_Test_Life').append($('<span>').addClass('fa fa-heart'));
+            $('.H_Test_Lifes').append($('<span>').addClass('fa fa-heart'));
         }
     };
 
     TestView.prototype.removeLife = function (lifeCount) {
-        $('.H_Test_Life').children().eq(lifeCount).fadeTo('slow', 0.2);
+        $('.H_Test_Lifes').children().eq(lifeCount).fadeTo('slow', 0.2);
     };
 
     TestView.prototype.drawKeys = function (keyCount) {
         var i;
 
-        $('.H_Test_Key').empty();
+        $('.H_Test_Keys').empty();
 
         for (i = 0; i < keyCount; i++) {
-            $('.H_Test_Key').append($('<span>').addClass('fa fa-key'));
+            $('.H_Test_Keys').append($('<span>').addClass('fa fa-key'));
         }
     };
 
     TestView.prototype.removeKey = function (keyCount) {
-        $('.H_Test_Key').children().eq(keyCount).fadeTo('slow', 0.2);
+        $('.H_Test_Keys').children().eq(keyCount).fadeTo('slow', 0.2);
 
         if (keyCount === 1) {
             this.disableHint();
@@ -137,6 +136,10 @@ H.TestView = (function () {
             .append($('<span>').addClass(isRight ? 'fa fa-check' : 'fa fa-times'))
             .append($('<span>').text(isRight ? ' Correct' : ' Wrong'))
             .fadeIn(500).delay(1000).fadeOut(500);
+    };
+
+    TestView.prototype.hidePopup = function () {
+        $('.H_Test_Popup').hide();
     };
 
     TestView.prototype.drawChat = function (sentences, isMe) {
@@ -194,7 +197,7 @@ H.TestView = (function () {
         $('.H_Test_HintView').nextAll().remove();
 
         answers.forEach(function (answer) {
-            $('.H_Test_Input').append(
+            $('.H_Test_Footer').append(
                 $('<button>')
                     .addClass('H_Test_Answer')
                     .data('answer', answer)
