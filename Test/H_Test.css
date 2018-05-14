@@ -163,6 +163,7 @@
     border-color: #d3ac2b;
 
     font-weight: bold;
+    font-size: 1em;
 
     color: #f2f2d8;
     background-color: #d3ac2b;
@@ -184,6 +185,8 @@
     margin-bottom: 0.5em;
     padding: 0.5em;
     border: none;
+
+    font-size: 1em;
 
     background-color: #ffffff;
 }
