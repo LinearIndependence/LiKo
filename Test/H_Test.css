@@ -76,6 +76,9 @@
     margin-bottom: 10px;
 }
 
+/* ========== 강성웅씨 여기부터 보세요. ========== */
+
+/* 프로필 사진 (공통). */
 .H_Test_Chat .H_Test_Profile {
     display: inline-block;
     vertical-align: middle;
@@ -86,10 +89,12 @@
     border: 2px solid #d3ac2b;
 }
 
+/* 프로필 사진 (상대). */
 .H_Test_Chat .H_Test_Profile-other {
     margin-right: 0.5em;
 }
 
+/* 문장 (공통). */
 .H_Test_Chat .H_Test_Sentence {
     display: inline-block;
     vertical-align: middle;
@@ -101,6 +106,7 @@
     line-height: 1.5em;
 }
 
+/* 문장 (나). */
 .H_Test_Chat .H_Test_Sentence-me {
     float: right;
 
@@ -108,10 +114,13 @@
     background-color: #d3ac2b;
 }
 
+/* 문장 (상대). */
 .H_Test_Chat .H_Test_Sentence-other {
     color: #000000;
     background-color: #f2f2d8;
 }
+
+/* ========== 강성웅씨 여기까지 보세요. ========== */
 
 .H_Test_Input .H_Test_HintView {
     display: inline-block;
