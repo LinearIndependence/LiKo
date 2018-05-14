@@ -112,7 +112,7 @@
     }
 .K_ME {
     background-color: #d3ac2b;
-    left: calc(100% - 309px);
+    left: calc(100% - 320px);
 }
     .K_ME::after {
         left: 100%;
@@ -133,6 +133,8 @@
 .K_candidates {
     background-color: #333D51;
     height: 60%;
+    display: inline-block;
+    width: 100%;
 }
 
 .K_cand {
@@ -164,8 +166,8 @@
 .K_inputField {
     position: relative;
     background-color: #CBD0D8;
-    margin: 10px 0 0 0;
     border: 2px solid #333D51;
+    margin: 0 0 10px 0;
     width: 670px;
     height: 44px;
     padding: 10px;
@@ -191,7 +193,7 @@
 .K_commitButton {
     background-color: #d3ac2b;
     position: relative;
-    margin: 10px 0 0 10px;
+    margin: 0 0 10px 10px;
     width: 70px;
     height: 44px;
     border: 2px solid #333D51;
