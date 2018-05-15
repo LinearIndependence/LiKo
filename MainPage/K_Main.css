@@ -8,6 +8,7 @@
     box-sizing: border-box;
 }
 
+/* (By H) 이 부분 VF/K_VF.css로 옮겼습니다.
 .K_Whole {
     position: absolute;
     top: 50%;
@@ -78,6 +79,7 @@
     font-weight: bold;
     font-size: 20px;
 }
+*/
 
 .K_MainLog {
     padding: 15px;

@@ -1,8 +1,9 @@
 ﻿
-var K_selectedProfileColor = null;
+// var K_selectedProfileColor = null;
 var K_selectedCand = null;
 var K_selectCallback = null;
 $(document).ready(function () {
+    /* (By H) 이 부분 VF/K_VF.js로 옮겼습니다. 양해 바랍니다.
     K_selectedProfileColor = $('.K_ProfileHolder .K_Profile:first').find('.K_Pcolor');
     K_selectedProfileColor.addClass('K_selected');
     $('.K_Profile').mouseenter(function () {
@@ -17,6 +18,7 @@ $(document).ready(function () {
         K_selectedProfileColor = $(this).find('.K_Pcolor');
         K_selectedProfileColor.addClass('K_selected');
     });
+    */
     $('.K_commitButton').mouseenter(function () {
         $(this).addClass('K_hovering');
     })
@@ -93,7 +95,7 @@ function K_clearCand() {
     $('.K_commitButton').removeClass('K_active');
 }
 
-const normal = '1', findTag = '2', makeCand = '3';
+var normal = '1', findTag = '2', makeCand = '3';
 function K_GoConv(rawLines) {
     var curTag = null;
     var curMode = normal;
