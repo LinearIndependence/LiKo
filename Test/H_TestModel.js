@@ -69,6 +69,7 @@ H.TestModel = (function () {
         this.elapsedTime = 0;
         this.lifeCount = args.lifeCount || 3;
         this.keyCount = args.keyCount || 3;
+        this.isTestEnd = false;
 
         this.events = {
             startTest: new Event(),     // 테스트 시작 이벤트
@@ -113,6 +114,8 @@ H.TestModel = (function () {
             // 라이프가 안 남으면, 게임 오버.
             if (this.lifeCount === 0) {
                 setTimeout(function () {
+                    this.isTestEnd = true;
+
                     this.events.endTest.fire({
                         isSucceed: false,
                         elapsedTime: this.elapsedTime
@@ -126,6 +129,8 @@ H.TestModel = (function () {
         setTimeout(function () {
             if (this.problemIndex >= this.problemCount - 1) {
                 // 대화가 끝났으면... 게임 오버.
+                this.isTestEnd = true;
+
                 this.events.endTest.fire({
                     isSucceed: true,
                     elapsedTime: this.elapsedTime
@@ -196,9 +201,11 @@ H.TestModel = (function () {
         this.elapsedTime++;
 
         // 1초(= 1000밀리초) 뒤 updateTime() 호출.
-        setTimeout(function () {
-            this.updateTime()
-        }.bind(this), 1000);
+        if (!this.isTestEnd) {
+            setTimeout(function () {
+                this.updateTime()
+            }.bind(this), 1000);
+        }
     };
 
     return TestModel;
