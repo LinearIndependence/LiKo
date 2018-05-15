@@ -1,6 +1,12 @@
 $(document).ready(function () {
 	var contextsRef = firebase.database().ref('contexts');
-	var vocabsRef = firebase.database().ref('vocabs');
+	var vocabsRef = firebase.database().ref('vocabs');	
+
+	var vocabFromID = function (id, callback) {
+		vocabsRef.orderByChild('id').equalTo(id).once('value').then(function (snapshot) {
+			callback(Object.values(snapshot.val())[0]);
+		});
+	};
 
 	/*
 	function getContextFromVocab(vocab_id) {

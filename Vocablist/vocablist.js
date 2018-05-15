@@ -29,7 +29,6 @@ $(document).ready(function () {
 				context_box.appendChild(vocab_box);
 				vocab_box.className = "inline box vocab_box bold ";
 				vocab_box.innerHTML = context.vocabs[vocab];
-				oooo = vocab;
 				vocab_box.href = "inspect_word.html?word=" + context.vocabs[vocab];
 			}
 		});
