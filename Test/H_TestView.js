@@ -155,19 +155,16 @@ H.TestView = (function () {
         sentences.forEach(function (sentence, index) {
             var newRow = $('<li>');
 
-            /*
-            (프로필 사진 그리는 부분: 혹시 몰라서 안 지웁니다.)
             if (!isMe) {
                 // 프로필 사진은 상대방만 그립니다.
                 newRow.append(
                     $('<img>')
                         .addClass('H_Test_Profile H_Test_Profile-other')
-                        .attr('src', 'H_Test_Profile.jpg')
-                        // 두 번째 문장부터는 프로필을 그리지 않고 공간만 비웁니다.
+                        .attr('src', '../VFData/profile1.png')
+                        // 두 번째 문장부터는 프로필을 그리지 않습니다.
                         .css('opacity', (index === 0) ? 1 : 0)
                 )
             }
-            */
 
             // 문장을 그립니다.
             newRow.append(
@@ -201,10 +198,10 @@ H.TestView = (function () {
     };
 
     TestView.prototype.updateAnswers = function (answers) {
-        $('.H_Test_HintView').nextAll().remove();
+        $('.H_Test_AnswerArea').empty();
 
         answers.forEach(function (answer) {
-            $('.H_Test_Footer').append(
+            $('.H_Test_AnswerArea').append(
                 $('<button>')
                     .addClass('H_Test_Answer')
                     .data('answer', answer)

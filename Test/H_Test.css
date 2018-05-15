@@ -6,7 +6,7 @@
     flex-wrap: nowrap;
 
     margin: 0;
-    padding: 15px;
+    padding: 0;
 
     background-color: #cbd0d8;
 }
@@ -97,8 +97,7 @@
     width: 100%;
     height: 100%;
     margin: 0;
-    padding-top: 1em;
-    padding-bottom: 1em;
+    padding: 15px;
 }
 
 .H_Test_Chat > li {
@@ -107,69 +106,71 @@
 
     width: 100%;
     margin-bottom: 20px;
-    padding: 0 55px 0 55px;
+    padding: 0;
 }
 
 .H_Test_Profile {
     display: inline-block;
     vertical-align: middle;
 
-    width: 2em;
-    height: 2em;
+    width: 54px;
+    height: 54px;
     border-radius: 50%;
-    border: 2px solid #d3ac2b;
 }
 
 .H_Test_Profile-other {
-    margin-right: 0.5em;
 }
 
 .H_Test_Sentence {
     display: inline-block;
+    position: relative;
     vertical-align: middle;
+    box-sizing: border-box;
 
     width: 70%;
-    max-width: 350px;
-    padding: 10px 5px 10px 5px;
+    min-height: 50px;
+    max-width: 300px;
+    margin: 0;
+    padding: 7px;
     line-height: 1.5em;
     box-shadow: 3px 3px 20px grey;
 }
 
-.H_Test_Sentence-me {
-    float: right;
-
-    color: #f2f2d8;
-    background-color: #d3ac2b;
-}
-
-.H_Test_Sentence-me::after {
+.H_Test_Sentence::after {
     position: absolute;
 
     content: "";
 
     top: 0;
-    right: calc(55px - 24px);
     width: 0;
     height: 0;
+}
+
+.H_Test_Sentence-me {
+    float: right;
+
+    margin-right: 15px;
+
+    color: #000000;
+    background-color: #d3ac2b;
+}
+
+.H_Test_Sentence-me::after {
+    right: -24px;
     border: 12px solid transparent;
 
     border-left-color: #d3ac2b;
 }
 
 .H_Test_Sentence-other {
+    margin-left: 15px;
+
     color: #000000;
     background-color: #f2f2d8;
 }
 
 .H_Test_Sentence-other::after {
-    position: absolute;
-
-    content: '';
-
-    top: 0;
-    left: calc(55px - 24px);
-    width: 0;
-    height: 0;
+    left: -24px;
     border: 12px solid transparent;
 
     border-right-color: #f2f2d8;
@@ -203,22 +204,27 @@
     background-color: #b1b8c4;
 }
 
+.H_Test_AnswerArea {
+    padding: 4px 4px 0 4px;
+
+    background-color: #333d51;
+}
+
 .H_Test_Answer {
     cursor: pointer;
     text-align: left;
 
     width: 100%;
-    margin-bottom: 0.5em;
+    margin-bottom: 4px;
     padding: 0.5em;
     border: none;
 
     font-size: 1em;
 
-    background-color: #ffffff;
+    background-color: #cbd0d8;
 }
 
 .H_Test_Answer-hover {
-    color: #ffffff;
     border-color: #d3ac2b;
     background-color: #d3ac2b;
 }
