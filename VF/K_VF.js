@@ -9,12 +9,14 @@ $(function () {
      * args = {
      *     name: (VF 이름),
      *     isMe: (나 자신이면 true, 아니면 false),
+     *     image: (프로필 이미지 src),
      *     callback: (VF 클릭했을 때 실행할 함수)
      * }
      */
     function K_addProfile(args) {
         var isMe = args.isMe;
         var name = args.name;
+        var image = args.image;
 
         var callback = args.callback || function () {
             alert('Not implemented!');
@@ -22,15 +24,10 @@ $(function () {
 
         $('.K_ProfileHolder').append(
             /*
-             * <div class="K_Profile K_myProfile">
+             * <div class="K_Profile (K_myProfile)">
              *   <div class="K_Pcolor">
+             *     <img class="K_Pimage" src="...">
              *     <p class="K_Pname">YOU</p>
-             *   </div>
-             * </div>
-             *
-             * <div class="K_Profile">
-             *   <div class="K_Pcolor">
-             *     <p class="K_Pname">John</p>
              *   </div>
              * </div>
              */
@@ -39,6 +36,11 @@ $(function () {
                 .append(
                     $('<div>')
                         .addClass('K_Pcolor')
+                        .append(
+                            $('<img>')
+                                .addClass('K_Pimage')
+                                .attr('src', image)
+                        )
                         .append(
                             $('<p>')
                                 .addClass('K_Pname')
@@ -69,12 +71,14 @@ $(function () {
 
     K_addProfile({
         name: 'You',
-        isMe: true
+        isMe: true,
+        image: '../VFData/profile1.png'
     });
 
     K_addProfile({
         name: 'VF 1',
         isMe: false,
+        image: '../VFData/profile2.png',
         callback: function () {
             alert('VF 1!');
         }
@@ -83,6 +87,7 @@ $(function () {
     K_addProfile({
         name: 'VF 2',
         isMe: false,
+        image: '../VFData/profile3.png',
         callback: function () {
             alert('VF 2!');
         }
