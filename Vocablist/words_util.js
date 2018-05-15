@@ -1,4 +1,4 @@
-$(document).ready(function () {
+//$(document).ready(function () {
 	var contextsRef = firebase.database().ref('contexts');
 	var vocabsRef = firebase.database().ref('vocabs');	
 
@@ -40,4 +40,4 @@ $(document).ready(function () {
 	*/
 	//console.log(getContextFromVocab(31));
 	//console.log(getVocabFromID(31));
-});
+//});
