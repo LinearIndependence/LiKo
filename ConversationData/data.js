@@ -45,7 +45,6 @@ var testConv = [
 
 var testContext = [
     "- 안녕하세요! 전 Einstein 교수>>professor 입니다.",
-    "- te",
     "?",
     "?[인사] 안녕하세요, 교수님!",
     "[인사]",
