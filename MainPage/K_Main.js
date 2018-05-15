@@ -74,7 +74,7 @@ $(document).ready(function () {
         $(this).removeClass('K_active');
     })
 
-    K_GoConv(testConv);
+    K_GoConv(testContext);
 })
 
 function K_clearCand() {
@@ -256,7 +256,7 @@ function K_isFin(str) {
     }
 }
 function K_isGoto(str) {
-    if (str.match(/^->\[[a-zA-Z0-9]+]$/)) {
+    if (str.match(/^->\[.+]$/)) {
         return true;
     }
     else {
@@ -264,7 +264,7 @@ function K_isGoto(str) {
     }
 }
 function K_isCand(str) {
-    if (str.match(/^(\?\[[a-zA-Z0-9]+] ).*/)) {
+    if (str.match(/^(\?\[.+] ).*/)) {
         return true;
     }
     else {
@@ -272,7 +272,7 @@ function K_isCand(str) {
     }
 }
 function K_isTag(str) {
-    if (str.match(/^\[[a-zA-Z0-9]+]$/)) {
+    if (str.match(/^\[.+]$/)) {
         return true;
     }
     else {

@@ -44,8 +44,8 @@ H.TestData = [
         },
         {
             question: [
-                '반갑습니다.',
-                '숙제를 다 했나요?'
+                '오, Natasha, 반갑습니다!',
+                '숙제는 다 했나요?'
             ],
             rightAnswer: '숙제를 다 했습니다.',
             wrongAnswers: [
