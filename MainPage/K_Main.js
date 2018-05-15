@@ -58,7 +58,7 @@ $(document).ready(function () {
             if (K_selectCallback !== null) {
                 var tmpHolder = K_selectCallback;
                 K_selectCallback = null;
-                tmpHolder(K_selectedCand);
+                tmpHolder({ content: K_selectedCand.attr('content'), tag: K_selectedCand.attr('tag') });
                 $(".K_MainLog").animate({ scrollTop: $('.K_MainLog').prop("scrollHeight") }, 500);
             }
             K_clearCand();
@@ -84,7 +84,7 @@ function K_clearCand() {
     $('.K_commitButton').removeClass('K_active');
 }
 
-var normal = '1', findTag = '2', makeCand = '3';
+var normal = '1', findTag = '2', makeCands = '3';
 function K_GoConv(rawLines) {
     var curTag = null;
     var curMode = normal;
@@ -100,34 +100,25 @@ function K_GoConv(rawLines) {
                 continue;
             }
         }
-        else if (curMode == makeCand) {
+        else if (curMode == makeCands) {
             var candIdx = 0;
             $('.K_cand').removeClass('K_available');
             while (K_isCand(curLine)) {
-
                 var cand = $('.K_cand[idx=' + String(candIdx) + ']');
-
                 cand.attr('tag', curLine.substring(2, curLine.indexOf(']')));
                 cand.attr('content', '- ' + curLine.substring(curLine.indexOf(' ') + 1));
                 cand.html('');
                 cand.addClass('K_available');
-                cand.append(K_parseLine(curLine));
-
+                cand.append(K_parseLine(curLine, false));
                 candIdx++;
                 idx++;
                 curLine = rawLines[idx];
             }
-            K_selectCallback = function (selectedCand) {
-                var toAdd = document.createElement('div');
-                toAdd.classList.add('K_Log', 'K_ME');
-                $('.K_MainLog').append(toAdd);
-                var wordElems = K_parseLine(selectedCand.attr('content'));
-                for (var widx = 0; widx < wordElems.length; widx++) {
-                    $(toAdd).append(wordElems[widx]);
-                }
+            K_selectCallback = function (info) {
+                K_createMyDialog(K_parseLine(info.content));
                 var Nidx;
                 for (Nidx = idx; Nidx < rawLines.length; Nidx++) {
-                    if (K_checkTag(rawLines[Nidx], selectedCand.attr('tag'))) {
+                    if (K_checkTag(rawLines[Nidx], info.tag)) {
                         break;
                     }
                 }
@@ -156,7 +147,7 @@ function K_GoConv(rawLines) {
                 continue;
             }
             if (curLine == '?') {
-                curMode = makeCand;
+                curMode = makeCands;
                 continue;
             }
             else {
@@ -183,6 +174,15 @@ function K_GoConv(rawLines) {
     K_wrapUpConv();
 }
 
+function K_createMyDialog(wordElems) {
+    var toAdd = document.createElement('div');
+    toAdd.classList.add('K_Log', 'K_ME');
+    for (var widx = 0; widx < wordElems.length; widx++) {
+        $(toAdd).append(wordElems[widx]);
+    }
+    $('.K_MainLog').append(toAdd);
+}
+
 function K_TEMP_getProfilePic(){
     return "../VFData/profile1.png";
 }
@@ -192,13 +192,20 @@ function K_wrapUpConv() {
 }
 //returns array of HTMLelements. (for inside div)
 //only called when normal mode.
-function K_parseLine(rawLine) {
+function K_parseLine(rawLine, makeLink = true) {
     var ret = [];
     var wordList = rawLine.split(' ');
-    if (wordList[0] == '-' || K_isCand(rawLine)) {
+    if (wordList[0] == '-' || K_isCand(rawLine) || wordList[0] == '#') {
         //normal or cand.
         for (var idx = 1; idx < wordList.length; idx++) {
-            ret.push(K_parseWord(wordList[idx]));
+            var word;
+            if (makeLink) {
+                word = K_parseWord(wordList[idx]);
+            }
+            else {
+                word = wordList[idx].split('>>')[0] + ' ';
+            }
+            ret.push(word);
         }
         return ret;
     }
@@ -235,6 +242,7 @@ function K_parseWord(word) {
         return ret;
     }
 }
+
 
 function K_makeWordPopup(wordID) {
     var whole = $(document.createElement('div'));
@@ -279,6 +287,7 @@ function K_isTag(str) {
         return false;
     }
 }
+
 function K_checkTag(str, tag) {
     if ('[' + tag + ']' == str) {
         return true;

@@ -59,14 +59,14 @@
 
 .K_interacts {
     margin: 15px 0 15px 0;
-    height: 165px;
+    height: 180px;
     padding: 15px;
     background-color: #b1b8c4;
 }
 
 .K_candidates {
     background-color: #333D51;
-    height: 60%;
+    height: 95px;
     display: inline-block;
     width: 100%;
 }
@@ -102,7 +102,7 @@
     background-color: #CBD0D8;
     border: 2px solid #333D51;
     margin: 0 0 10px 0;
-    width: 670px;
+    width: 700px;
     height: 44px;
     padding: 10px;
     float: left;
