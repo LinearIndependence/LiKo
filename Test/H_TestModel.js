@@ -111,11 +111,13 @@ H.TestModel = (function () {
                 lifeCount: this.lifeCount
             });
 
-            // 라이프가 안 남으면, 게임 오버.
+            // 라이프가 안 남으면...
             if (this.lifeCount === 0) {
                 setTimeout(function () {
+                    // 테스트는 끝나고,
                     this.isTestEnd = true;
 
+                    // 실패한 것으로 처리됩니다.
                     this.events.endTest.fire({
                         isSucceed: false,
                         elapsedTime: this.elapsedTime
@@ -127,18 +129,7 @@ H.TestModel = (function () {
         }
 
         setTimeout(function () {
-            if (this.problemIndex >= this.problemCount - 1) {
-                // 대화가 끝났으면... 게임 오버.
-                this.isTestEnd = true;
-
-                this.events.endTest.fire({
-                    isSucceed: true,
-                    elapsedTime: this.elapsedTime
-                });
-            } else {
-                // 아직 안 끝났으면... 다음 질문.
-                this.updateProblem();
-            }
+            this.updateProblem();
         }.bind(this), this.delayAfterMark);
     };
 
@@ -166,6 +157,29 @@ H.TestModel = (function () {
         this.problemIndex++;
 
         var problem = this.problems[this.problemIndex];
+
+        // 마지막 문제인 경우...
+        if (this.problemIndex >= this.problemCount - 1) {
+            this.isTestEnd = true;
+
+            // 상대방만 말을 하고 나는 더 이상 말을 하지 않습니다.
+            this.events.updateProblem.fire({
+                progress: (this.problemIndex + 1) * 1.0 / this.problemCount,
+                question: problem.question,
+                answers: null,
+                hint: null,
+                keyCount: this.keyCount
+            });
+
+            // 여기까지 왔다면 라이프를 잃지 않고 테스트를 완수한 겁니다.
+            this.events.endTest.fire({
+                isSucceed: true,
+                elapsedTime: this.elapsedTime
+            });
+
+            return;
+        }
+
         var answerCount = problem.wrongAnswers.length + 1;
         var answers = new Array(answerCount);
         var i;

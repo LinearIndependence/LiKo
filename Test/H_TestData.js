@@ -88,6 +88,15 @@ H.TestData = [
                 '교과서를 잃어버렸습니다.'
             ],
             hint: ['textbook']
+        },
+        {
+            question: [
+                '그렇군요.',
+                '안녕히 가세요.'
+            ],
+            rightAnswer: 'shitty',
+            wrongAnswers: [],
+            hint: []
         }
     ]
 ];

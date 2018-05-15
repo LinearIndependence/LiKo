@@ -48,8 +48,12 @@ H.TestView = (function () {
             // 질문을 대화창에 추가합니다.
             this.updateChat(args.question, false);
 
-            // 답 버튼들을 새로 만듭니다.
-            this.updateAnswers(args.answers, args.rightAnswerIndex);
+            if (args.answers === null) {
+                this.updateAnswers(['.', '.', '.'], 0);
+            } else {
+                // 답 버튼들을 새로 만듭니다.
+                this.updateAnswers(args.answers, args.rightAnswerIndex);
+            }
 
             // 진행 바를 업데이트합니다.
             this.updateProgress(Math.floor(args.progress * 100));
