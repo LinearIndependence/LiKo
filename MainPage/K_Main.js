@@ -2,23 +2,9 @@
 // var K_selectedProfileColor = null;
 var K_selectedCand = null;
 var K_selectCallback = null;
+var K_addProfile = true;
+var K_curProfile = 1;
 $(document).ready(function () {
-    /* (By H) 이 부분 VF/K_VF.js로 옮겼습니다. 양해 바랍니다.
-    K_selectedProfileColor = $('.K_ProfileHolder .K_Profile:first').find('.K_Pcolor');
-    K_selectedProfileColor.addClass('K_selected');
-    $('.K_Profile').mouseenter(function () {
-        $(this).find('.K_Pcolor').addClass('K_hovering');
-    })
-    $('.K_Profile').mouseleave(function () {
-        $(this).find('.K_Pcolor').removeClass('K_hovering');
-    })
-    $('.K_Profile').click(function () {
-        K_selectedProfileColor.removeClass('K_selected');
-        K_selectedProfileColor.removeClass('K_hovering');
-        K_selectedProfileColor = $(this).find('.K_Pcolor');
-        K_selectedProfileColor.addClass('K_selected');
-    });
-    */
     $('.K_commitButton').mouseenter(function () {
         $(this).addClass('K_hovering');
     })
@@ -35,6 +21,7 @@ $(document).ready(function () {
     })
     $('.K_commitButton').mouseleave(function () {
         $(this).removeClass('K_hovering');
+        $(this).removeClass('K_selected');
     })
     $('.K_cand').mouseleave(function () {
         if ($(this).hasClass('K_available')) {
@@ -75,6 +62,8 @@ $(document).ready(function () {
                 $(".K_MainLog").animate({ scrollTop: $('.K_MainLog').prop("scrollHeight") }, 500);
             }
             K_clearCand();
+            K_selectedCand = null;
+            $('.K_inputValue').html('');
         }
     })
     $('.K_word').mouseenter(function () {
@@ -146,6 +135,7 @@ function K_GoConv(rawLines) {
                     alert('nowhere to go');
                     return;
                 }
+                K_addProfile = true;
                 K_GoConv(rawLines.slice(Nidx + 1, rawLines.length));
             }
             return;
@@ -170,7 +160,15 @@ function K_GoConv(rawLines) {
                 continue;
             }
             else {
-                var toAdd = document.createElement('div');
+                var toAdd = null;
+                if (K_addProfile) {
+                    toAdd = document.createElement('img');
+                    toAdd.src = K_TEMP_getProfilePic();
+                    toAdd.classList.add('K_profilePic');
+                    $('.K_MainLog').append(toAdd);
+                    K_addProfile = false;
+                }
+                toAdd = document.createElement('div');
                 toAdd.classList.add('K_Log', 'K_VF');
                 $('.K_MainLog').append(toAdd);
                 console.log("add");
@@ -184,6 +182,11 @@ function K_GoConv(rawLines) {
     }
     K_wrapUpConv();
 }
+
+function K_TEMP_getProfilePic(){
+    return "../VFData/profile1.png";
+}
+
 function K_wrapUpConv() {
     $('.K_cand').removeClass('K_available');
 }

@@ -8,78 +8,16 @@
     box-sizing: border-box;
 }
 
-/* (By H) 이 부분 VF/K_VF.css로 옮겼습니다.
-.K_Whole {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 1080px;
-    height: 810px;
-    margin: -405px 0px 0px -540px;
+.K_profilePic + .K_Log{
+    position:relative;
+    margin-top: -50px;
 }
-
-.K_ProfileHolder {
-    background-color: #333D51;
-    width: 270px;
-    height: 810px;
-    float: left;
+.K_Log.K_VF + .K_Log.K_VF{
+    margin-top: 10px;
 }
-
-.K_Main {
-    background-color: #CBD0D8;
-    width: 810px;
-    height: 810px;
-    padding: 15px;
-    float: left;
-}
-
-.K_clear::after {
-    clear: both;
-    content: '';
-}
-
-.K_Profile {
-    position: relative;
-    width: 100%;
-    height: 80px;
-    margin-bottom: 16px;
-    background-color: #2b3445;
-    color: #CBD0D8;
-    cursor: pointer;
-}
-
-.K_Pcolor {
-    width: 2%;
-    height: 100%;
-    background-color: #d3ac2b;
-    transition: width 0.2s ease-in-out;
-    text-align: left;
-}
-
-    .K_Pcolor.K_selected {
-        color: #2b3445;
-        width: 100%;
+    .K_Log.K_VF + .K_Log.K_VF::after {
+        border-width: 0px;
     }
-
-        .K_Pcolor.K_selected.K_hovering {
-            background-color: #a98a23;
-        }
-
-    .K_Pcolor.K_hovering:not(.K_selected) {
-        width: 20%;
-    }
-
-.K_Pname {
-    margin: 0 0 0 0;
-    position: absolute;
-    right: -35%;
-    width: 70%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-weight: bold;
-    font-size: 20px;
-}
-*/
 
 .K_MainLog {
     padding: 15px;
@@ -95,9 +33,6 @@
     padding: 7px;
     box-shadow: 3px 3px 20px grey;
 }
-.K_Log.K_logSeq{
-    margin-top: 10px;
-}
     .K_Log::after {
         content: '';
         position: absolute;
@@ -108,9 +43,6 @@
         border-width: 12px;
         border-style: solid;
         border-color: transparent #F2F2E8 transparent transparent;
-    }
-    .K_Log.K_logSeq::after{
-        border-width: 0px;
     }
 .K_ME {
     background-color: #d3ac2b;
