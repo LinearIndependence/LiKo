@@ -68,7 +68,17 @@ var WordsUtil = (function () {
 
     wu.isVocabInList = function (context_chapter, vocab_id, callback) {
         contextsRef.orderByChild('chapter').equalTo(context_chapter).once('value').then(function (snapshot) {
-            callback(snapshot.val() && Object.values(snapshot.val())[0].vocabs && Object.values(Object.values(snapshot.val())[0].vocabs).indexOf(vocab_id) > -1);
+        	var inList = false;
+        	var vocabs = Object.values(snapshot.val())[0].vocabs;
+            if (snapshot.val() && vocabs) {
+            	for (vocab in vocabs) {
+            		if (vocab.id && vocab.id == vocab_id) {
+            			inList = true;
+            			break;
+            		}
+            	} 
+            }
+            callback(inList);
         });
 
         // Example
@@ -106,17 +116,18 @@ var WordsUtil = (function () {
     	// wu.addVocabData("나", "self", "I", alert); // 새 단어가 추가되고 그 단어의 id가 alert로 출력됨
     };
 
-    wu.addVocabToContext = function (context_chapter, vocab_id) {
+    wu.addVocabToContext = function (context_chapter, vocab_id, sentence = "이 문장은 테스트 문장입니다.") {
     	contextsRef.orderByChild('chapter').equalTo(context_chapter).once('value').then (function (snapshot) {
     		wu.isVocabInList(context_chapter, vocab_id, function (isInList) {
     			console.log(Object.keys(snapshot.val())[0]);
     			if (!isInList)
-    				db.ref('contexts/' + Object.keys(snapshot.val())[0] + '/vocabs/').push(vocab_id);
+    				db.ref('contexts/' + Object.keys(snapshot.val())[0] + '/vocabs/').push({id: vocab_id, sentence: sentence});
     		});    		
     	});
 
     	// Example
-    	// wu.addVocabToContext(1, 0); // 챕터 1에 "교수" 단어가 추가됨. 이미 있으면 스킵됨.
+    	// wu.addVocabToContext(1, 0, "나는 나쁜 교수입니다."); // 챕터 1에 "교수" 단어가 추가되고 문장으로 저게 추가됨.
+    	// 이미 같은 단어가 같은 컨텍스트에 있으면 스킵됨.
 	};
 
     return wu;
