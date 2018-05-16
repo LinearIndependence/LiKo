@@ -2,44 +2,50 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
 
-	<title>Liko</title>
+    <title>Liko</title>
 
-	<link rel="stylesheet" type="text/css" href="vocablist.css">
-	<script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
-	<script>
-	  // Initialize Firebase
-	  var config = {
-	  	apiKey: "AIzaSyCzCLfk8yqwdxamEEFx3PRrRyhOcTL1IUk",
-	  	authDomain: "liko-665bd.firebaseapp.com",
-	  	databaseURL: "https://liko-665bd.firebaseio.com",
-	  	projectId: "liko-665bd",
-	  	storageBucket: "liko-665bd.appspot.com",
-	  	messagingSenderId: "133340779007"
-	  };
-	  firebase.initializeApp(config);
-	</script>
-	<script type="text/javascript" src="../js/lib/jquery-3.3.1.min.js"></script>
-	<script type="text/javascript" src="vocablist.js"></script>
-	<script type="text/javascript" src="words_util.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../VF/K_VF.css">
+    <link rel="stylesheet" type="text/css" href="vocablist.css">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCzCLfk8yqwdxamEEFx3PRrRyhOcTL1IUk",
+            authDomain: "liko-665bd.firebaseapp.com",
+            databaseURL: "https://liko-665bd.firebaseio.com",
+            projectId: "liko-665bd",
+            storageBucket: "liko-665bd.appspot.com",
+            messagingSenderId: "133340779007"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script type="text/javascript" src="../js/lib/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../VF/K_VF.js"></script>
+    <script type="text/javascript" src="vocablist.js"></script>
+    <script type="text/javascript" src="words_util.js"></script>
 </head>
 <body>
-	<div id="big">
-		<div id="context_container_box" class="box">
-			<!--
-			<div class="box context_box" >
-				<div class="inline largefont bold">Context 1 - First meeting</div><button class="inline rightelement">테스트용 버튼 - 현재 맥락에 단어 추가</button>
-				<br>
-				<div class="inline box vocab_box bold">
-					사랑하다
-				</div>
-			</div>
-			-->
-		</div>
-	</div>
+<div class="K_Whole">
+    <div class="K_ProfileHolder"></div>
+    <div class="K_Main">
+        <div id="context_container_box" class="box">
+            <!--
+            <div class="box context_box" >
+                <div class="inline largefont bold">Context 1 - First meeting</div><button class="inline rightelement">테스트용 버튼 - 현재 맥락에 단어 추가</button>
+                <br>
+                <div class="inline box vocab_box bold">
+                    사랑하다
+                </div>
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+
 
 </body>
 

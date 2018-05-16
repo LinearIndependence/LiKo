@@ -84,18 +84,19 @@ a:link {
 }
 
 #context_container_box {
-	background-color: #dcbd56;
-	margin-bottom: 12px;
 	overflow-y: auto;
+
+	margin: 15px;
+
+	background-color: #dcbd56;
 }
 
 .context_box {
-	background-color: #e5cd80;
-	width: 980px;
+	margin: 12px;
 	padding-bottom: 12px;
 	padding-top: 12px;
-	margin: 12px;
 
+	background-color: #e5cd80;
 }
 
 #vocab_sound_icon {

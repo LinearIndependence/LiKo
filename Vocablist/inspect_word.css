@@ -1,4 +1,3 @@
-
 /*
 Main Color: #d3ac2b;
 Brighter 1: #dcbd56;
@@ -7,7 +6,7 @@ Brighter 3: #eedeaa;
 Brighter 4: #f6eed5;
 */
 body {
-	font-family: 'Nanum Gothic', sans-serif;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 #big {
@@ -29,103 +28,103 @@ body {
 }
 
 .largefont {
-	font-size: large;
+    font-size: large;
 }
 
 .xxlfont {
-	font-size: xx-large;	
+    font-size: xx-large;
 }
 
-.bold{
-	font-weight: bold;
+.bold {
+    font-weight: bold;
 }
 
 .box {
-	/*border-style: outset;*/
-	border-width: 1px;
-	padding-right: 7px;
-	padding-left: 7px;
-	padding-top: 7px;
-	padding-bottom: 7px;
+    /*border-style: outset;*/
+    border-width: 1px;
+    padding-right: 7px;
+    padding-left: 7px;
+    padding-top: 7px;
+    padding-bottom: 7px;
 }
 
 .inline {
-	display: inline-block;
+    display: inline-block;
 }
 
 .rightelement {
-	float: right;
-	margin: 3px;	
+    float: right;
+    margin: 3px;
 }
+
 /*
 #return {
 	margin: 30px;
 	float: right;
 }
 */
-#vocab_box {	
-	background-color: #eedeaa;
-	/*width: 120px;*/
-	height: 120px;
-	margin-top: 12px;
-	margin-left: 12px;
-	margin-bottom: 20px;
-	line-height: 200%;
+#vocab_box {
+    background-color: #eedeaa;
+    /*width: 120px;*/
+    height: 120px;
+    margin-top: 12px;
+    margin-left: 12px;
+    margin-bottom: 20px;
+    line-height: 200%;
 }
 
 #context_container_box {
-	background-color: #dcbd56;
-	margin-bottom: 12px;
-	overflow-y: auto;
+    background-color: #dcbd56;
+    margin: 15px;
+    overflow-y: auto;
 }
 
 .context_box {
-	background-color: #e5cd80;
-	width: 1000px;
-	padding-bottom: 12px;
-	padding-top: 12px;
-	margin: 12px;
+    background-color: #e5cd80;
+    padding-bottom: 12px;
+    padding-top: 12px;
+    margin: 12px;
 }
 
 #return_box {
-	background-color: #f6eed5;
-	width: 80px;
-	margin-top: 8px; 
-	margin-left: 8px;
-	margin-bottom: 8px;
-	text-align: center;
-	cursor: pointer;
+    background-color: #f6eed5;
+    width: 80px;
+    margin-top: 8px;
+    margin-left: 8px;
+    margin-bottom: 8px;
+    text-align: center;
+    cursor: pointer;
 }
 
 #return_box:hover {
-	background-color: #d3ac2b;
+    background-color: #d3ac2b;
 }
 
 .jump_box {
-	background-color: #f6eed5;
-	width: 160px;
-	margin-top: 8px; 
-	margin-left: 8px;
-	margin-bottom: 8px;
-	text-align: center;
-	cursor: pointer;
+    background-color: #f6eed5;
+    width: 160px;
+    margin-top: 8px;
+    margin-left: 8px;
+    margin-bottom: 8px;
+    text-align: center;
+    cursor: pointer;
 }
 
 .jump_box:hover {
-	background-color: #d3ac2b;
+    background-color: #d3ac2b;
 }
 
 #vocab_sound_icon {
-	width: 32px;
-	height: 32px;
-	cursor: pointer;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
 }
 
 #relevant_contexts_sign {
-	background-color: #f6eed5;
-	width: 160px;
-	margin-top: 12px; 
-	margin-left: 12px;
-	margin-bottom: 20px;
-	text-align: center;
+    background-color: #f6eed5;
+    width: 160px;
+    margin-top: 12px;
+    margin-left: 12px;
+    margin-bottom: 20px;
+    text-align: center;
 }
