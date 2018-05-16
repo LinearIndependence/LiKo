@@ -4,7 +4,7 @@ var K_selectedCand = null;
 var K_selectCallback = null;
 var K_addProfile = true;
 var K_curProfile = 1;
-var K_curContext = 1;
+var K_curContext = 0; //test context.
 $(document).ready(function () {
     $('.K_commitButton').mouseenter(function () {
         $(this).addClass('K_hovering');
@@ -88,7 +88,7 @@ function K_clearCand() {
 }
 
 var normal = '1', findTag = '2', makeCands = '3';
-function K_GoConv(rawLines) {
+function K_GoConv(rawLines, lineStack = []) {
     var curTag = null;
     var curMode = normal;
     var curCandIdx = -1;
@@ -119,6 +119,7 @@ function K_GoConv(rawLines) {
             }
             K_selectCallback = function (info) {
                 K_createMyDialog(K_parseLine(info.content));
+                lineStack.push({ content: info.content, isMe: true });
                 var Nidx;
                 for (Nidx = idx; Nidx < rawLines.length; Nidx++) {
                     if (K_checkTag(rawLines[Nidx], info.tag)) {
@@ -130,18 +131,18 @@ function K_GoConv(rawLines) {
                     return;
                 }
                 K_addProfile = true;
-                K_GoConv(rawLines.slice(Nidx + 1, rawLines.length));
+                K_GoConv(rawLines.slice(Nidx + 1, rawLines.length), lineStack);
             }
             return;
         }
         else if (curMode == normal) {
             if (K_isFin(curLine)) {
-                K_wrapUpConv();
+                K_wrapUpConv(lineStack);
                 return;
             }
             if (K_isTag(curLine)) {
                 alert('wrong' + curLine);
-                K_wrapUpConv();
+                K_wrapUpConv(lineStack);
                 return;
             }
             if (K_isGoto(curLine)) {
@@ -164,18 +165,20 @@ function K_GoConv(rawLines) {
                 }
                 toAdd = document.createElement('div');
                 toAdd.classList.add('K_Log', 'K_VF');
-                $('.K_MainLog').append(toAdd);
                 console.log("add");
                 var wordElems = K_parseLine(curLine);
                 for (var widx = 0; widx < wordElems.length; widx++) {
                     $(toAdd).append(wordElems[widx]);
                 }
+                $('.K_MainLog').append(toAdd);
+                lineStack.push({ content: curLine, isMe: false });
                 continue;
             }
         }
     }
-    K_wrapUpConv();
+    K_wrapUpConv(lineStack);
 }
+
 
 function K_createMyDialog(wordElems) {
     var toAdd = document.createElement('div');
@@ -190,13 +193,14 @@ function K_TEMP_getProfilePic(){
     return "../VFData/profile1.png";
 }
 
-function K_wrapUpConv() {
+function K_wrapUpConv(lineStack) {
     $('.K_cand').removeClass('K_available');
     $('<div>').addClass(['K_Log', 'K_SYS']).html('VF1 out.').appendTo($('.K_MainLog'));
+    K_translate(lineStack);
 }
 //returns array of HTMLelements. (for inside div)
 //only called when normal mode.
-function K_parseLine(rawLine, makeLink = true) {
+function K_parseLine(rawLine, makeLink = true, IDsOut = null) {
     var ret = [];
     var wordList = rawLine.split(' ');
     if (wordList[0] == '-' || K_isCand(rawLine) || wordList[0] == '#') {
@@ -207,7 +211,11 @@ function K_parseLine(rawLine, makeLink = true) {
                 word = K_parseWord(wordList[idx]);
             }
             else {
-                word = wordList[idx].split('>>')[0] + ' ';
+                var splited = wordList[idx].split('>>');
+                if (IDsOut && splited.length > 1) {
+                    IDsOut.push(Number(splited[1]));
+                }
+                word = splited[0] + ' ';
             }
             ret.push(word);
         }
@@ -250,9 +258,15 @@ function K_makeWordPopup(wordID) {
     whole.addClass('K_wordPopup');
     whole.append(K_getWordInfo(wordID));
     var addButton = $(document.createElement('button'));
+    addButton.attr('ID', wordID);
     isVocabInList(K_curContext, Number(wordID), function (includes) {
         if (!includes) {
-            addButton.addClass('K_addButton').html('Add!').click(function () { alert('added'); this.disabled = 'true'});
+            addButton.addClass('K_addButton').html('Add to vocab!').click(function () {
+                WordsUtil.addVocabToContext(K_curContext, Number(wordID));
+                //this.disabled = 'true';
+                //$(this).html('Added');
+                $('.K_addButton[ID=' + wordID + ']').attr('disabled', 'true').html('Added');
+            });
         }
         else {
             addButton.addClass('K_addButton').html('Added');
