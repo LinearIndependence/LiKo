@@ -1,4 +1,4 @@
-
+﻿
 // var K_selectedProfileColor = null;
 var K_selectedCand = null;
 var K_selectCallback = null;
@@ -189,7 +189,7 @@ function K_createMyDialog(wordElems) {
 }
 
 function K_TEMP_getProfilePic(){
-    return "../VFData/profile2.png";
+    return "../VFData/profile1.png";
 }
 
 function K_wrapUpConv(lineStack) {

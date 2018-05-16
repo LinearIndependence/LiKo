@@ -23,7 +23,7 @@ $(function () {
         var image = args.image;
 
         var callback = args.callback || function () {
-            alert('Not implemented!');
+             K_moveToURL('../MyPage/A_Main.html');
         };
 
         $('.K_ProfileHolder').append(

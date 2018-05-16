@@ -1,0 +1,60 @@
+.test {
+    color: red;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+.K_profilePic + .K_Log{
+    position:relative;
+    margin-top: -50px;
+}
+.K_Log.K_VF + .K_Log.K_VF{
+    margin-top: 10px;
+}
+    .K_Log.K_VF + .K_Log.K_VF::after {
+        border-width: 0px;
+    }
+
+.K_MainLog {
+    padding: 15px;
+    height: 600px;
+    background-color: #b1b8c4;
+    overflow-y: scroll;
+}
+.K_Log {
+    position: relative;
+    width: 300px;
+    min-height: 50px;
+    margin-top: 20px;
+    padding: 7px;
+    box-shadow: 3px 3px 20px grey;
+}
+    .K_Log::after {
+        content: '';
+        position: absolute;
+        top: 0px;
+        left: -24px;
+        width: 0px;
+        height: 0px;
+        border-width: 12px;
+        border-style: solid;
+        border-color: transparent #F2F2E8 transparent transparent;
+    }
+.K_ME {
+    background-color: #d3ac2b;
+    left: calc(100% - 320px);
+}
+    .K_ME::after {
+        left: 100%;
+        border-color: transparent transparent transparent #d3ac2b;
+    }
+.K_VF {
+    background-color: #F2F2E8;
+    left: 70px;
+}
+
+

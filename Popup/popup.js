@@ -1,7 +1,7 @@
 
 $(function(){
   $('#class').click(function(){
-                    $('#class').hide();
+                    $('.items').hide();
                       });
   });
 
