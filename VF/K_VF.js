@@ -92,4 +92,12 @@ $(function () {
             alert('VF 2!');
         }
     });
+    K_addProfile({
+        name: 'Vocab',
+        isMe: false,
+        image: '../VFData/profile vocab.png',
+        callback: function () {
+            alert('vocab.');
+        }
+    })
 });
