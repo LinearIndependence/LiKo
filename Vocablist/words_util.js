@@ -75,6 +75,37 @@ var WordsUtil = (function () {
         // isVocabInList(1, 31, includes => alert(includes)); // True 또는 False가 출력됨
     };
 
+    wu.doesIDExist = function(vocab_id, callback) {
+    	vocabsRef.orderByChild('id').equalTo(vocab_id).once('value').then(function (snapshot) {
+    		callback(Boolean(snapshot.val()));
+    	});
+
+    	// Example
+    	//doesIDExist(31, exists => alert(exists)); // 별 일 없으면 True
+    };
+
+    wu.addVocabData = function(korean, meaning, shortmeaning, id_callback = Function.prototype) {
+    	var i = 0;
+    	var push = function (exists) {
+    		if (exists) {
+    			i++;
+    			wu.doesIDExist(i, push);
+    		}
+    		else {
+		    	vocabsRef.push({
+		    		id: i,
+		    		korean: korean,
+		    		meaning: meaning, 
+		    		shortmeaning: shortmeaning,
+		    	}, error => id_callback(i));
+		    }
+    	};
+    	wu.doesIDExist(i, push);
+
+    	// Example
+    	// wu.addVocabData("나", "self", "I", alert); // 새 단어가 추가되고 그 단어의 id가 alert로 출력됨
+    };    
+
     return wu;
 }());
 
