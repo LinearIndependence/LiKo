@@ -68,7 +68,7 @@ var WordsUtil = (function () {
 
     wu.isVocabInList = function (context_chapter, vocab_id, callback) {
         contextsRef.orderByChild('chapter').equalTo(context_chapter).once('value').then(function (snapshot) {
-            callback(Object.values(Object.values(snapshot.val())[0].vocabs).indexOf(vocab_id) > -1);
+            callback(snapshot.val() && Object.values(snapshot.val())[0].vocabs && Object.values(Object.values(snapshot.val())[0].vocabs).indexOf(vocab_id) > -1);
         });
 
         // Example
@@ -104,7 +104,20 @@ var WordsUtil = (function () {
 
     	// Example
     	// wu.addVocabData("나", "self", "I", alert); // 새 단어가 추가되고 그 단어의 id가 alert로 출력됨
-    };    
+    };
+
+    wu.addVocabToContext = function (context_chapter, vocab_id) {
+    	contextsRef.orderByChild('chapter').equalTo(context_chapter).once('value').then (function (snapshot) {
+    		wu.isVocabInList(context_chapter, vocab_id, function (isInList) {
+    			console.log(Object.keys(snapshot.val())[0]);
+    			if (!isInList)
+    				db.ref('contexts/' + Object.keys(snapshot.val())[0] + '/vocabs/').push(vocab_id);
+    		});    		
+    	});
+
+    	// Example
+    	// wu.addVocabToContext(1, 0); // 챕터 1에 "교수" 단어가 추가됨. 이미 있으면 스킵됨.
+	};
 
     return wu;
 }());
