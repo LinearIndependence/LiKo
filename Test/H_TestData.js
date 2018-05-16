@@ -29,7 +29,7 @@ H.TestData = [
                 '안녕히 가세요, 교수님!',
                 '날씨가 참 좋네요!'
             ],
-            hint: ['professor', 'weather']
+            hint: [3]
         },
         {
             question: [
@@ -40,61 +40,62 @@ H.TestData = [
                 '날씨가 참 좋네요!',
                 '수업이 너무 어렵습니다.'
             ],
-            hint: ['name', 'weather', 'class']
+            hint: [3, 31]
         },
         {
             question: [
                 '오, Natasha, 반갑습니다!',
-                '숙제는 다 했나요?'
+                '왜 저를 찾아오셨나요?'
             ],
-            rightAnswer: '숙제를 다 했습니다.',
+            rightAnswer: '숙제에 대해서 궁금한 게 있습니다.',
             wrongAnswers: [
                 '날씨가 참 좋네요!',
                 '안녕하세요, 교수님!'
             ],
-            hint: ['professor', 'weather', 'homework']
+            hint: [3, 31]
         },
         {
             question: [
-                '오늘 날씨는 어떤가요?'
+                '숙제는 다 했나요?'
             ],
-            rightAnswer: '날씨가 참 좋네요!',
+            rightAnswer: '숙제를 다 했습니다.',
             wrongAnswers: [
                 '수업이 너무 어렵습니다.',
                 '당신의 이름은 무엇인가요?'
             ],
-            hint: ['weather', 'class', 'name']
+            hint: [31]
         },
         {
             question: [
-                '저의 수업에 대해서 어떻게 생각하나요?'
+                '대단하네요!',
+                '제 수업 내용이 쉬운 건가요?'
             ],
-            rightAnswer: '수업이 너무 어렵습니다.',
+            rightAnswer: '아니오, 수업이 너무 어렵습니다.',
             wrongAnswers: [
-                'Yee',
+                '수업을 들으러 갑니다.',
                 '숙제를 다 했습니다.'
             ],
-            hint: ['homework', 'class']
+            hint: [31]
         },
         {
             question: [
-                '으잌 마음이 아프네요.',
-                'Natasha 양에게 F를 주려는 마음이 생기고 있습니다.',
-                '교과서에 대해서 어떻게 생각하나요?'
+                '마음이 아프네요.',
+                '그러나 숙제를 줄여 줄 생각은 없어요.',
+                '내일 새로운 숙제가 나올 거예요.',
+                '수고하세요!'
             ],
-            rightAnswer: '교과서가 너무 어렵습니다.',
+            rightAnswer: 'ㅗㅗㅗ',
             wrongAnswers: [
-                '당신의 이름은 무엇인가요?',
-                '교과서를 잃어버렸습니다.'
+                '감사합니다.',
+                '숙제가 많아서 기쁩니다.'
             ],
-            hint: ['textbook']
+            hint: [3, 31]
         },
         {
             question: [
-                '그렇군요.',
-                '안녕히 가세요.'
+                '너 F'
             ],
-            rightAnswer: 'shitty',
+            rightAnswer: '',
             wrongAnswers: [],
             hint: []
         }

@@ -34,18 +34,6 @@ H.TestModel = (function () {
         return newArray;
     }
 
-    /* 이건 힌트 테스트용 함수고, 단어 DB랑 연결하게 되면 지울 겁니다. */
-    function getHint(id) {
-        return {
-            professor: '교수',
-            weather: '날씨',
-            name: '이름',
-            class: '수업',
-            homework: '숙제',
-            textbook: '교과서'
-        }[id];
-    }
-
     function Event() {
         this.listeners = [];
     }
@@ -144,13 +132,17 @@ H.TestModel = (function () {
         });
 
         // View에게 힌트 정보 보내기.
-        this.events.showHint.fire({
-            hint: problem.hint
-                .map(function (id) {
-                    return getHint(id) + ': ' + id
-                })
-                .join(', ')
-        });
+        WordsUtil.vocabsFromIDs(problem.hint, function (vocabMap) {
+            var hint = [];
+
+            $.each(vocabMap, function (id, vocab) {
+                hint.push(vocab.korean + ': ' + vocab.shortmeaning);
+            });
+
+            this.events.showHint.fire({
+                hint: hint.join(', ')
+            });
+        }.bind(this));
     };
 
     TestModel.prototype.updateProblem = function () {

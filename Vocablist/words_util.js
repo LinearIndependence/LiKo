@@ -1,57 +1,119 @@
-//$(document).ready(function () {
-	var contextsRef = firebase.database().ref('contexts');
-	var vocabsRef = firebase.database().ref('vocabs');	
+// (By H)
+// words_util.js가 다른 파일에 의존하지 않고 독립적으로 작동하도록 수정했습니다.
+// HTML에 아래의 두 줄
+// <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+// <script type="text/javascript" src="../Vocablist/words_util.js"></script>
+// 만 추가하면 WordsUtil.(함수 이름) 형태로 바로 사용이 가능합니다.
 
-	function vocabFromID (id, callback) {
-		vocabsRef.orderByChild('id').equalTo(id).once('value').then(function (snapshot) {
-			//console.log(snapshot.val());
-			callback(Object.values(snapshot.val())[0]);
-		});
 
-		// Example
-		// vocabFromID(31, vocab => alert(vocab.korean)); // '사랑하다'가 출력됨
-	}
+var WordsUtil = (function () {
+    'use strict';
 
-	function isVocabInList (context_chapter, vocab_id, callback) {
-		contextsRef.orderByChild('chapter').equalTo(context_chapter).once('value').then(function (snapshot) {
-			callback(Object.values(Object.values(snapshot.val())[0].vocabs).indexOf(vocab_id) > -1);
-		});
+    // 네임스페이스.
+    var wu = {};
 
-		// Example
-		// isVocabInList(1, 31, includes => alert(includes)); // True 또는 False가 출력됨
-	}
+    // -------------------- Private. --------------------
 
-	//isVocabInList(1, 31, includes => console.log(includes));
-	/*
-	function getContextFromVocab(vocab_id) {
-		var ret = [];
-		contextsRef.once('value').then(function (snapshot) {
-			snapshot.forEach(function(context_snap) {
-				var context = context_snap.val();
-				if (Object.values(context.vocabs).includes(vocab_id))
-					ret.push(context);
-			});
-		});
-		return ret;
-	}
+    var db = firebase.initializeApp(
+        // Config.
+        {
+            apiKey: "AIzaSyCzCLfk8yqwdxamEEFx3PRrRyhOcTL1IUk",
+            authDomain: "liko-665bd.firebaseapp.com",
+            databaseURL: "https://liko-665bd.firebaseio.com",
+            projectId: "liko-665bd",
+            storageBucket: "liko-665bd.appspot.com",
+            messagingSenderId: "133340779007"
+        },
+        // 중복 오류 방지용 이름.
+        'WordsUtil'
+    ).database();
 
-	function getVocabFromID(vocab_id) {
-		var ret = null;
-		vocabsRef.once('value').then(function (snapshot) {
-			snapshot.forEach(function(context_snap) {
-				var vocab = context_snap.val();
-				console.log(vocab);
-				if (vocab.id == vocab_id)
-				{
-					ret = vocab_id;
-					return;
-				}
-			});
-		});
-		
-		return ret;
-	}
-	*/
-	//console.log(getContextFromVocab(31));
-	//console.log(getVocabFromID(31));
+    var contextsRef = db.ref('contexts');
+    var vocabsRef = db.ref('vocabs');
+
+    // -------------------- Public. --------------------
+
+    wu.vocabFromID = function (id, callback) {
+        vocabsRef.orderByChild('id').equalTo(id).once('value').then(function (snapshot) {
+            //console.log(snapshot.val());
+            callback(Object.values(snapshot.val())[0]);
+        });
+
+        // Example
+        // vocabFromID(31, vocab => alert(vocab.korean)); // '사랑하다'가 출력됨
+    };
+
+    // vocabFromID()의 id 여러 개 버전.
+    wu.vocabsFromIDs = function (ids, callback) {
+        vocabsRef.orderByChild('id').once('value').then(function (snapshot) {
+            var vocabMap = {};
+
+            snapshot.forEach(function (ref) {
+                var vocab = ref.val();
+
+                if (ids.indexOf(vocab.id) !== -1) {
+                    vocabMap[vocab.id] = vocab;
+                }
+            });
+
+            callback(vocabMap);
+        });
+
+        // Example
+        // vocabsFromIDs([3, 31], function(vocabMap) {
+        //     alert(vocabMap[3].korean);
+        //     alert(vocabMap[31].korean);
+        // });
+    };
+
+    wu.isVocabInList = function (context_chapter, vocab_id, callback) {
+        contextsRef.orderByChild('chapter').equalTo(context_chapter).once('value').then(function (snapshot) {
+            callback(Object.values(Object.values(snapshot.val())[0].vocabs).indexOf(vocab_id) > -1);
+        });
+
+        // Example
+        // isVocabInList(1, 31, includes => alert(includes)); // True 또는 False가 출력됨
+    };
+
+    return wu;
+}());
+
+// 기존의 Vocablist 코드들 작동을 위해... 전역 변수로도 풀어놓습니다.
+var vocabFromID = WordsUtil.vocabFromID;
+var vocabsFromIDs = WordsUtil.vocabsFromIDs;
+var isVocabInList = WordsUtil.isVocabInList;
+
+//isVocabInList(1, 31, includes => console.log(includes));
+/*
+function getContextFromVocab(vocab_id) {
+    var ret = [];
+    contextsRef.once('value').then(function (snapshot) {
+        snapshot.forEach(function(context_snap) {
+            var context = context_snap.val();
+            if (Object.values(context.vocabs).includes(vocab_id))
+                ret.push(context);
+        });
+    });
+    return ret;
+}
+
+function getVocabFromID(vocab_id) {
+    var ret = null;
+    vocabsRef.once('value').then(function (snapshot) {
+        snapshot.forEach(function(context_snap) {
+            var vocab = context_snap.val();
+            console.log(vocab);
+            if (vocab.id == vocab_id)
+            {
+                ret = vocab_id;
+                return;
+            }
+        });
+    });
+
+    return ret;
+}
+*/
+//console.log(getContextFromVocab(31));
+//console.log(getVocabFromID(31));
 //});
