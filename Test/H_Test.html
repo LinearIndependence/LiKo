@@ -16,7 +16,6 @@
 
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="H_Test.css">
-    <script type="text/javascript" src="H_TestData.js"></script>
     <script type="text/javascript" src="H_TestModel.js"></script>
     <script type="text/javascript" src="H_TestView.js"></script>
 
@@ -31,10 +30,8 @@
         $(function () {
             'use strict';
 
-            var problems = H.TestData[0];
-
             var testModel = new H.TestModel({
-                problems: problems,
+                contextId: 0,
                 lifeCount: 3,
                 keyCount: 3
             });

@@ -14,6 +14,17 @@ var H = H || {};
 H.TestModel = (function () {
     'use strict';
 
+    var db = firebase.initializeApp({
+        apiKey: "AIzaSyCzCLfk8yqwdxamEEFx3PRrRyhOcTL1IUk",
+        authDomain: "liko-665bd.firebaseapp.com",
+        databaseURL: "https://liko-665bd.firebaseio.com",
+        projectId: "liko-665bd",
+        storageBucket: "liko-665bd.appspot.com",
+        messagingSenderId: "133340779007"
+    }, 'TestModel').database();
+
+    var testsRef = db.ref('tests');
+
     function range(length) {
         return Array.apply(null, Array(length)).map(function (_, i) {
             return i;
@@ -34,6 +45,29 @@ H.TestModel = (function () {
         return newArray;
     }
 
+    function getProblems(contextId, callback) {
+        testsRef.child(contextId).once('value').then(function (snapshot) {
+            var problems = snapshot.val();
+            var allAnswers = [];
+
+            problems.forEach(function (problem) {
+                if (problem.rightAnswer.length > 0) {
+                    allAnswers.push(problem.rightAnswer);
+                }
+            });
+
+            // 랜덤하게 두 개 뽑겠다고 매 번 리스트 전체를 섞었더니 퍼포먼스가 똥망... ㅠㅠ
+            problems.forEach(function (problem, index) {
+                var allAnswersExceptMe = allAnswers.slice(0);
+
+                allAnswersExceptMe.splice(index, 1);
+                problem.wrongAnswers = shuffleArray(allAnswersExceptMe).slice(0, 2);
+            });
+
+            callback(problems);
+        });
+    }
+
     function Event() {
         this.listeners = [];
     }
@@ -49,8 +83,9 @@ H.TestModel = (function () {
     };
 
     function TestModel(args) {
-        this.problems = args.problems;
-        this.problemCount = this.problems.length;
+        this.contextId = args.contextId;
+        this.problems = [];
+        this.problemCount = 0;
         this.problemIndex = -1;
         this.rightAnswerIndex = -1;
         this.delayAfterMark = args.delayAfterMark || 1500;
@@ -72,13 +107,18 @@ H.TestModel = (function () {
     }
 
     TestModel.prototype.startTest = function () {
-        this.events.startTest.fire({
-            lifeCount: this.lifeCount,
-            keyCount: this.keyCount
-        });
+        getProblems(this.contextId, function (value) {
+            this.problems = value;
+            this.problemCount = this.problems.length;
 
-        this.updateProblem();
-        this.updateTime();
+            this.events.startTest.fire({
+                lifeCount: this.lifeCount,
+                keyCount: this.keyCount
+            });
+
+            this.updateProblem();
+            this.updateTime();
+        }.bind(this));
     };
 
     TestModel.prototype.markAnswer = function (answer) {

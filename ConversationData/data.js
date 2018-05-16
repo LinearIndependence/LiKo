@@ -66,30 +66,62 @@ var testContext = [
     "__FIN__"
 ];
 
-function K_translate(stackLines) {
-    var problem = K_makeProblem();
-    var ret = [];
-    for (var idx = 0; idx < stackLines.length; idx++) {
-        var curLine = stackLines[idx].content;
-        curLine = K_parseLine(curLine, false, problem.hint).join('');
-        if (!stackLines[idx].isMe) {
-            problem.question.push(curLine);
-        }
-        else {
-            problem.rightAnswer = curLine;
-            ret.push(problem);
-            problem = K_makeProblem();
-        }
-    }
-    ret.push(problem);
-    return ret;
-}
+var ConversationData = (function () {
+    'use strict';
 
-function K_makeProblem() {
-    var ret = {};
-    ret.question = [];
-    ret.rightAnswer = '';
-    ret.wrongAnswers = [];
-    ret.hint = [];
-    return ret;
-}
+    var cd = {};
+
+    // -------------------- Private. --------------------
+
+    var db = firebase.initializeApp(
+        // Config.
+        {
+            apiKey: "AIzaSyCzCLfk8yqwdxamEEFx3PRrRyhOcTL1IUk",
+            authDomain: "liko-665bd.firebaseapp.com",
+            databaseURL: "https://liko-665bd.firebaseio.com",
+            projectId: "liko-665bd",
+            storageBucket: "liko-665bd.appspot.com",
+            messagingSenderId: "133340779007"
+        },
+        // 중복 오류 방지용 이름.
+        'ConversationData'
+    ).database();
+
+    var testsRef = db.ref('tests');
+
+    function makeProblem() {
+        var ret = {};
+        ret.question = [];
+        ret.rightAnswer = '';
+        ret.wrongAnswers = [];
+        ret.hint = [];
+        return ret;
+    }
+
+    // -------------------- Public. --------------------
+
+    cd.translate = function (stackLines) {
+        var problem = makeProblem();
+        var ret = [];
+
+        for (var idx = 0; idx < stackLines.length; idx++) {
+            var curLine = stackLines[idx].content;
+
+            curLine = K_parseLine(curLine, false, problem.hint).join('');
+
+            if (!stackLines[idx].isMe) {
+                problem.question.push(curLine);
+            }
+            else {
+                problem.rightAnswer = curLine;
+                ret.push(problem);
+                problem = makeProblem();
+            }
+        }
+
+        ret.push(problem);
+        testsRef.set({0: ret});
+    };
+
+    return cd;
+}());
