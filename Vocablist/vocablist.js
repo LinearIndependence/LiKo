@@ -32,7 +32,7 @@ $(document).ready(function () {
 					context_box.appendChild(vocab_box);
 					vocab_box.className = "inline box vocab_box bold ";
 					vocab_box.innerHTML = vocab.korean;
-					vocab_box.href = "inspect_word.html?word=" + context.vocabs[vocab_key];
+					vocab_box.href = "inspect_word.html?word=" + context.vocabs[vocab_key].id;
 				});
 				
 			}
