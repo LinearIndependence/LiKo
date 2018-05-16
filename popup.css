@@ -1,0 +1,56 @@
+body {
+    margin:50px auto;
+    width: 600px;
+}
+#row {
+    white-space: nowrap;/* 가로스크롤시 중요한 속성 */
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 10px 5px;
+    background: #F4F3EA;
+    width: 600px;
+}
+
+#row .items {
+    display: inline-block;
+    margin-left: 10px;
+    width: 200px;
+    background: #D3AC2B;
+     text-align : center;
+     
+}
+
+#row .items p {
+    margin-bottom: 8px;
+
+    
+}
+#row .items a {
+    display: block;
+    overflow: hidden;
+    margin-top: 8px;
+    padding: 3px;
+    color:black;
+    font-size:12px;
+    text-decoration:none;
+}
+
+
+
+.item{
+    
+    width : 200px;
+    height : 200px;
+    color : #D3AC2B;
+    
+    font-size : 100px;
+    background-color: #333D51;
+    display: table-cell;
+    vertical-align: middle;
+    
+}
+
+#close{
+    padding-bottom: 20px;
+    text-align: right;
+}
