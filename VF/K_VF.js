@@ -5,6 +5,10 @@ $(function () {
         .find('.K_Pcolor')
         .addClass('K_selected');
 
+    function K_moveToURL(url) {
+        $(location).attr('href', url);
+    }
+
     /*
      * args = {
      *     name: (VF 이름),
@@ -80,7 +84,7 @@ $(function () {
         isMe: false,
         image: '../VFData/profile2.png',
         callback: function () {
-            alert('VF 1!');
+            K_moveToURL('../MainPage/K_Main.html');
         }
     });
 
@@ -89,15 +93,16 @@ $(function () {
         isMe: false,
         image: '../VFData/profile3.png',
         callback: function () {
-            alert('VF 2!');
+            K_moveToURL('../Test/H_Test.html');
         }
     });
+
     K_addProfile({
         name: 'Vocab',
         isMe: false,
         image: '../VFData/profile vocab.png',
         callback: function () {
-            alert('vocab.');
+            K_moveToURL('../Vocablist/vocablist.html');
         }
     })
 });
