@@ -192,6 +192,7 @@ function K_TEMP_getProfilePic(){
 
 function K_wrapUpConv() {
     $('.K_cand').removeClass('K_available');
+    $('<div>').addClass(['K_Log', 'K_SYS']).html('VF1 out.').appendTo($('.K_MainLog'));
 }
 //returns array of HTMLelements. (for inside div)
 //only called when normal mode.

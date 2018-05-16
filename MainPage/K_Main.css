@@ -57,6 +57,19 @@
     left: 70px;
 }
 
+.K_SYS {
+    width: 100%;
+    min-height: 30px;
+    background-color: #333D51;
+    color: #F2F2E8;
+    text-align: center;
+    box-shadow: none;
+    opacity: 0.5;
+}
+.K_Log.K_SYS::after{
+    border-width: 0px;
+}
+
 .K_interacts {
     margin: 15px 0 15px 0;
     height: 180px;
