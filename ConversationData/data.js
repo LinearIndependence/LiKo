@@ -74,13 +74,11 @@ function K_translate(stackLines) {
         curLine = K_parseLine(curLine, false, problem.hint).join('');
         if (!stackLines[idx].isMe) {
             problem.question.push(curLine);
-            continue;
         }
         else {
             problem.rightAnswer = curLine;
             ret.push(problem);
             problem = K_makeProblem();
-            continue;
         }
     }
     ret.push(problem);

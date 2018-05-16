@@ -16,6 +16,8 @@
 
     padding: 0.5em;
 
+    font-weight: bold;
+
     background-color: #b1b8c4;
 }
 
@@ -35,30 +37,33 @@
     background-color: #d3ac2b;
 }
 
-.H_Test_Lifes,
-.H_Test_Keys {
+.H_Test_Counts {
     float: left;
-
-    margin-right: 0.3em;
 }
 
-.H_Test_Lifes > span,
+.H_Test_Lives > span,
 .H_Test_Keys > span {
     margin-right: 0.4em;
 }
 
-.H_Test_Lifes {
+.H_Test_Lives {
+    display: inline-block;
+
+    margin-left: 0.4em;
+
     color: #ff0000;
 }
 
 .H_Test_Keys {
+    display: inline-block;
+
+    margin-left: 0.4em;
+
     color: #f2ed00;
 }
 
 .H_Test_Time {
     float: right;
-
-    font-weight: bold;
 }
 
 .H_Test_Body {

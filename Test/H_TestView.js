@@ -19,7 +19,7 @@ H.TestView = (function () {
         this.testModel = args.testModel;
 
         this.testModel.events.startTest.on(function (args) {
-            this.drawLifes(args.lifeCount);
+            this.drawLives(args.lifeCount);
             this.drawKeys(args.keyCount);
             this.hidePopup();
 
@@ -101,18 +101,18 @@ H.TestView = (function () {
         $('.H_Test_ProgressValue').animate({width: '' + percentage + '%'});
     };
 
-    TestView.prototype.drawLifes = function (lifeCount) {
+    TestView.prototype.drawLives = function (lifeCount) {
         var i;
 
-        $('.H_Test_Lifes').empty();
+        $('.H_Test_Lives').empty();
 
         for (i = 0; i < lifeCount; i++) {
-            $('.H_Test_Lifes').append($('<span>').addClass('fa fa-heart'));
+            $('.H_Test_Lives').append($('<span>').addClass('fa fa-heart'));
         }
     };
 
     TestView.prototype.removeLife = function (lifeCount) {
-        $('.H_Test_Lifes').children().eq(lifeCount).fadeTo('slow', 0.2);
+        $('.H_Test_Lives').children().eq(lifeCount).fadeTo('slow', 0.2);
     };
 
     TestView.prototype.drawKeys = function (keyCount) {
