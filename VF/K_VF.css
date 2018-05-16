@@ -1,7 +1,19 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 .K_Whole {
+    position: relative;
+
+    top: 50%;
+    left: 50%;
     width: 1080px;
     height: 810px;
-    margin: auto;
+    transform: translate(-50%, -50%);
 }
 
 .K_Main {
