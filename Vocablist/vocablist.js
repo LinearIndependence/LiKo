@@ -21,7 +21,7 @@ $(document).ready(function () {
 			var test_button = document.createElement("button");
 			context_box.appendChild(test_button);
 			test_button.className = "inline rightelement ";
-			test_button.setAttribute('onclick', "firebase.database().ref('contexts/" + context_snap.key + "/vocabs/').push(prompt('단어 id 내놔'));");
+			test_button.setAttribute('onclick', "firebase.database().ref('contexts/" + context_snap.key + "/vocabs/').push(Number(prompt('단어 id 내놔')));");
 			test_button.innerHTML = "테스트용 버튼 - 현재 맥락에 단어 추가";
 			context_box.innerHTML += "<br>";
 			for (var vocab_key in context.vocabs) {
