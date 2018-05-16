@@ -64,12 +64,14 @@ function getAllUrlParams(url) {
 
 
 $(document).ready(function () {
-	var vocabsRef = firebase.database().ref('vocabs');
+  var db = firebase.database();
+	var vocabsRef = db.ref('vocabs');
+  var contextsRef = db.ref('contexts');
 	var id = getAllUrlParams().word;
 
 	vocabsRef.once('value').then(function (snapshot) {
-			snapshot.forEach(function(context_snap) {
-				var vocab = context_snap.val();
+			snapshot.forEach(function(vocab_snap) {
+				var vocab = vocab_snap.val();
 				if (vocab.id == id)
 				{
 					$('#vocab_box')[0].innerHTML =
@@ -79,11 +81,24 @@ $(document).ready(function () {
 					return;
 				}
 			});
-			//console.log($('#context_box')[0]);
-			$('#context_box')[0].innerHTML = `<div class="inline largefont bold">Context 1 - First meeting</div><button class="inline rightelement">Jump to Context</button>
-				<br>
-				<br>
-				<div>어머니께서는 저를 사랑하십니다.</div>`;
+			
+      contextsRef.once('value').then(function (snapshot) {
+        snapshot.forEach(function (context_snap) {
+          var context = context_snap.val();
+          for (var key in context.vocabs)
+          {
+            if (context.vocabs[key].id == id)
+              $(`<div class="context_box box">
+                <div class="inline largefont bold">Context ` + context.chapter + ` - ` + context.name + `</div>
+                <div class="inline rightelement bold jump_box box">Jump to Context</div>
+                <br>
+                <br>
+                <div>` + context.vocabs[key].sentence + `</div></div>`).appendTo('#context_container_box');
+          }
+        });
+      });
+
+			
 		}).then(function (snapshot) {
 			var vocab_sound_icon = document.getElementById('vocab_sound_icon');
 

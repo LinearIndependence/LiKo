@@ -79,9 +79,9 @@ body {
 	overflow-y: auto;
 }
 
-#context_box {
+.context_box {
 	background-color: #e5cd80;
-	width: 980px;
+	width: 1000px;
 	padding-bottom: 12px;
 	padding-top: 12px;
 	margin: 12px;
@@ -98,6 +98,20 @@ body {
 }
 
 #return_box:hover {
+	background-color: #d3ac2b;
+}
+
+.jump_box {
+	background-color: #f6eed5;
+	width: 160px;
+	margin-top: 8px; 
+	margin-left: 8px;
+	margin-bottom: 8px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.jump_box:hover {
 	background-color: #d3ac2b;
 }
 
