@@ -4,6 +4,7 @@ var K_selectedCand = null;
 var K_selectCallback = null;
 var K_addProfile = true;
 var K_curProfile = 1;
+var K_curContext = 1;
 $(document).ready(function () {
     $('.K_commitButton').mouseenter(function () {
         $(this).addClass('K_hovering');
@@ -73,7 +74,9 @@ $(document).ready(function () {
     $('.K_word').mouseleave(function () {
         $(this).removeClass('K_active');
     })
-
+    $('html').click(function () {
+        $('.K_wordPopup.K_selected').removeClass('K_selected');
+    })
     K_GoConv(testContext);
 })
 
@@ -236,9 +239,6 @@ function K_parseWord(word) {
         $(ret).click(function () {
             setTimeout(function () { $(ret).find('.K_wordPopup').addClass('K_selected') }, 1);
         })
-        $('html').click(function () {
-            $('.K_wordPopup.K_selected').removeClass('K_selected');
-        })
         return ret;
     }
 }
@@ -248,11 +248,24 @@ function K_makeWordPopup(wordID) {
     var whole = $(document.createElement('div'));
     whole.addClass('K_wordPopup');
     whole.append(K_getWordInfo(wordID));
+    var addButton = $(document.createElement('button'));
+    isVocabInList(K_curContext, Number(wordID), function (includes) {
+        if (!includes) {
+            addButton.addClass('K_addButton').html('Add!').click(function () { alert('added'); this.disabled = 'true'});
+        }
+        else {
+            addButton.addClass('K_addButton').html('Added');
+            addButton.attr('disabled', 'true');
+        }
+        whole.append(addButton);
+    })
     return whole;
 }
 function K_getWordInfo(wordID) {
     var ret = $(document.createElement('span'));
-    ret.text(wordID);
+    vocabFromID(Number(wordID), function (vocab) {
+        ret.html(vocab.korean + ':<br />' + vocab.shortmeaning);
+    })
     return ret;
 }
 

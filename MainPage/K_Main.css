@@ -191,3 +191,15 @@
 .K_wordPopup.K_selected{
     opacity: 1;
 }
+
+.K_addButton {
+    pointer-events: none;
+    display: block;
+    position: relative;
+    left: calc(100%);
+    transform: translateX(-100%);
+}
+
+.K_wordPopup.K_selected > .K_addButton{
+    pointer-events: all;
+}
