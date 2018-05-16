@@ -208,7 +208,7 @@ function K_parseLine(rawLine, makeLink = true, IDsOut = null) {
         for (var idx = 1; idx < wordList.length; idx++) {
             var word;
             if (makeLink) {
-                word = K_parseWord(wordList[idx]);
+                word = K_parseWord(wordList[idx], rawLine);
             }
             else {
                 var splited = wordList[idx].split('>>');
@@ -226,7 +226,7 @@ function K_parseLine(rawLine, makeLink = true, IDsOut = null) {
         return [];
     }
 }
-function K_parseWord(word) {
+function K_parseWord(word, rawLine) {
     var result = word.split('>>');
     if (result.length == 1) {
         var ret = document.createElement('span');
@@ -238,7 +238,7 @@ function K_parseWord(word) {
         ret.classList.add('K_word');
         ret.setAttribute('ID', result[1]);
         ret.innerHTML = result[0] + ' ';
-        $(ret).append(K_makeWordPopup(result[1]));
+        $(ret).append(K_makeWordPopup(result[1], rawLine));
         $(ret).mouseenter(function () {
             $(this).find('.K_wordPopup').addClass('K_active');
         })
@@ -253,7 +253,7 @@ function K_parseWord(word) {
 }
 
 
-function K_makeWordPopup(wordID) {
+function K_makeWordPopup(wordID, rawLine) {
     var whole = $(document.createElement('div'));
     whole.addClass('K_wordPopup');
     whole.append(K_getWordInfo(wordID));
@@ -262,9 +262,9 @@ function K_makeWordPopup(wordID) {
     isVocabInList(K_curContext, Number(wordID), function (includes) {
         if (!includes) {
             addButton.addClass('K_addButton').html('Add to vocab!').click(function () {
+                var lineInfo = K_parseLine(rawLine, false).join('');
+                console.log(lineInfo);
                 WordsUtil.addVocabToContext(K_curContext, Number(wordID));
-                //this.disabled = 'true';
-                //$(this).html('Added');
                 $('.K_addButton[ID=' + wordID + ']').attr('disabled', 'true').html('Added');
             });
         }
