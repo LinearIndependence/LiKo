@@ -165,7 +165,6 @@ function K_GoConv(rawLines, lineStack = []) {
                 }
                 toAdd = document.createElement('div');
                 toAdd.classList.add('K_Log', 'K_VF');
-                console.log("add");
                 var wordElems = K_parseLine(curLine);
                 for (var widx = 0; widx < wordElems.length; widx++) {
                     $(toAdd).append(wordElems[widx]);
@@ -263,8 +262,7 @@ function K_makeWordPopup(wordID, rawLine) {
         if (!includes) {
             addButton.addClass('K_addButton').html('Add to vocab!').click(function () {
                 var lineInfo = K_parseLine(rawLine, false).join('');
-                console.log(lineInfo);
-                WordsUtil.addVocabToContext(K_curContext, Number(wordID));
+                WordsUtil.addVocabToContext(K_curContext, Number(wordID), lineInfo);
                 $('.K_addButton[ID=' + wordID + ']').attr('disabled', 'true').html('Added');
             });
         }

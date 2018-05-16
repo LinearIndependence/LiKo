@@ -71,8 +71,9 @@ var WordsUtil = (function () {
         	var inList = false;
         	var vocabs = Object.values(snapshot.val())[0].vocabs;
             if (snapshot.val() && vocabs) {
-            	for (vocab in vocabs) {
-            		if (vocab.id && vocab.id == vocab_id) {
+                for (var key in vocabs) {
+                    console.log(vocabs[key].id);
+            		if (vocabs[key] && vocabs[key].id == vocab_id) {
             			inList = true;
             			break;
             		}
