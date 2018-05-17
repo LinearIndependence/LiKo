@@ -147,7 +147,7 @@ $(function () {
         isMe: false,
         image: '../VFData/profile2.png',
         callback: function () {
-            K_moveToURL('../MainPage/K_Main.html?active=0');
+            K_moveToURL('../Popup/popup.html');
         }
     });
 
