@@ -146,18 +146,16 @@ $(function () {
         name: 'Prof. Einstein',
         image: '../VFData/profile2.png',
         callback: function () {
-            K_moveToURL('../MainPage/K_Main.html?active=0');
-        },
-        classes: 'K_Profile'
+            K_moveToURL('../Popup/popup.html?active=0');
+        }
     });
 
     K_addProfile({
         name: 'Steven Hawking',
         image: '../VFData/profile3.png',
         callback: function () {
-            K_moveToURL('../MainPage/K_Main.html?active=1');
-        },
-        classes: 'K_Profile'
+            K_moveToURL('../Popup/popup.html?active=1');
+        }
     });
 
     K_addProfile({
