@@ -1,27 +1,27 @@
 
-$(function(){
-  $('#class').click(function(){
-                    $('.items').hide();
-                      });
-  });
+$(function () {
+    $('#class').click(function () {
+        $('#class').hide();
+    });
+});
 
 
-$(function(){
-  $('#sick').click(function(){
-                    $('#sick').hide();
-                    });
-  });
+$(function () {
+    $('#sick').click(function () {
+        $('#sick').hide();
+    });
+});
 
 
-$(function(){
-  $('#hobby').click(function(){
-                    $('#hobby').hide();
-                    });
-  });
+$(function () {
+    $('#hobby').click(function () {
+        $('#hobby').hide();
+    });
+});
 
 
-$(function(){
-  $('#drink').click(function(){
-                    $('#drink').hide();
-                    });
-  });
+$(function () {
+    $('#drink').click(function () {
+        $('#drink').hide();
+    });
+});

@@ -77,7 +77,9 @@ $(document).ready(function () {
     $('html').click(function () {
         $('.K_wordPopup.K_selected').removeClass('K_selected');
     })
-    K_GoConv(testContext);
+    //$('.K_Pcolor').get(Number(getAllUrlParams().active)).classList.add('K_selected');
+
+    //K_GoConv(testContext);
 })
 
 function K_clearCand() {

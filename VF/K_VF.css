@@ -68,7 +68,7 @@ body {
 }
 
 .K_Pcolor.K_hovering:not(.K_selected) {
-    width: 70px;
+    width: 60px;
 }
 
 .K_Pimage {
