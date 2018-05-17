@@ -143,7 +143,7 @@ $(function () {
     });
 
     K_addProfile({
-        name: 'Prof. Einstine',
+        name: 'Prof. Einstein',
         isMe: false,
         image: '../VFData/profile2.png',
         callback: function () {
@@ -152,11 +152,11 @@ $(function () {
     });
 
     K_addProfile({
-        name: 'test?',
+        name: 'Steven Hawking',
         isMe: false,
         image: '../VFData/profile3.png',
         callback: function () {
-            K_moveToURL('../Test/K_Main.html?active=2');
+            K_moveToURL('../MainPage/K_Main.html?active=2');
         }
     });
 
