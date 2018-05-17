@@ -77,7 +77,7 @@ function getAllUrlParams(url) {
 $(function () {
     'use strict';
 
-    
+
     //var K_selectedProfileColor = $('.K_ProfileHolder .K_Profile:first')
     //    .find('.K_Pcolor')
     //    .addClass('K_selected');
@@ -99,7 +99,7 @@ $(function () {
         var image = args.image;
         var classes = args.classes;
         var callback = args.callback || function () {
-             K_moveToURL('../MyPage/A_Main.html');
+            K_moveToURL('../MyPage/A_Main.html');
         };
 
         $('.K_ProfileHolder').append(
@@ -112,7 +112,7 @@ $(function () {
              * </div>
              */
             $('<div>')
-                //.addClass(isMe ? 'K_Profile K_myProfile' : 'K_Profile')
+            //.addClass(isMe ? 'K_Profile K_myProfile' : 'K_Profile')
                 .addClass(classes)
                 .append(
                     $('<div>')
@@ -175,14 +175,14 @@ $(function () {
     });
 
     K_addProfile({
-       name: 'test?',
-       image: '../VFData/test.png',
-       callback: function () {
-       K_moveToURL('../Test/H_Test.html?active=2');
-       },
-       classes: 'K_Profile'
-   });
-  
+        name: 'test?',
+        image: '../VFData/test.png',
+        callback: function () {
+            K_moveToURL('../Test/H_Test.html?active=2');
+        },
+        classes: 'K_Profile'
+    });
+
     K_addProfile({
         name: 'Vocab',
         image: '../VFData/profile vocab.png',
@@ -190,7 +190,8 @@ $(function () {
             K_moveToURL('../Vocablist/vocablist.html?active=3');
         },
         classes: 'K_Profile K_lowerProfile'
-    })
+    });
+
     var K_selectedProfileColor = $($('.K_Pcolor').get(Number(getAllUrlParams().active))).addClass('K_selected');
 });
 
