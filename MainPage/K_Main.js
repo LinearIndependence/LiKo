@@ -78,8 +78,17 @@ $(document).ready(function () {
         $('.K_wordPopup.K_selected').removeClass('K_selected');
     })
     //$('.K_Pcolor').get(Number(getAllUrlParams().active)).classList.add('K_selected');
+    K_curProfile = Number(getAllUrlParams().active);
+    K_curContext = Number(getAllUrlParams().sit);
+    console.log(K_curContext);
+    console.log(K_curProfile);
+    if (K_curProfile === NaN || K_curContext === NaN ){
 
-    //K_GoConv(testContext);
+    }
+    else{
+        K_GoConv(Context_Situations[K_curProfile][K_curContext]);
+    }
+    
 })
 
 function K_clearCand() {
@@ -191,12 +200,12 @@ function K_createMyDialog(wordElems) {
 }
 
 function K_TEMP_getProfilePic(){
-    return "../VFData/profile2.png";
+    return "../VFData/profile" + K_curProfile + ".png";
 }
 
 function K_wrapUpConv(lineStack) {
     $('.K_cand').removeClass('K_available');
-    $('<div>').addClass(['K_Log', 'K_SYS']).html('VF1 out.').appendTo($('.K_MainLog'));
+    $('<div>').addClass(['K_Log', 'K_SYS']).html(VF_DATA[K_curProfile].name + ' out.').appendTo($('.K_MainLog'));
     ConversationData.translate(lineStack);
 }
 //returns array of HTMLelements. (for inside div)

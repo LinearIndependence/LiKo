@@ -1,3 +1,15 @@
+var VF_DATA = [
+    {
+        name: 'Prof. Einstein',
+        image: '../VFData/profile0.png'
+    },
+    {
+        name: 'Steven Hawking',
+        image: '../VFData/profile1.png'
+    }
+];
+
+
 function getAllUrlParams(url) {
 
     // get query string from url (optional) or window
@@ -58,7 +70,9 @@ function getAllUrlParams(url) {
     }
 
     return obj;
-}
+};
+
+
 
 $(function () {
     'use strict';
@@ -143,17 +157,17 @@ $(function () {
     //});
 
     K_addProfile({
-        name: 'Prof. Einstein',
-        image: '../VFData/profile2.png',
+        name: VF_DATA[0].name,
+        image: VF_DATA[0].image,
         callback: function () {
             K_moveToURL('../Popup/popup.html?active=0');
-        }
+        },
         classes: 'K_Profile'
     });
 
     K_addProfile({
-        name: 'Steven Hawking',
-        image: '../VFData/profile3.png',
+        name: VF_DATA[1].name,
+        image: VF_DATA[1].image,
         callback: function () {
             K_moveToURL('../Popup/popup.html?active=1');
         },
@@ -179,3 +193,6 @@ $(function () {
     })
     var K_selectedProfileColor = $($('.K_Pcolor').get(Number(getAllUrlParams().active))).addClass('K_selected');
 });
+
+
+

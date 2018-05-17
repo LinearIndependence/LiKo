@@ -9,7 +9,8 @@
 // '-' => normal line.
 //Parsing is always UP-to-DOWN. Sequence never flows after new label.(i.e. if parser incounter new [label], it's malformed data.)
 //Cannot goto past label. ==> these features can help finding context.
-var testContext = [
+var Context_Situations = [
+[[
     "- 안녕하세요! 전 Einstein 교수 입니다.",
     "?",
     "?[인사] 안녕하세요, 교수님!>>0",
@@ -64,6 +65,18 @@ var testContext = [
     "- 출석>>4 점수는 바꿔드리지 않아요.",
     "- 돌아가세요.",
     "__FIN__"
+]]
+,
+[[
+    "- 매우 기분이 나쁜 날입니다.",
+    "?",
+    "?[왜요] ......",
+    "?[왜요] ...... 저...... 저기......",
+    "[왜요]",
+    "- 조용히 해 주세요.",
+    "- 오늘은 말하고 싶지 않네요.",
+    "__FIN__"
+]]
 ];
 
 var ConversationData = (function () {
