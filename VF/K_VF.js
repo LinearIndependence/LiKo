@@ -75,16 +75,15 @@ $(function () {
     /*
      * args = {
      *     name: (VF 이름),
-     *     isMe: (나 자신이면 true, 아니면 false),
      *     image: (프로필 이미지 src),
-     *     callback: (VF 클릭했을 때 실행할 함수)
+     *     callback: (VF 클릭했을 때 실행할 함수),
+     *     classes: (additive classes)
      * }
      */
     function K_addProfile(args) {
-        var isMe = args.isMe;
         var name = args.name;
         var image = args.image;
-
+        var classes = args.classes;
         var callback = args.callback || function () {
              K_moveToURL('../MyPage/A_Main.html');
         };
@@ -99,7 +98,8 @@ $(function () {
              * </div>
              */
             $('<div>')
-                .addClass(isMe ? 'K_Profile K_myProfile' : 'K_Profile')
+                //.addClass(isMe ? 'K_Profile K_myProfile' : 'K_Profile')
+                .addClass(classes)
                 .append(
                     $('<div>')
                         .addClass('K_Pcolor')
@@ -144,38 +144,38 @@ $(function () {
 
     K_addProfile({
         name: 'Prof. Einstein',
-        isMe: false,
         image: '../VFData/profile2.png',
         callback: function () {
             K_moveToURL('../MainPage/K_Main.html?active=0');
-        }
+        },
+        classes: 'K_Profile'
     });
 
     K_addProfile({
         name: 'Steven Hawking',
-        isMe: false,
         image: '../VFData/profile3.png',
         callback: function () {
             K_moveToURL('../MainPage/K_Main.html?active=1');
-        }
+        },
+        classes: 'K_Profile'
     });
 
-  K_addProfile({
-               name: 'test?',
-               isMe: false,
-               image: '../VFData/test.png',
-               callback: function () {
-               K_moveToURL('../Test/H_Test.html?active=2');
-               }
-               });
+    K_addProfile({
+       name: 'test?',
+       image: '../VFData/test.png',
+       callback: function () {
+       K_moveToURL('../Test/H_Test.html?active=2');
+       },
+       classes: 'K_Profile'
+   });
   
     K_addProfile({
         name: 'Vocab',
-        isMe: false,
         image: '../VFData/profile vocab.png',
         callback: function () {
             K_moveToURL('../Vocablist/vocablist.html?active=3');
-        }
+        },
+        classes: 'K_Profile K_lowerProfile'
     })
     var K_selectedProfileColor = $($('.K_Pcolor').get(Number(getAllUrlParams().active))).addClass('K_selected');
 });

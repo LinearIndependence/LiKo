@@ -47,6 +47,11 @@ body {
     color: #CBD0D8;
 }
 
+.K_lowerProfile{
+    position: relative;
+    top: 442px;
+}
+
 .K_Pcolor {
     width: 2%;
     height: 100%;
