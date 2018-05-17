@@ -143,7 +143,7 @@ $(function () {
     });
 
     K_addProfile({
-        name: 'VF 1',
+        name: 'Prof. Einstine',
         isMe: false,
         image: '../VFData/profile2.png',
         callback: function () {
@@ -156,10 +156,19 @@ $(function () {
         isMe: false,
         image: '../VFData/profile3.png',
         callback: function () {
-            K_moveToURL('../Test/H_Test.html?active=2');
+            K_moveToURL('../Test/K_Main.html?active=2');
         }
     });
 
+  K_addProfile({
+               name: 'test?',
+               isMe: false,
+               image: '../VFData/test.png',
+               callback: function () {
+               K_moveToURL('../Test/H_Test.html?active=2');
+               }
+               });
+  
     K_addProfile({
         name: 'Vocab',
         isMe: false,
