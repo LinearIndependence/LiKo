@@ -1,0 +1,46 @@
+.K_Main {
+    display: flex;
+    flex-flow: column;
+}
+
+.H_Logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10%;
+    width: 100%;
+    height: 80px;
+}
+
+.H_Logo > img {
+    height: 100%;
+    margin-right: 20px;
+}
+
+.H_Logo > span {
+    font-size: 70px;
+}
+
+.H_Manual {
+    flex: 1;
+    box-sizing: border-box;
+
+    width: calc(100% - 80px);
+    margin-top: 10%;
+    margin-left: 40px;
+    margin-bottom: 40px;
+    padding: 20px;
+
+    font-size: 20px;
+    line-height: 35px;
+
+    color: #F2F2E8;
+    background-color: #333d51;
+}
+
+.H_Manual--emph {
+    font-weight: bold;
+
+    color: #D3AC2B;
+}
