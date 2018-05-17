@@ -89,7 +89,7 @@ $(function () {
     });
 
     K_addProfile({
-        name: 'VF 2',
+        name: 'test?',
         isMe: false,
         image: '../VFData/profile3.png',
         callback: function () {
