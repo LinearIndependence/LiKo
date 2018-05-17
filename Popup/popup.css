@@ -1,17 +1,8 @@
 
-.mask {
-    position:absolute;
-    left:0;
-    top:0;
-    z-index:9999;
-    background-color:#000;
-    display:none;
-}
 .window {
     margin:50px auto;
     width: 620px;
     height :310px;
-    display: none;
     background-color: #ffffff;
     z-index:99999;
     background: #F4F3EA;

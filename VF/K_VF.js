@@ -147,7 +147,7 @@ $(function () {
         isMe: false,
         image: '../VFData/profile2.png',
         callback: function () {
-            K_moveToURL('../Popup/popup.html');
+            K_moveToURL('../Popup/popup.html?active=0');
         }
     });
 
@@ -156,7 +156,7 @@ $(function () {
         isMe: false,
         image: '../VFData/profile3.png',
         callback: function () {
-            K_moveToURL('../MainPage/K_Main.html?active=1');
+            K_moveToURL('../Popup/popup.html?active=1');
         }
     });
 
