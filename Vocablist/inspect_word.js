@@ -109,11 +109,11 @@ $(document).ready(function () {
                                     .addClass('inline largefont bold')
                                     .text('Context ' + context.chapter + ' - ' + context.name)
                             )
-                            .append(
+                            /* .append(
                                 $('<div>')
                                     .addClass('inline rightelement bold jump_box box')
                                     .text('Jump to Context')
-                            )
+                            ) */
                             .append($('<br>'))
                             .append($('<br>'))
                             .append(
