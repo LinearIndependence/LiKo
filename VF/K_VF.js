@@ -136,11 +136,11 @@ $(function () {
         );
     }
 
-    K_addProfile({
-        name: 'You',
-        isMe: true,
-        image: '../VFData/profile1.png'
-    });
+    //K_addProfile({
+    //    name: 'You',
+    //    isMe: true,
+    //    image: '../VFData/profile1.png'
+    //});
 
     K_addProfile({
         name: 'Prof. Einstein',
