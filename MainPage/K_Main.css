@@ -168,6 +168,7 @@
 .K_word{
     position: relative;
     font-weight: bold;
+    text-decoration: solid underline;
     cursor: pointer;
 }
 .K_word:hover{

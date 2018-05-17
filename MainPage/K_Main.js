@@ -82,7 +82,7 @@ $(document).ready(function () {
     K_curContext = Number(getAllUrlParams().sit);
     console.log(K_curContext);
     console.log(K_curProfile);
-    if (K_curProfile === NaN || K_curContext === NaN ){
+    if (isNaN(K_curProfile) || isNaN(K_curContext)){
 
     }
     else{
@@ -269,11 +269,11 @@ function K_makeWordPopup(wordID, rawLine) {
     whole.append(K_getWordInfo(wordID));
     var addButton = $(document.createElement('button'));
     addButton.attr('ID', wordID);
-    isVocabInList(K_curContext, Number(wordID), function (includes) {
+    isVocabInList(K_getContextID(K_curProfile, K_curContext), Number(wordID), function (includes) {
         if (!includes) {
             addButton.addClass('K_addButton').html('Add to vocab!').click(function () {
                 var lineInfo = K_parseLine(rawLine, false).join('');
-                WordsUtil.addVocabToContext(K_curContext, Number(wordID), lineInfo);
+                WordsUtil.addVocabToContext(K_getContextID(K_curProfile, K_curContext), Number(wordID), lineInfo);
                 $('.K_addButton[ID=' + wordID + ']').attr('disabled', 'true').html('Added');
             });
         }
@@ -285,6 +285,11 @@ function K_makeWordPopup(wordID, rawLine) {
     })
     return whole;
 }
+
+function K_getContextID(prf, sit){
+    return prf;
+}
+
 function K_getWordInfo(wordID) {
     var ret = $(document.createElement('span'));
     vocabFromID(Number(wordID), function (vocab) {

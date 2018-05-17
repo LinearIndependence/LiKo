@@ -175,7 +175,7 @@ $(function () {
     });
 
     K_addProfile({
-        name: 'test?',
+        name: 'Test',
         image: '../VFData/test.png',
         callback: function () {
             K_moveToURL('../Test/H_Test.html?active=2');
