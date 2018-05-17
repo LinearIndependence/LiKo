@@ -148,6 +148,7 @@ $(function () {
         callback: function () {
             K_moveToURL('../Popup/popup.html?active=0');
         }
+        classes: 'K_Profile'
     });
 
     K_addProfile({
@@ -155,7 +156,8 @@ $(function () {
         image: '../VFData/profile3.png',
         callback: function () {
             K_moveToURL('../Popup/popup.html?active=1');
-        }
+        },
+        classes: 'K_Profile'
     });
 
     K_addProfile({
