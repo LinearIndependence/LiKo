@@ -78,8 +78,6 @@ $(function () {
         $(location).attr('href', url);
     }
 
-    var K_selectedProfileColor = $($('.K_Pcolor').get(Number(getAllUrlParams().active))).addClass('K_selected');
-
     /*
      * args = {
      *     profileIndex: (프로필 번호) (i.e URL에서 ?active=...에 들어가는 숫자)
@@ -231,4 +229,6 @@ $(function () {
         },
         classes: 'K_Profile K_lowerProfile'
     });
+
+    var K_selectedProfileColor = $($('.K_Pcolor').get(Number(getAllUrlParams().active))).addClass('K_selected');
 });
