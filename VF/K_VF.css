@@ -17,6 +17,7 @@ body {
 }
 
 .K_Main {
+    position: relative;
     box-sizing: border-box;
     float: left;
 

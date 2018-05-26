@@ -9,7 +9,6 @@ var VF_DATA = [
     }
 ];
 
-
 function getAllUrlParams(url) {
 
     // get query string from url (optional) or window
@@ -70,20 +69,64 @@ function getAllUrlParams(url) {
     }
 
     return obj;
-};
-
-
+}
 
 $(function () {
     'use strict';
 
-
-    //var K_selectedProfileColor = $('.K_ProfileHolder .K_Profile:first')
-    //    .find('.K_Pcolor')
-    //    .addClass('K_selected');
-
     function K_moveToURL(url) {
         $(location).attr('href', url);
+    }
+
+    var K_selectedProfileColor = $($('.K_Pcolor').get(Number(getAllUrlParams().active))).addClass('K_selected');
+
+    /*
+     * args = {
+     *     profileIndex: (프로필 번호) (i.e URL에서 ?active=...에 들어가는 숫자)
+     * }
+     */
+    function K_createPopup(args) {
+        var profileIndex = args.profileIndex;
+
+        var rowData = [
+            {name: 'Class', icon: 'fas fa-chalkboard-teacher'},
+            {name: 'Sick', icon: 'fas fa-briefcase-medical'},
+            {name: 'Hobby', icon: 'fas fa-music'},
+            {name: 'Drink', icon: 'fas fa-beer'}
+        ];
+
+        $('.K_Whole').prepend(
+            $('<div class="A_Popup">').append(
+                $('<div class="A_Window">')
+                    .append(
+                        $('<div class="A_Instruction">')
+                            .append($('<br>'))
+                            .append($('<span id="A_Text">').text('Choose the situation you want to study'))
+                            .append($('<span id="A_Close">').append($('<i class="fas fa-times-circle">')))
+                    )
+                    .append($('<div id="A_Row">'))
+            )
+        );
+
+        rowData.forEach(function (row, index) {
+            $('#A_Row').append(
+                $('<div class="A_Items">')
+                    .append(
+                        $('<div class="A_Item">')
+                            .append($('<i>').addClass('fas ' + row.icon))
+                    )
+                    .append(
+                        $('<p>').text(row.name)
+                    )
+                    .click(function () {
+                        K_moveToURL('../MainPage/K_Main.html?active=' + profileIndex + '&sit=' + index);
+                    })
+            );
+        });
+
+        $('#A_Close').click(function () {
+            $('.A_Popup').remove();
+        });
     }
 
     /*
@@ -98,6 +141,7 @@ $(function () {
         var name = args.name;
         var image = args.image;
         var classes = args.classes;
+
         var callback = args.callback || function () {
             K_moveToURL('../MyPage/A_Main.html');
         };
@@ -150,17 +194,12 @@ $(function () {
         );
     }
 
-    //K_addProfile({
-    //    name: 'You',
-    //    isMe: true,
-    //    image: '../VFData/profile1.png'
-    //});
-
     K_addProfile({
         name: VF_DATA[0].name,
         image: VF_DATA[0].image,
         callback: function () {
-            K_moveToURL('../Popup/popup.html?active=0');
+            //K_moveToURL('../Popup/popup.html?active=0');
+            K_createPopup({profileIndex: 0});
         },
         classes: 'K_Profile'
     });
@@ -169,7 +208,8 @@ $(function () {
         name: VF_DATA[1].name,
         image: VF_DATA[1].image,
         callback: function () {
-            K_moveToURL('../Popup/popup.html?active=1');
+            //K_moveToURL('../Popup/popup.html?active=1');
+            K_createPopup({profileIndex: 1});
         },
         classes: 'K_Profile'
     });
@@ -191,9 +231,4 @@ $(function () {
         },
         classes: 'K_Profile K_lowerProfile'
     });
-
-    var K_selectedProfileColor = $($('.K_Pcolor').get(Number(getAllUrlParams().active))).addClass('K_selected');
 });
-
-
-
