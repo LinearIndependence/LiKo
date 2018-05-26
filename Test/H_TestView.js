@@ -164,7 +164,7 @@ H.TestView = (function () {
                 newRow.append(
                     $('<img>')
                         .addClass('H_Test_Profile H_Test_Profile-other')
-                        .attr('src', '../VFData/profileMy.png')
+                        .attr('src', '../VFData/profile0.png')
                         // 두 번째 문장부터는 프로필을 그리지 않습니다.
                         .css('opacity', (index === 0) ? 1 : 0)
                 )

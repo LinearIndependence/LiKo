@@ -1,10 +1,10 @@
 var VF_DATA = [
     {
-        name: 'Prof. Einstein',
+        name: 'Professor',
         image: '../VFData/profile0.png'
     },
     {
-        name: 'Steven Hawking',
+        name: 'Friend',
         image: '../VFData/profile1.png'
     }
 ];
