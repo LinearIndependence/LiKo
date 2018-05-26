@@ -51,6 +51,9 @@ body {
 .K_lowerProfile{
     position: relative;
     top: 442px;
+
+    margin-top: 16px;
+    margin-bottom: 0;
 }
 
 .K_Pcolor {

@@ -218,7 +218,7 @@ $(function () {
         callback: function () {
             K_moveToURL('../Test/H_Test.html?active=2');
         },
-        classes: 'K_Profile'
+        classes: 'K_Profile K_lowerProfile'
     });
 
     K_addProfile({
