@@ -286,8 +286,8 @@ function K_makeWordPopup(wordID, rawLine) {
     return whole;
 }
 
-function K_getContextID(prf, sit){
-    return prf;
+function K_getContextID(prf, sit) {
+    return (prf * 4) + sit;
 }
 
 function K_getWordInfo(wordID) {
