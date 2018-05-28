@@ -167,6 +167,8 @@ function K_GoConv(rawLines, lineStack = []) {
             }
             else {
                 var toAdd = null;
+                var sentence = '';
+
                 if (K_addProfile) {
                     toAdd = document.createElement('img');
                     toAdd.src = K_TEMP_getProfilePic();
@@ -174,12 +176,25 @@ function K_GoConv(rawLines, lineStack = []) {
                     $('.K_MainLog').append(toAdd);
                     K_addProfile = false;
                 }
+
                 toAdd = document.createElement('div');
                 toAdd.classList.add('K_Log', 'K_VF');
+
                 var wordElems = K_parseLine(curLine);
+
                 for (var widx = 0; widx < wordElems.length; widx++) {
                     $(toAdd).append(wordElems[widx]);
+                    sentence += $(wordElems[widx]).data('value') + ' ';
                 }
+
+                $(toAdd).append(
+                    $('<img class="K_Speak" src="Speaker_Icon.png">')
+                        .data('sentence', sentence)
+                        .click(function(event) {
+                            responsiveVoice.speak($(event.currentTarget).data('sentence'), 'Korean Male');
+                        })
+                );
+
                 $('.K_MainLog').append(toAdd);
                 lineStack.push({ content: curLine, isMe: false });
                 continue;
@@ -192,10 +207,24 @@ function K_GoConv(rawLines, lineStack = []) {
 
 function K_createMyDialog(wordElems) {
     var toAdd = document.createElement('div');
+    var sentence = '';
+
     toAdd.classList.add('K_Log', 'K_ME');
+
     for (var widx = 0; widx < wordElems.length; widx++) {
         $(toAdd).append(wordElems[widx]);
+        sentence += $(wordElems[widx]).data('value') + ' ';
     }
+
+    $(toAdd).append(
+        $('<img class="K_Speak" src="Speaker_Icon.png">')
+            .data('sentence', sentence)
+            .click(function(event) {
+                responsiveVoice.speak($(event.currentTarget).data('sentence'), 'Korean Female');
+            })
+    );
+
+
     $('.K_MainLog').append(toAdd);
 }
 
@@ -241,6 +270,7 @@ function K_parseWord(word, rawLine) {
     if (result.length == 1) {
         var ret = document.createElement('span');
         ret.innerHTML = result[0] + ' ';
+        $(ret).data('value', result[0]);
         return ret;
     }
     else {
@@ -258,6 +288,7 @@ function K_parseWord(word, rawLine) {
         $(ret).click(function () {
             setTimeout(function () { $(ret).find('.K_wordPopup').addClass('K_selected') }, 1);
         })
+        $(ret).data('value', result[0]);
         return ret;
     }
 }

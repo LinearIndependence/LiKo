@@ -220,3 +220,11 @@
 .K_wordPopup.K_selected > .K_addButton{
     pointer-events: all;
 }
+
+.K_speak {
+    cursor: pointer;
+    float: right;
+
+    margin-top: 2px;
+    height: 1.2em;
+}
