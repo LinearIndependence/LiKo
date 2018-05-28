@@ -48,9 +48,9 @@ body {
     color: #CBD0D8;
 }
 
-.K_lowerProfile{
+.K_lowerProfile {
     position: relative;
-    top: 442px;
+    top: 346px;
 
     margin-top: 16px;
     margin-bottom: 0;
@@ -77,7 +77,7 @@ body {
 }
 
 .K_Pcolor.K_hovering:not(.K_selected) {
-    width: 60px;
+    width: 70px;
 }
 
 .K_Pimage {

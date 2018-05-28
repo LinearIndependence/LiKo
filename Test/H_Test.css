@@ -229,19 +229,21 @@
     background-color: #cbd0d8;
 }
 
+.H_Test_Answer:disabled {
+    color: #000000;
+}
+
 .H_Test_Answer-hover {
     border-color: #d3ac2b;
     background-color: #d3ac2b;
 }
 
 .H_Test_Answer-right {
-    color: #ffffff;
     border-color: #6078ff;
     background-color: #6078ff;
 }
 
 .H_Test_Answer-select {
-    color: #ffffff;
     border-color: #ff6259;
     background-color: #ff6259;
 }

@@ -230,5 +230,14 @@ $(function () {
         classes: 'K_Profile K_lowerProfile'
     });
 
+    K_addProfile({
+        name: 'Home',
+        image: '../VFData/home.png',
+        callback: function() {
+            K_moveToURL('../Intro/H_Intro.html')
+        },
+        classes: 'K_Profile K_lowerProfile'
+    });
+
     var K_selectedProfileColor = $($('.K_Pcolor').get(Number(getAllUrlParams().active))).addClass('K_selected');
 });
