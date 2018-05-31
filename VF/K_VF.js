@@ -80,11 +80,13 @@ $(function () {
 
     /*
      * args = {
-     *     profileIndex: (프로필 번호) (i.e URL에서 ?active=...에 들어가는 숫자)
+     *     profileIndex: (프로필 번호) (i.e URL에서 ?active=...에 들어가는 숫자),
+     *     url: 이동할 URL (Situation 클릭하면 url + '?active=...&sit=...'로 이동함.)
      * }
      */
     function K_createPopup(args) {
         var profileIndex = args.profileIndex;
+        var url = args.url;
 
         var rowData = [
             {name: 'Class', icon: 'fas fa-chalkboard-teacher'},
@@ -111,7 +113,7 @@ $(function () {
                     .append($('<span class="A_Icon">').addClass('fas ' + row.icon))
                     .append($('<p class="A_Name">').text(row.name))
                     .click(function () {
-                        K_moveToURL('../MainPage/K_Main.html?active=' + profileIndex + '&sit=' + index);
+                        K_moveToURL(url + '?active=' + profileIndex + '&sit=' + index);
                     })
             );
         });
@@ -135,7 +137,6 @@ $(function () {
         var classes = args.classes;
 
         var callback = args.callback || function () {
-            K_moveToURL('../MyPage/A_Main.html');
         };
 
         $('.K_ProfileHolder').append(
@@ -190,8 +191,10 @@ $(function () {
         name: VF_DATA[0].name,
         image: VF_DATA[0].image,
         callback: function () {
-            //K_moveToURL('../Popup/popup.html?active=0');
-            K_createPopup({profileIndex: 0});
+            K_createPopup({
+                url: '../MainPage/K_Main.html',
+                profileIndex: 0
+            });
         },
         classes: 'K_Profile'
     });
@@ -200,8 +203,10 @@ $(function () {
         name: VF_DATA[1].name,
         image: VF_DATA[1].image,
         callback: function () {
-            //K_moveToURL('../Popup/popup.html?active=1');
-            K_createPopup({profileIndex: 1});
+            K_createPopup({
+                url: '../MainPage/K_Main.html',
+                profileIndex: 1
+            });
         },
         classes: 'K_Profile'
     });
@@ -210,7 +215,10 @@ $(function () {
         name: 'Test',
         image: '../VFData/test.png',
         callback: function () {
-            K_moveToURL('../Test/H_Test.html?active=2');
+            K_createPopup({
+                url: '../Test/H_Test.html',
+                profileIndex: 0
+            });
         },
         classes: 'K_Profile K_lowerProfile'
     });

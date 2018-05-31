@@ -20,31 +20,7 @@
     <link rel="stylesheet" type="text/css" href="../Popup/popup.css">
     <script type="text/javascript" src="H_TestModel.js"></script>
     <script type="text/javascript" src="H_TestView.js"></script>
-
-    <style type="text/css">
-        .H_Test {
-            width: 100%;
-            height: 100%;
-        }
-    </style>
-
-    <script type="text/javascript">
-        $(function () {
-            'use strict';
-
-            var testModel = new H.TestModel({
-                contextId: 0,
-                lifeCount: 3,
-                keyCount: 3
-            });
-
-            var testView = new H.TestView({
-                testModel: testModel
-            });
-
-            testModel.startTest();
-        });
-    </script>
+    <script type="text/javascript" src="H_TestMain.js"></script>
 </head>
 <body>
 <div class="K_Whole">

@@ -249,7 +249,7 @@ var ConversationData = (function () {
 
     // -------------------- Public. --------------------
 
-    cd.translate = function (stackLines) {
+    cd.translate = function (stackLines, active, situation) {
         var problem = makeProblem();
         var ret = [];
 
@@ -269,7 +269,7 @@ var ConversationData = (function () {
         }
 
         ret.push(problem);
-        testsRef.set({ 0: ret });
+        testsRef.child('' + active + '/' + situation).set(ret);
     };
 
     return cd;

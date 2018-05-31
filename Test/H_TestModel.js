@@ -45,8 +45,8 @@ H.TestModel = (function () {
         return newArray;
     }
 
-    function getProblems(contextId, callback) {
-        testsRef.child(contextId).once('value').then(function (snapshot) {
+    function getProblems(contextId, situationId, callback) {
+        testsRef.child('' + contextId + '/' + situationId).once('value').then(function (snapshot) {
             var problems = snapshot.val();
             var allAnswers = [];
 
@@ -84,6 +84,7 @@ H.TestModel = (function () {
 
     function TestModel(args) {
         this.contextId = args.contextId;
+        this.situationId = args.situationId;
         this.problems = [];
         this.problemCount = 0;
         this.problemIndex = -1;
@@ -107,7 +108,7 @@ H.TestModel = (function () {
     }
 
     TestModel.prototype.startTest = function () {
-        getProblems(this.contextId, function (value) {
+        getProblems(this.contextId, this.situationId, function (value) {
             this.problems = value;
             this.problemCount = this.problems.length;
 
