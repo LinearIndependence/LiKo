@@ -13,63 +13,58 @@
 
     top: 50%;
     left: 50%;
-    width: 620px;
     transform: translate(-50%, -50%);
+
     background-color: #F4F3EA;
 }
 
 #A_Row {
-    white-space: nowrap; /* 가로스크롤시 중요한 속성 */
-    overflow-x: auto;
-    overflow-y: hidden;
-    margin: 10px 10px 0 10px;
-    width: 600px;
-}
+    white-space: nowrap;
 
-#A_Row .A_Items {
-    display: inline-block;
-    cursor: pointer;
-    margin-left: 10px;
-    width: 200px;
-    background: #D3AC2B;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-#A_Row .A_Items p {
-    margin-bottom: 8px;
-}
-
-#A_Row .A_Items a {
-    display: block;
-    overflow: hidden;
-    margin-top: 8px;
-    padding: 3px;
-    color: black;
-    text-decoration: none;
+    margin: 10px 10px 0 0;
 }
 
 .A_Item {
-    width: 200px;
-    height: 200px;
-    color: #D3AC2B;
+    display: inline-block;
+    cursor: pointer;
 
-    font-size: 100px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+
+    text-align: center;
+
+    background: #D3AC2B;
+}
+
+.A_Item .A_Icon {
+    width: 180px;
+    font-size: 80px;
+    line-height: 180px;
+
+    color: #D3AC2B;
     background-color: #333D51;
-    display: table-cell;
-    vertical-align: middle;
+}
+
+.A_Item .A_Name {
+    margin-bottom: 8px;
 }
 
 .A_Instruction {
+    box-sizing: border-box;
+
+    padding-top: 20px;
+
     text-align: center;
 }
 
-#A_Text {
-    margin-top: 20px;
+.A_Instruction #A_Text {
+    line-height: 1.3em;
 }
 
-#A_Close {
+.A_Instruction #A_Close {
     cursor: pointer;
     float: right;
+
     padding-right: 20px;
+    line-height: 1.5em;
 }

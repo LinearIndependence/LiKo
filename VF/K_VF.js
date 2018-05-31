@@ -98,9 +98,8 @@ $(function () {
                 $('<div class="A_Window">')
                     .append(
                         $('<div class="A_Instruction">')
-                            .append($('<br>'))
                             .append($('<span id="A_Text">').text('Choose the situation you want to study'))
-                            .append($('<span id="A_Close">').append($('<i class="fas fa-times-circle">')))
+                            .append($('<span id="A_Close" class="fas fa-times-circle">'))
                     )
                     .append($('<div id="A_Row">'))
             )
@@ -108,14 +107,9 @@ $(function () {
 
         rowData.forEach(function (row, index) {
             $('#A_Row').append(
-                $('<div class="A_Items">')
-                    .append(
-                        $('<div class="A_Item">')
-                            .append($('<i>').addClass('fas ' + row.icon))
-                    )
-                    .append(
-                        $('<p>').text(row.name)
-                    )
+                $('<div class="A_Item">')
+                    .append($('<span class="A_Icon">').addClass('fas ' + row.icon))
+                    .append($('<p class="A_Name">').text(row.name))
                     .click(function () {
                         K_moveToURL('../MainPage/K_Main.html?active=' + profileIndex + '&sit=' + index);
                     })
@@ -233,7 +227,7 @@ $(function () {
     K_addProfile({
         name: 'Home',
         image: '../VFData/home.png',
-        callback: function() {
+        callback: function () {
             K_moveToURL('../Intro/H_Intro.html')
         },
         classes: 'K_Profile K_lowerProfile'
