@@ -118,8 +118,18 @@ $(function () {
             );
         });
 
+        // X 클릭하면 닫힘.
         $('#A_Close').click(function () {
             $('.A_Popup').remove();
+        });
+
+        // 팝업창 바깥쪽을 클릭해도 닫히도록 함.
+        $('.A_Popup').click(function () {
+            $('.A_Popup').remove();
+        });
+
+        $('.A_Window').click(function (event) {
+            event.stopPropagation();
         });
     }
 
