@@ -236,27 +236,24 @@ var ConversationData = (function () {
         'ConversationData'
     ).database();
 
-    var testsRef = db.ref('tests');
+    var convRef = db.ref('tests');
 
-    function makeProblem() {
-        var ret = {};
-        ret.question = [];
-        ret.rightAnswer = '';
-        ret.wrongAnswers = [];
-        ret.hint = [];
-        return ret;
+    function Problem() {
+        this.question = [];
+        this.rightAnswer = '';
+        this.wordIDs = [];
     }
 
     // -------------------- Public. --------------------
 
-    cd.translate = function (stackLines, active, situation) {
-        var problem = makeProblem();
+    cd.saveConvAsTest = function (stackLines, contextId, situationId) {
+        var problem = new Problem();
         var ret = [];
 
         for (var idx = 0; idx < stackLines.length; idx++) {
             var curLine = stackLines[idx].content;
 
-            curLine = K_parseLine(curLine, false, problem.hint).join('');
+            curLine = K_parseLine(curLine, false, problem.wordIDs).join('');
 
             if (!stackLines[idx].isMe) {
                 problem.question.push(curLine);
@@ -264,12 +261,12 @@ var ConversationData = (function () {
             else {
                 problem.rightAnswer = curLine;
                 ret.push(problem);
-                problem = makeProblem();
+                problem = new Problem();
             }
         }
 
         ret.push(problem);
-        testsRef.child('' + active + '/' + situation).set(ret);
+        convRef.child('' + contextId + '/' + situationId).set(ret);
     };
 
     return cd;

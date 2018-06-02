@@ -1,12 +1,14 @@
 var VF_DATA = [
-    {
-        name: 'Professor',
-        image: '../VFData/profile0.png'
-    },
-    {
-        name: 'Friend',
-        image: '../VFData/profile1.png'
-    }
+    {name: 'Professor', image: '../VFData/profile0.png'},
+    {name: 'Friend', image: '../VFData/profile1.png'}
+];
+
+
+var POPUP_DATA = [
+    {name: 'Class', icon: 'fas fa-chalkboard-teacher'},
+    {name: 'Sick', icon: 'fas fa-briefcase-medical'},
+    {name: 'Hobby', icon: 'fas fa-music'},
+    {name: 'Drink', icon: 'fas fa-beer'}
 ];
 
 function getAllUrlParams(url) {
@@ -88,13 +90,6 @@ $(function () {
         var profileIndex = args.profileIndex;
         var url = args.url;
 
-        var rowData = [
-            {name: 'Class', icon: 'fas fa-chalkboard-teacher'},
-            {name: 'Sick', icon: 'fas fa-briefcase-medical'},
-            {name: 'Hobby', icon: 'fas fa-music'},
-            {name: 'Drink', icon: 'fas fa-beer'}
-        ];
-
         $('.K_Whole').prepend(
             $('<div class="A_Popup">').append(
                 $('<div class="A_Window">')
@@ -107,7 +102,7 @@ $(function () {
             )
         );
 
-        rowData.forEach(function (row, index) {
+        POPUP_DATA.forEach(function (row, index) {
             $('#A_Row').append(
                 $('<div class="A_Item">')
                     .append($('<span class="A_Icon">').addClass('fas ' + row.icon))

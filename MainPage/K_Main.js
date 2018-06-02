@@ -235,7 +235,7 @@ function K_TEMP_getProfilePic(){
 function K_wrapUpConv(lineStack) {
     $('.K_cand').removeClass('K_available');
     $('<div>').addClass(['K_Log', 'K_SYS']).html(VF_DATA[K_curProfile].name + ' out.').appendTo($('.K_MainLog'));
-    ConversationData.translate(lineStack, K_curProfile, K_curContext);
+    ConversationData.saveConvAsTest(lineStack, K_curProfile, K_curContext);
 }
 //returns array of HTMLelements. (for inside div)
 //only called when normal mode.

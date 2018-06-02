@@ -14,24 +14,6 @@ var H = H || {};
 H.TestModel = (function () {
     'use strict';
 
-    var db = firebase.initializeApp({
-        apiKey: "AIzaSyCzCLfk8yqwdxamEEFx3PRrRyhOcTL1IUk",
-        authDomain: "liko-665bd.firebaseapp.com",
-        databaseURL: "https://liko-665bd.firebaseio.com",
-        projectId: "liko-665bd",
-        storageBucket: "liko-665bd.appspot.com",
-        messagingSenderId: "133340779007"
-    }, 'Test').database();
-
-    var testsRef = db.ref('tests');
-    var statsRef = db.ref('testStats');
-
-    function range(length) {
-        return Array.apply(null, Array(length)).map(function (_, i) {
-            return i;
-        });
-    }
-
     function shuffleArray(array) {
         var newArray = array.slice(0);
         var i, j, x;
@@ -46,45 +28,9 @@ H.TestModel = (function () {
         return newArray;
     }
 
-    function getProblems(contextId, situationId, callback) {
-        testsRef.child('' + contextId + '/' + situationId).once('value').then(function (snapshot) {
-            var problems = snapshot.val();
-            var allAnswers = [];
-
-            problems.forEach(function (problem) {
-                if (problem.rightAnswer.length > 0) {
-                    allAnswers.push(problem.rightAnswer);
-                }
-            });
-
-            // 랜덤하게 두 개 뽑겠다고 매 번 리스트 전체를 섞었더니 퍼포먼스가 똥망... ㅠㅠ
-            problems.forEach(function (problem, index) {
-                var allAnswersExceptMe = allAnswers.slice(0);
-
-                allAnswersExceptMe.splice(index, 1);
-                problem.wrongAnswers = shuffleArray(allAnswersExceptMe).slice(0, 2);
-            });
-
-            callback(problems);
-        });
-    }
-
-    function getCurrentDate() {
-        var date = new Date();
-
-        return '' + date.getFullYear()
-            + '.' + (date.getMonth() + 1)
-            + '.' + date.getDate()
-            + ' ' + date.getHours()
-            + ':' + date.getMinutes()
-            + ':' + date.getSeconds()
-    }
-
-    function saveResult(contextId, situationId, isSucceed, elapsedTime) {
-        statsRef.child('' + contextId + '/' + situationId).push({
-            date: getCurrentDate(),
-            isSucceed: isSucceed,
-            elapsedTime: elapsedTime
+    function range(length) {
+        return Array.apply(null, Array(length)).map(function (_, i) {
+            return i;
         });
     }
 
@@ -128,7 +74,7 @@ H.TestModel = (function () {
     }
 
     TestModel.prototype.startTest = function () {
-        getProblems(this.contextId, this.situationId, function (value) {
+        H.TestDB.loadAndGenTest(this.contextId, this.situationId, function (value) {
             this.problems = value;
             this.problemCount = this.problems.length;
 
@@ -167,7 +113,7 @@ H.TestModel = (function () {
                     this.isTestEnd = true;
 
                     // 실패한 것으로 처리됩니다.
-                    saveResult(this.contextId, this.situationId, false, this.elapsedTime);
+                    H.TestDB.saveTestResult(this.contextId, this.situationId, false, this.elapsedTime);
 
                     this.events.endTest.fire({
                         isSucceed: false,
@@ -195,7 +141,7 @@ H.TestModel = (function () {
         });
 
         // View에게 힌트 정보 보내기.
-        WordsUtil.vocabsFromIDs(problem.hint, function (vocabMap) {
+        WordsUtil.vocabsFromIDs(problem.wordIDs, function (vocabMap) {
             var hint = [];
 
             $.each(vocabMap, function (id, vocab) {
@@ -227,7 +173,7 @@ H.TestModel = (function () {
             });
 
             // 여기까지 왔다면 라이프를 잃지 않고 테스트를 완수한 겁니다.
-            saveResult(this.contextId, this.situationId, true, this.elapsedTime);
+            H.TestDB.saveTestResult(this.contextId, this.situationId, true, this.elapsedTime);
 
             this.events.endTest.fire({
                 isSucceed: true,
@@ -259,7 +205,6 @@ H.TestModel = (function () {
             progress: (this.problemIndex + 1) * 1.0 / this.problemCount,
             question: problem.question,
             answers: answers,
-            hint: problem.hint,
             keyCount: this.keyCount
         });
     };

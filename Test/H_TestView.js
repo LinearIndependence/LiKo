@@ -15,6 +15,12 @@ H.TestView = (function () {
         return ('' + (Math.pow(10, length) + number)).slice(1);
     }
 
+    function formatTime(time) {
+        return ''
+            + fixNumberLength(Math.floor(time / 60), 2) + 'm '
+            + fixNumberLength(time % 60, 2) + 's'
+    }
+
     function TestView(args) {
         this.contextId = args.contextId;
         this.situationId = args.situationId;
@@ -23,7 +29,8 @@ H.TestView = (function () {
         this.testModel.events.startTest.on(function (args) {
             this.drawLives(args.lifeCount);
             this.drawKeys(args.keyCount);
-            this.hidePopup();
+            this.hideMarkPopup();
+            this.hideEndPopup();
 
             $('.H_Test_HintButton').click(function () {
                 this.testModel.requestHint();
@@ -35,11 +42,8 @@ H.TestView = (function () {
             $('.H_Test_Answer').prop('disabled', true);
 
             setTimeout(function () {
-                alert(
-                    (args.isSucceed ? 'Success!' : 'Failed!')
-                    + ' (Elapsed time: ' + args.elapsedTime + ' seconds)'
-                );
-            }, 500);
+                this.showEndPopup(args.isSucceed, args.elapsedTime);
+            }.bind(this), 500);
         }, this);
 
         this.testModel.events.updateTime.on(function (args) {
@@ -82,7 +86,7 @@ H.TestView = (function () {
             this.updateChat([args.answer], true);
 
             // Correct 또는 Wrong이라고 팝업을 띄웁니다.
-            this.showPopup(args.isRight);
+            this.showMarkPopup(args.isRight);
         }, this);
 
         this.testModel.events.showHint.on(function (args) {
@@ -136,23 +140,47 @@ H.TestView = (function () {
     };
 
     TestView.prototype.updateTime = function (time) {
-        $('.H_Test_Time').text(
-            'Elapsed: '
-            + fixNumberLength(Math.floor(time / 60), 2) + 'm '
-            + fixNumberLength(time % 60, 2) + 's'
-        );
+        $('.H_Test_Time').text('Elapsed: ' + formatTime(time));
     };
 
-    TestView.prototype.showPopup = function (isRight) {
-        $('.H_Test_Popup')
+    TestView.prototype.showMarkPopup = function (isRight) {
+        $('.H_Test_MarkPopup')
             .empty()
             .append($('<span>').addClass(isRight ? 'fa fa-check' : 'fa fa-times'))
             .append($('<span>').text(isRight ? ' Correct' : ' Wrong'))
             .fadeIn(500).delay(1000).fadeOut(500);
     };
 
-    TestView.prototype.hidePopup = function () {
-        $('.H_Test_Popup').hide();
+    TestView.prototype.hideMarkPopup = function () {
+        $('.H_Test_MarkPopup').hide();
+    };
+
+    TestView.prototype.showEndPopup = function (isSucceed, elapsedTime) {
+        $('.H_Test_EndPopup')
+            .append(
+                $('<span class="H_Test_EndMessage">').text(
+                    isSucceed
+                        ? 'You succeeded the test! Congratulations!'
+                        : 'You failed the test! Study more.'
+                )
+            )
+            .append(
+                $('<span class="H_Test_EndMessage">').text(
+                    '(Elapsed time: ' + formatTime(elapsedTime) + ')'
+                )
+            )
+            .append(
+                $('<button class="H_Test_Return">')
+                    .text('Finish')
+                    .click(function () {
+                        $(location).attr('href', 'H_TestIntro.html');
+                    })
+            )
+            .fadeIn(500);
+    };
+
+    TestView.prototype.hideEndPopup = function () {
+        $('.H_Test_EndPopup').hide();
     };
 
     TestView.prototype.updateChat = function (sentences, isMe) {
