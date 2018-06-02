@@ -36,9 +36,7 @@
   - 클릭 가능한 단어들 색깔 바꾸기. (ex. 파랑색)
   - 단어 팝업 UI 수정. (ex. 가운데 정렬 대신 왼쪽 정렬, 한글, 영어 한 줄에 배치)
 - Test
-  - 프로필 사진 대화창에서 사용한 것과 같게 맞춤.
-  - 대화 연습처럼 context, situation 선택할 수 있도록 함.
-  - 테스트 끝나고 다른 창으로 이동. (ex. 테스트 선택 창, Statistics 페이지)
+  - 인트로 UI 개선.
 - Vocablist
   - Context 이름 (ex. 'Context 0 - Bad Professor') 대화 부분과 consistent하게 변경
   (ex. 프로필 사진 & Situation 아이콘 이용)
