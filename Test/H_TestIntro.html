@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Test</title>
+
+    <link rel="stylesheet" type="text/css" href="../VF/K_VF.css">
+    <link rel="stylesheet" type="text/css" href="../Popup/popup.css">
+    <script type="text/javascript" src="../js/lib/jquery-3.3.1.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+    <script type="text/javascript" src="../VF/K_VF.js"></script>
+    <script type="text/javascript" src="../Vocablist/words_util.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="H_TestIntro.css">
+    <script type="text/javascript" src="H_TestIntro.js"></script>
+</head>
+<body>
+<div class="K_Whole">
+    <div class="K_ProfileHolder">
+        <!--Profiles will be generated here!-->
+    </div>
+    <div class="K_Main">
+        <div class="H_Stat">
+            <!--TODO: Dynamically generate these things!-->
+            <div class="H_Stat_Context">
+                <div class="H_Stat_Profile">
+                    <img class="H_Stat_ProfileImage" src="../VFData/profile0.png">
+                    <span class="H_Stat_ProfileName">Professor</span>
+                </div>
+                <div class="H_Stat_ContextInfo">
+                    <div class="H_Stat_Situation">
+                        <span class="H_Stat_SituationIcon fas fa-chalkboard-teacher"></span>
+                        <span class="H_Stat_SituationName">Class</span>
+                    </div>
+                    <button class="H_Stat_Test">Start the test!</button>
+                    <table class="H_Stat_Previous">
+                        <tr>
+                            <th>Date</th>
+                            <th>Result</th>
+                            <th>Elapsed</th>
+                        </tr>
+                        <tr>
+                            <td>2018.06.02 14:20:35</td>
+                            <td>Success</td>
+                            <td>1m 30s</td>
+                        </tr>
+                        <tr>
+                            <td>2018.06.02 14:20:35</td>
+                            <td>Failed</td>
+                            <td>1m 20s</td>
+                        </tr>
+                    </table>
+                    <div class="H_Stat_Situation">
+                        <span class="H_Stat_SituationIcon fas fa-briefcase-medical"></span>
+                        <span class="H_Stat_SituationName">Sick</span>
+                    </div>
+                    <button class="H_Stat_Test" disabled>Learn the conversation first!</button>
+                </div>
+            </div>
+            <div class="H_Stat_Context">
+                <div class="H_Stat_Profile">
+                    <img class="H_Stat_ProfileImage" src="../VFData/profile1.png">
+                    <span class="H_Stat_ProfileName">Student</span>
+                </div>
+                <div class="H_Stat_ContextInfo">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

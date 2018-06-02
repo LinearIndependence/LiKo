@@ -225,10 +225,7 @@ $(function () {
         name: 'Test',
         image: '../VFData/test.png',
         callback: function () {
-            K_createPopup({
-                url: '../Test/H_TestMain.html',
-                profileIndex: 0
-            });
+            K_moveToURL('../Test/H_TestIntro.html');
         },
         classes: 'K_Profile K_lowerProfile'
     });
