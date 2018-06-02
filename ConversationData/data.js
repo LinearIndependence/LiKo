@@ -236,7 +236,7 @@ var ConversationData = (function () {
         'ConversationData'
     ).database();
 
-    var convRef = db.ref('tests');
+    var testsRef = db.ref('tests');
 
     function Problem() {
         this.question = [];
@@ -266,7 +266,7 @@ var ConversationData = (function () {
         }
 
         ret.push(problem);
-        convRef.child('' + contextId + '/' + situationId).set(ret);
+        testsRef.child('' + contextId + '/' + situationId).set(ret);
     };
 
     return cd;
