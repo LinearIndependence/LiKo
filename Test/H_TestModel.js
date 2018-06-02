@@ -21,9 +21,10 @@ H.TestModel = (function () {
         projectId: "liko-665bd",
         storageBucket: "liko-665bd.appspot.com",
         messagingSenderId: "133340779007"
-    }, 'TestModel').database();
+    }, 'Test').database();
 
     var testsRef = db.ref('tests');
+    var statsRef = db.ref('testStats');
 
     function range(length) {
         return Array.apply(null, Array(length)).map(function (_, i) {
@@ -65,6 +66,25 @@ H.TestModel = (function () {
             });
 
             callback(problems);
+        });
+    }
+
+    function getCurrentDate() {
+        var date = new Date();
+
+        return '' + date.getFullYear()
+            + '.' + (date.getMonth() + 1)
+            + '.' + date.getDate()
+            + ' ' + date.getHours()
+            + ':' + date.getMinutes()
+            + ':' + date.getSeconds()
+    }
+
+    function saveResult(contextId, situationId, isSucceed, elapsedTime) {
+        statsRef.child('' + contextId + '/' + situationId).push({
+            date: getCurrentDate(),
+            isSucceed: isSucceed,
+            elapsedTime: elapsedTime
         });
     }
 
@@ -147,10 +167,12 @@ H.TestModel = (function () {
                     this.isTestEnd = true;
 
                     // 실패한 것으로 처리됩니다.
+                    saveResult(this.contextId, this.situationId, false, this.elapsedTime);
+
                     this.events.endTest.fire({
                         isSucceed: false,
                         elapsedTime: this.elapsedTime
-                    })
+                    });
                 }.bind(this), this.delayAfterMark);
 
                 return;
@@ -205,6 +227,8 @@ H.TestModel = (function () {
             });
 
             // 여기까지 왔다면 라이프를 잃지 않고 테스트를 완수한 겁니다.
+            saveResult(this.contextId, this.situationId, true, this.elapsedTime);
+
             this.events.endTest.fire({
                 isSucceed: true,
                 elapsedTime: this.elapsedTime

@@ -72,6 +72,8 @@ $(function () {
     });
 
     var testView = new H.TestView({
+        contextId: urlParams.active,
+        situationId: urlParams.sit,
         testModel: testModel
     });
 

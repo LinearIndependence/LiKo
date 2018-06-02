@@ -226,7 +226,7 @@ $(function () {
         image: '../VFData/test.png',
         callback: function () {
             K_createPopup({
-                url: '../Test/H_Test.html',
+                url: '../Test/H_TestMain.html',
                 profileIndex: 0
             });
         },

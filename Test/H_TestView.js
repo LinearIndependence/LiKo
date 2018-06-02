@@ -16,6 +16,8 @@ H.TestView = (function () {
     }
 
     function TestView(args) {
+        this.contextId = args.contextId;
+        this.situationId = args.situationId;
         this.testModel = args.testModel;
 
         this.testModel.events.startTest.on(function (args) {
@@ -164,7 +166,7 @@ H.TestView = (function () {
                 newRow.append(
                     $('<img>')
                         .addClass('H_Test_Profile H_Test_Profile-other')
-                        .attr('src', '../VFData/profile0.png')
+                        .attr('src', '../VFData/profile' + this.contextId + '.png')
                         // 두 번째 문장부터는 프로필을 그리지 않습니다.
                         .css('opacity', (index === 0) ? 1 : 0)
                 )
@@ -179,7 +181,7 @@ H.TestView = (function () {
             );
 
             chat.append(newRow);
-        });
+        }.bind(this));
 
         // 스크롤을 강제로 아래로 내립니다.
         chat.scrollTop(chat.height());
