@@ -73,6 +73,18 @@ function getAllUrlParams(url) {
     return obj;
 }
 
+function K_showLoadingPopup() {
+    $('.K_Main').append(
+        $('<div class="K_LoadingPopup">').append(
+            $('<img src="../VF/K_Loading.gif">')
+        )
+    );
+}
+
+function K_hideLoadingPopup() {
+    $('.K_LoadingPopup').remove();
+}
+
 $(function () {
     'use strict';
 

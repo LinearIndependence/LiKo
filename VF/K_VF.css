@@ -6,6 +6,20 @@ body {
     padding: 0;
 }
 
+.K_LoadingPopup {
+    position: absolute;
+    z-index: 30;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.K_LoadingPopup > img {
+    width: 120px;
+    height: 120px;
+}
+
 .K_Whole {
     position: relative;
 

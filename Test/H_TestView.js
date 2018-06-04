@@ -26,7 +26,12 @@ H.TestView = (function () {
         this.situationId = args.situationId;
         this.testModel = args.testModel;
 
+        K_showLoadingPopup();
+
         this.testModel.events.startTest.on(function (args) {
+            // 로딩 팝업.
+            K_hideLoadingPopup();
+
             this.drawLives(args.lifeCount);
             this.drawKeys(args.keyCount);
             this.hideMarkPopup();

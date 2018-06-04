@@ -39,5 +39,10 @@ $(document).ready(function () {
 		});
 	}
 
-	contextsRef.on('value', function(snapshot) { renderContainerContents(snapshot); });
+	K_showLoadingPopup();
+
+	contextsRef.on('value', function(snapshot) {
+		K_hideLoadingPopup();
+		renderContainerContents(snapshot);
+	});
 });

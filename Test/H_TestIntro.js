@@ -127,8 +127,12 @@ H.StatView = (function () {
 $(function () {
     'use strict';
 
+    K_showLoadingPopup();
+
     H.TestDB.loadTestStatuses(function (testStatuses) {
         H.TestDB.loadTestResults(function (statInfo) {
+            K_hideLoadingPopup();
+
             new H.StatView({
                 statInfo: statInfo,
                 testStatuses: testStatuses

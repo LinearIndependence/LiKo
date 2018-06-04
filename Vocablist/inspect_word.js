@@ -69,7 +69,11 @@ $(document).ready(function () {
     var contextsRef = db.ref('contexts');
     var id = parseInt(getAllUrlParams().word);
 
+    K_showLoadingPopup();
+
     vocabsRef.once('value').then(function (snapshot) {
+        K_hideLoadingPopup();
+
         snapshot.forEach(function (vocab_snap) {
             var vocab = vocab_snap.val();
 
