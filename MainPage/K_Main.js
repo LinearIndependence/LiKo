@@ -13,7 +13,7 @@ $(document).ready(function () {
         if ($(this).hasClass('K_available')) {
             $(this).addClass('K_hovering');
             var IV = $('.K_inputValue');
-            IV.html($(this).html());
+            IV.html(K_getParsedCand($(this)));
             $('.K_inputField').addClass('K_alert');
             setTimeout(function () {
                 $('.K_inputField').removeClass('K_alert');
@@ -28,11 +28,11 @@ $(document).ready(function () {
         if ($(this).hasClass('K_available')) {
             $(this).removeClass('K_hovering');
             var IV = $('.K_inputValue');
-            if (K_selectedCand == null) {
+            if (K_selectedCand === null) {
                 IV.html('');
             }
             else {
-                IV.html(K_selectedCand.html());
+                IV.html(K_getParsedCand(K_selectedCand));
             }
         }
     })
@@ -83,13 +83,17 @@ $(document).ready(function () {
     console.log(K_curContext);
     console.log(K_curProfile);
     if (isNaN(K_curProfile) || isNaN(K_curContext)){
-
+        //do nothing.
     }
     else{
         K_GoConv(Context_Situations[K_curProfile][K_curContext]);
     }
     
 })
+
+function K_getParsedCand(obj) {
+    return K_parseLine(obj.attr('curLine'), true);
+}
 
 function K_clearCand() {
     if (K_selectedCand !== null) {
@@ -105,7 +109,7 @@ function K_GoConv(rawLines, lineStack = []) {
     var curCandIdx = -1;
     for (var idx = 0; idx < rawLines.length; idx++) {
         var curLine = rawLines[idx];
-        if (curMode == findTag) {
+        if (curMode === findTag) {
             if (K_checkTag(curLine, curTag)) {
                 curMode = normal;
                 continue;
@@ -114,13 +118,14 @@ function K_GoConv(rawLines, lineStack = []) {
                 continue;
             }
         }
-        else if (curMode == makeCands) {
+        else if (curMode === makeCands) {
             var candIdx = 0;
             $('.K_cand').removeClass('K_available');
             while (K_isCand(curLine)) {
                 var cand = $('.K_cand[idx=' + String(candIdx) + ']');
                 cand.attr('tag', curLine.substring(2, curLine.indexOf(']')));
                 cand.attr('content', '- ' + curLine.substring(curLine.indexOf(' ') + 1));
+                cand.attr('curLine', curLine);
                 cand.html('');
                 cand.addClass('K_available');
                 cand.append(K_parseLine(curLine, false));
@@ -137,7 +142,7 @@ function K_GoConv(rawLines, lineStack = []) {
                         break;
                     }
                 }
-                if (Nidx == rawLines.length) {
+                if (Nidx === rawLines.length) {
                     alert('nowhere to go');
                     return;
                 }
@@ -146,7 +151,7 @@ function K_GoConv(rawLines, lineStack = []) {
             }
             return;
         }
-        else if (curMode == normal) {
+        else if (curMode === normal) {
             if (K_isFin(curLine)) {
                 K_wrapUpConv(lineStack);
                 return;
@@ -161,7 +166,7 @@ function K_GoConv(rawLines, lineStack = []) {
                 curTag = curLine.substring(3, curLine.length - 1);
                 continue;
             }
-            if (curLine == '?') {
+            if (curLine === '?') {
                 curMode = makeCands;
                 continue;
             }
@@ -234,7 +239,7 @@ function K_TEMP_getProfilePic(){
 
 function K_wrapUpConv(lineStack) {
     $('.K_cand').removeClass('K_available');
-    $('<div>').addClass(['K_Log', 'K_SYS']).html(VF_DATA[K_curProfile].name + ' out.').appendTo($('.K_MainLog'));
+    $('<div>').addClass(['K_Log', 'K_SYS']).html('Situation is over.').appendTo($('.K_MainLog'));
     ConversationData.saveConvAsTest(lineStack, K_curProfile, K_curContext);
 }
 //returns array of HTMLelements. (for inside div)
@@ -242,7 +247,7 @@ function K_wrapUpConv(lineStack) {
 function K_parseLine(rawLine, makeLink = true, IDsOut = null) {
     var ret = [];
     var wordList = rawLine.split(' ');
-    if (wordList[0] == '-' || K_isCand(rawLine) || wordList[0] == '#') {
+    if (wordList[0] === '-' || K_isCand(rawLine) || wordList[0] === '#') {
         //normal or cand.
         for (var idx = 1; idx < wordList.length; idx++) {
             var word;
@@ -267,24 +272,25 @@ function K_parseLine(rawLine, makeLink = true, IDsOut = null) {
 }
 function K_parseWord(word, rawLine) {
     var result = word.split('>>');
-    if (result.length == 1) {
-        var ret = document.createElement('span');
+    var ret;
+    if (result.length === 1) {
+        ret = document.createElement('span');
         ret.innerHTML = result[0] + ' ';
         $(ret).data('value', result[0]);
         return ret;
     }
     else {
-        var ret = document.createElement('span');
+        ret = document.createElement('span');
         ret.classList.add('K_word');
         ret.setAttribute('ID', result[1]);
         ret.innerHTML = result[0] + ' ';
         $(ret).append(K_makeWordPopup(result[1], rawLine));
-        $(ret).mouseenter(function () {
-            $(this).find('.K_wordPopup').addClass('K_active');
-        })
-        $(ret).mouseleave(function () {
-            $(this).find('.K_wordPopup').removeClass('K_active');
-        })
+        //$(ret).mouseenter(function () {
+        //    $(this).find('.K_wordPopup').addClass('K_active');
+        //})
+        //$(ret).mouseleave(function () {
+        //    $(this).find('.K_wordPopup').removeClass('K_active');
+        //})
         $(ret).click(function () {
             setTimeout(function () { $(ret).find('.K_wordPopup').addClass('K_selected') }, 1);
         })
@@ -330,7 +336,7 @@ function K_getWordInfo(wordID) {
 }
 
 function K_isFin(str) {
-    if (str == '__FIN__') {
+    if (str === '__FIN__') {
         return true;
     } else {
         return false;
@@ -362,7 +368,7 @@ function K_isTag(str) {
 }
 
 function K_checkTag(str, tag) {
-    if ('[' + tag + ']' == str) {
+    if ('[' + tag + ']' === str) {
         return true;
     }
     else {

@@ -94,7 +94,7 @@
     padding: 6px;
     border: 2px solid #333D51;
     margin: 0 10px 0 0;
-    width: 200px;
+    width: 230px;
     height: 100%;
     float: left;
     transition: background-color 0.2s ease-in-out;
@@ -165,10 +165,11 @@
         top: 5px;
     }
 
-.K_word{
+.K_word {
     position: relative;
     font-weight: bold;
     text-decoration: solid underline;
+    color: blue;
     cursor: pointer;
 }
 .K_word:hover{
@@ -177,6 +178,7 @@
 
 .K_wordPopup {
     pointer-events: none;
+    color: black;
     position: absolute;
     background-color: #d3ac2b;
     min-height: 50px;
@@ -187,7 +189,7 @@
     padding: 5px;
     text-align: center;
     opacity: 0;
-    transition: opacity linear 0.3s;
+    transition: opacity linear 0.2s;
     box-shadow: 3px 3px 20px grey;
 }
     .K_wordPopup::after {
@@ -202,9 +204,6 @@
         border-color: #d3ac2b transparent transparent transparent;
     }
 
-.K_wordPopup.K_active{
-    opacity: 0.5;
-}
 .K_wordPopup.K_selected{
     opacity: 1;
 }
