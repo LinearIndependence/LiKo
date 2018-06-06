@@ -206,52 +206,18 @@ $(function () {
         );
     }
 
-    K_addProfile({
-        name: VF_DATA[0].name,
-        image: VF_DATA[0].image,
-        callback: function () {
-            K_createPopup({
-                url: '../MainPage/K_Main.html',
-                profileIndex: 0
-            });
-        },
-        classes: 'K_Profile'
-    });
-
-    K_addProfile({
-        name: VF_DATA[1].name,
-        image: VF_DATA[1].image,
-        callback: function () {
-            K_createPopup({
-                url: '../MainPage/K_Main.html',
-                profileIndex: 1
-            });
-        },
-        classes: 'K_Profile'
-    });
-
-    K_addProfile({
-        name: VF_DATA[2].name,
-        image: VF_DATA[2].image,
-        callback: function () {
-            K_createPopup({
-                url: '../MainPage/K_Main.html',
-                profileIndex: 2
-            });
-        },
-        classes: 'K_Profile'
-    });
-
-    K_addProfile({
-        name: VF_DATA[3].name,
-        image: VF_DATA[3].image,
-        callback: function () {
-            K_createPopup({
-                url: '../MainPage/K_Main.html',
-                profileIndex: 3
-            });
-        },
-        classes: 'K_Profile'
+    VF_DATA.forEach(function (vf, index) {
+        K_addProfile({
+            name: vf.name,
+            image: vf.image,
+            callback: function () {
+                K_createPopup({
+                    url: '../MainPage/K_Main.html',
+                    profileIndex: index
+                });
+            },
+            classes: 'K_Profile'
+        });
     });
 
     K_addProfile({

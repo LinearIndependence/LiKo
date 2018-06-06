@@ -58,14 +58,13 @@
     padding: 7px 10px 7px 10px;
     border-width: 1px;
 
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 16px;
 
     background-color: #eedeaa;
 }
 
 .H_Stat_Situation {
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .H_Stat_SituationIcon {
@@ -75,10 +74,10 @@
 }
 
 .H_Stat_SituationName {
-    font-weight: bold;
 }
 
 .H_Stat_Previous {
+    width: 100%;
     margin: 5px 0 15px 0;
     font-size: 16px;
 
@@ -96,5 +95,5 @@
 .H_Stat_Previous td {
     box-sizing: border-box;
 
-    padding: 5px;
+    padding: 8px;
 }
