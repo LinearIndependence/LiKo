@@ -1,6 +1,8 @@
 var VF_DATA = [
     {name: 'Professor', image: '../VFData/profile0.png'},
-    {name: 'Friend', image: '../VFData/profile1.png'}
+    {name: 'Friend', image: '../VFData/profile1.png'},
+    {name: 'Sister', image: '../VFData/profile2.png'},
+    {name: 'TA', image: '../VFData/profile3.png'}
 ];
 
 
@@ -223,6 +225,30 @@ $(function () {
             K_createPopup({
                 url: '../MainPage/K_Main.html',
                 profileIndex: 1
+            });
+        },
+        classes: 'K_Profile'
+    });
+
+    K_addProfile({
+        name: VF_DATA[2].name,
+        image: VF_DATA[2].image,
+        callback: function () {
+            K_createPopup({
+                url: '../MainPage/K_Main.html',
+                profileIndex: 2
+            });
+        },
+        classes: 'K_Profile'
+    });
+
+    K_addProfile({
+        name: VF_DATA[3].name,
+        image: VF_DATA[3].image,
+        callback: function () {
+            K_createPopup({
+                url: '../MainPage/K_Main.html',
+                profileIndex: 3
             });
         },
         classes: 'K_Profile'
