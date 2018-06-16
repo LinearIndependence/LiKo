@@ -41,3 +41,6 @@
   - Context 이름 (ex. 'Context 0 - Bad Professor') 대화 부분과 consistent하게 변경
   (ex. 프로필 사진 & Situation 아이콘 이용)
 - Popup
+
+## Extra
+![LiKo](https://i.imgur.com/hJU6wH0.jpg)
